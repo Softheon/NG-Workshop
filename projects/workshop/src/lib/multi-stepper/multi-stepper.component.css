@@ -1,0 +1,602 @@
+/**
+  THEMING SASS HOW-TO:
+  @include var(CSS PROPERTY NAME, COLOR VARIABLE);
+
+  EXAMPLE:
+  
+  [sws-progress-steps__step-label] {
+    @include var(color, color-primary);
+  }
+
+  Result:
+  [sws-progress-steps__step-label] {
+    color: orange;
+    color: var(--color-primary, orange); // :root variable, fallback if no variable
+  }
+
+  Theming Browser Support/Fallbacks:
+  if :root {--color-primary: purple;} is present, then the root variable will overwrite the color
+  if :root {--color-primary: purple;} is not present,  var(--color-primary, orange); will change the color to orange
+  if potatOS, the fallback color: orange; css will be used
+  Ref: https://vgpena.github.io/winning-with-css-variables/ 
+
+*/
+@media (max-width: 900px) {
+  .hide-md-down,
+  [hide-md-down] {
+    display: none !important;
+  }
+}
+
+@media (min-width: 599px) {
+  .show-xs,
+  [show-xs] {
+    display: none !important;
+  }
+}
+
+[sws-progress-steps__substeps_label],
+.sws-progress-steps__substeps_label {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  margin: 0 auto;
+  text-align: center;
+  font-weight: bold;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+@media (min-width: 1100px) {
+  [sws-progress-steps__substeps_label],
+  .sws-progress-steps__substeps_label {
+    opacity: 0;
+  }
+}
+
+[sws-progress-steps__substeps_indicator]:hover + [sws-progress-steps__substeps_label],
+[sws-progress-steps__substeps_indicator]:hover .sws-progress-steps__substeps_label,
+.sws-progress-steps__substeps_indicator:hover + [sws-progress-steps__substeps_label],
+.sws-progress-steps__substeps_indicator:hover .sws-progress-steps__substeps_label {
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+.active-link {
+  font-weight: bold;
+  color: #333;
+}
+
+a {
+  text-decoration: none !important;
+  color: #5e5e5e;
+}
+
+[sws-progress-steps],
+.sws-progress-steps {
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+  position: relative;
+}
+
+[sws-progress-steps] *,
+.sws-progress-steps * {
+  transition: all .200s linear;
+}
+
+@media screen and (max-width: 1100px) {
+  [sws-progress-steps],
+  .sws-progress-steps {
+    flex-grow: 10;
+  }
+}
+
+[sws-progress-steps] [sws-progress-steps__step-container],
+[sws-progress-steps] .sws-progress-steps__step-container,
+.sws-progress-steps [sws-progress-steps__step-container],
+.sws-progress-steps .sws-progress-steps__step-container {
+  display: flex;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  align-items: baseline;
+  justify-content: center;
+}
+
+[sws-progress-steps] [sws-progress-steps__step],
+[sws-progress-steps] .sws-progress-steps__step,
+.sws-progress-steps [sws-progress-steps__step],
+.sws-progress-steps .sws-progress-steps__step {
+  position: absolute;
+  min-height: 72px;
+  min-width: 0;
+  text-align: center;
+  flex: 1;
+  flex-basis: auto;
+  z-index: 1;
+}
+
+[sws-progress-steps] [sws-progress-steps__step] a:hover, [sws-progress-steps] [sws-progress-steps__step] a:focus,
+[sws-progress-steps] .sws-progress-steps__step a:hover,
+[sws-progress-steps] .sws-progress-steps__step a:focus,
+.sws-progress-steps [sws-progress-steps__step] a:hover,
+.sws-progress-steps [sws-progress-steps__step] a:focus,
+.sws-progress-steps .sws-progress-steps__step a:hover,
+.sws-progress-steps .sws-progress-steps__step a:focus {
+  outline: none;
+}
+
+[sws-progress-steps] [sws-progress-steps__step] a:hover [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] [sws-progress-steps__step] a:hover .sws-progress-steps__step-indicator .fas, [sws-progress-steps] [sws-progress-steps__step] a:focus [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] [sws-progress-steps__step] a:focus .sws-progress-steps__step-indicator .fas,
+[sws-progress-steps] .sws-progress-steps__step a:hover [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] .sws-progress-steps__step a:hover .sws-progress-steps__step-indicator .fas,
+[sws-progress-steps] .sws-progress-steps__step a:focus [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] .sws-progress-steps__step a:focus .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps [sws-progress-steps__step] a:hover [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps [sws-progress-steps__step] a:hover .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps [sws-progress-steps__step] a:focus [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps [sws-progress-steps__step] a:focus .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps .sws-progress-steps__step a:hover [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps .sws-progress-steps__step a:hover .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps .sws-progress-steps__step a:focus [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps .sws-progress-steps__step a:focus .sws-progress-steps__step-indicator .fas {
+  opacity: .5 !important;
+}
+
+[sws-progress-steps] [sws-progress-steps__step] a:hover.active-link [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] [sws-progress-steps__step] a:hover.active-link .sws-progress-steps__step-indicator .fas, [sws-progress-steps] [sws-progress-steps__step] a:focus.active-link [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] [sws-progress-steps__step] a:focus.active-link .sws-progress-steps__step-indicator .fas,
+[sws-progress-steps] .sws-progress-steps__step a:hover.active-link [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] .sws-progress-steps__step a:hover.active-link .sws-progress-steps__step-indicator .fas,
+[sws-progress-steps] .sws-progress-steps__step a:focus.active-link [sws-progress-steps__step-indicator] .fas,
+[sws-progress-steps] .sws-progress-steps__step a:focus.active-link .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps [sws-progress-steps__step] a:hover.active-link [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps [sws-progress-steps__step] a:hover.active-link .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps [sws-progress-steps__step] a:focus.active-link [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps [sws-progress-steps__step] a:focus.active-link .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps .sws-progress-steps__step a:hover.active-link [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps .sws-progress-steps__step a:hover.active-link .sws-progress-steps__step-indicator .fas,
+.sws-progress-steps .sws-progress-steps__step a:focus.active-link [sws-progress-steps__step-indicator] .fas,
+.sws-progress-steps .sws-progress-steps__step a:focus.active-link .sws-progress-steps__step-indicator .fas {
+  opacity: 1 !important;
+}
+
+[sws-progress-steps] [sws-progress-steps__step] [sws-progress-steps__step-label],
+[sws-progress-steps] [sws-progress-steps__step] .sws-progress-steps__step-label,
+[sws-progress-steps] .sws-progress-steps__step [sws-progress-steps__step-label],
+[sws-progress-steps] .sws-progress-steps__step .sws-progress-steps__step-label,
+.sws-progress-steps [sws-progress-steps__step] [sws-progress-steps__step-label],
+.sws-progress-steps [sws-progress-steps__step] .sws-progress-steps__step-label,
+.sws-progress-steps .sws-progress-steps__step [sws-progress-steps__step-label],
+.sws-progress-steps .sws-progress-steps__step .sws-progress-steps__step-label {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 110%;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: transparent;
+  transition: opacity .3s ease, background .2s ease;
+}
+
+[sws-progress-steps] [sws-progress-steps__step] [sws-progress-steps__step-label].show-label,
+[sws-progress-steps] [sws-progress-steps__step] .sws-progress-steps__step-label.show-label,
+[sws-progress-steps] .sws-progress-steps__step [sws-progress-steps__step-label].show-label,
+[sws-progress-steps] .sws-progress-steps__step .sws-progress-steps__step-label.show-label,
+.sws-progress-steps [sws-progress-steps__step] [sws-progress-steps__step-label].show-label,
+.sws-progress-steps [sws-progress-steps__step] .sws-progress-steps__step-label.show-label,
+.sws-progress-steps .sws-progress-steps__step [sws-progress-steps__step-label].show-label,
+.sws-progress-steps .sws-progress-steps__step .sws-progress-steps__step-label.show-label {
+  opacity: 1 !important;
+  transition: opacity .3s ease, background .2s ease;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+[sws-progress-steps] [sws-progress-steps__line], [sws-progress-steps].sws-progress-steps__line,
+.sws-progress-steps [sws-progress-steps__line],
+.sws-progress-steps.sws-progress-steps__line {
+  margin: 14px 0;
+  border-top-style: solid;
+  border-top-width: 2px;
+  flex: auto;
+  height: 0;
+  min-width: 32px;
+  flex: auto;
+  border-top-color: rgba(0, 0, 0, 0.12);
+}
+
+[sws-progress-steps] [sws-progress-steps__substeps] a,
+[sws-progress-steps] .sws-progress-steps__substeps a,
+.sws-progress-steps [sws-progress-steps__substeps] a,
+.sws-progress-steps .sws-progress-steps__substeps a {
+  text-decoration: none !important;
+  color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+[sws-progress-steps] [sws-progress-steps__substeps] a:focus [sws-progress-steps__substeps_label],
+[sws-progress-steps] [sws-progress-steps__substeps] a:focus .sws-progress-steps__substeps_label, [sws-progress-steps] [sws-progress-steps__substeps] a:hover [sws-progress-steps__substeps_label],
+[sws-progress-steps] [sws-progress-steps__substeps] a:hover .sws-progress-steps__substeps_label,
+[sws-progress-steps] .sws-progress-steps__substeps a:focus [sws-progress-steps__substeps_label],
+[sws-progress-steps] .sws-progress-steps__substeps a:focus .sws-progress-steps__substeps_label,
+[sws-progress-steps] .sws-progress-steps__substeps a:hover [sws-progress-steps__substeps_label],
+[sws-progress-steps] .sws-progress-steps__substeps a:hover .sws-progress-steps__substeps_label,
+.sws-progress-steps [sws-progress-steps__substeps] a:focus [sws-progress-steps__substeps_label],
+.sws-progress-steps [sws-progress-steps__substeps] a:focus .sws-progress-steps__substeps_label,
+.sws-progress-steps [sws-progress-steps__substeps] a:hover [sws-progress-steps__substeps_label],
+.sws-progress-steps [sws-progress-steps__substeps] a:hover .sws-progress-steps__substeps_label,
+.sws-progress-steps .sws-progress-steps__substeps a:focus [sws-progress-steps__substeps_label],
+.sws-progress-steps .sws-progress-steps__substeps a:focus .sws-progress-steps__substeps_label,
+.sws-progress-steps .sws-progress-steps__substeps a:hover [sws-progress-steps__substeps_label],
+.sws-progress-steps .sws-progress-steps__substeps a:hover .sws-progress-steps__substeps_label {
+  opacity: 1 !important;
+}
+
+[sws-progress-steps] [sws-progress-steps__substeps] a:focus .fas, [sws-progress-steps] [sws-progress-steps__substeps] a:hover .fas,
+[sws-progress-steps] .sws-progress-steps__substeps a:focus .fas,
+[sws-progress-steps] .sws-progress-steps__substeps a:hover .fas,
+.sws-progress-steps [sws-progress-steps__substeps] a:focus .fas,
+.sws-progress-steps [sws-progress-steps__substeps] a:hover .fas,
+.sws-progress-steps .sws-progress-steps__substeps a:focus .fas,
+.sws-progress-steps .sws-progress-steps__substeps a:hover .fas {
+  opacity: .5 !important;
+}
+
+[sws-progress-steps] [sws-progress-steps__substeps_link],
+[sws-progress-steps] .sws-progress-steps__substeps_link,
+.sws-progress-steps [sws-progress-steps__substeps_link],
+.sws-progress-steps .sws-progress-steps__substeps_link {
+  position: relative;
+  text-align: center;
+  margin: 0 auto;
+}
+
+[sws-progress-steps] [sws-progress-steps__substeps_link]:focus.active-link div > div .fas,
+[sws-progress-steps] .sws-progress-steps__substeps_link:focus.active-link div > div .fas,
+.sws-progress-steps [sws-progress-steps__substeps_link]:focus.active-link div > div .fas,
+.sws-progress-steps .sws-progress-steps__substeps_link:focus.active-link div > div .fas {
+  opacity: 1 !important;
+}
+
+[sws-progress-steps]:hover [sws-progress-steps__step-label],
+[sws-progress-steps]:hover .sws-progress-steps__step-label,
+[sws-progress-steps]:hover [sws-progress-steps__substeps_label],
+[sws-progress-steps]:hover .sws-progress-steps__substeps_label, [sws-progress-steps]:focus [sws-progress-steps__step-label],
+[sws-progress-steps]:focus .sws-progress-steps__step-label,
+[sws-progress-steps]:focus [sws-progress-steps__substeps_label],
+[sws-progress-steps]:focus .sws-progress-steps__substeps_label,
+.sws-progress-steps:hover [sws-progress-steps__step-label],
+.sws-progress-steps:hover .sws-progress-steps__step-label,
+.sws-progress-steps:hover [sws-progress-steps__substeps_label],
+.sws-progress-steps:hover .sws-progress-steps__substeps_label,
+.sws-progress-steps:focus [sws-progress-steps__step-label],
+.sws-progress-steps:focus .sws-progress-steps__step-label,
+.sws-progress-steps:focus [sws-progress-steps__substeps_label],
+.sws-progress-steps:focus .sws-progress-steps__substeps_label {
+  opacity: 0 !important;
+  transition: opacity .3s ease;
+}
+
+[text-hover-primary] a:hover svg, [text-hover-primary] a:focus svg,
+.text-hover-primary a:hover svg,
+.text-hover-primary a:focus svg {
+  color: #0088ce !important;
+  color: var(--color-primary, #0088ce) !important;
+}
+
+[text-hover-primary]:hover a > svg, [text-hover-primary]:focus a > svg,
+.text-hover-primary:hover a > svg,
+.text-hover-primary:focus a > svg {
+  color: #0088ce !important;
+  color: var(--color-primary, #0088ce) !important;
+}
+
+[text-hover-secondary] a:hover svg, [text-hover-secondary] a:focus svg,
+.text-hover-secondary a:hover svg,
+.text-hover-secondary a:focus svg {
+  color: #16A085 !important;
+  color: var(--color-secondary-hover, #16A085) !important;
+}
+
+[text-hover-secondary] a:hover svg.text-white, [text-hover-secondary] a:focus svg.text-white,
+.text-hover-secondary a:hover svg.text-white,
+.text-hover-secondary a:focus svg.text-white {
+  color: white !important;
+}
+
+[text-hover-secondary]:hover a > svg, [text-hover-secondary]:focus a > svg,
+.text-hover-secondary:hover a > svg,
+.text-hover-secondary:focus a > svg {
+  color: #16A085 !important;
+  color: var(--color-secondary-hover, #16A085) !important;
+}
+
+[text-hover-secondary]:hover a > svg.text-white, [text-hover-secondary]:focus a > svg.text-white,
+.text-hover-secondary:hover a > svg.text-white,
+.text-hover-secondary:focus a > svg.text-white {
+  color: white !important;
+}
+
+/* Mobile UI */
+@media (max-width: 1100px) {
+  [sws-progress-overlay],
+  .sws-progress-overlay {
+    background: rgba(51, 51, 51, 0.54);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+  }
+  [sws-progress-steps__step-label],
+  .sws-progress-steps__step-label {
+    vertical-align: middle;
+    align-self: center;
+    text-align: left;
+    background: transparent;
+    padding-left: 15px;
+  }
+  [sws-progress-steps__substeps-container],
+  .sws-progress-steps__substeps-container {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    margin-left: 12px;
+    border-left: 3px solid grey;
+    padding-left: 30px;
+  }
+  [sws-progress-steps__substeps_label],
+  .sws-progress-steps__substeps_label {
+    position: relative;
+    opacity: 1 !important;
+  }
+  [sws-progress-steps__step-indicator],
+  .sws-progress-steps__step-indicator {
+    display: flex;
+    padding-top: 5px;
+  }
+  [sws-progress-steps__step-indicator] > div:first-child,
+  .sws-progress-steps__step-indicator > div:first-child {
+    margin-bottom: 5px !important;
+    margin-top: 10px;
+  }
+  [sws-progress-steps__substeps_indicator] > div,
+  .sws-progress-steps__substeps_indicator > div {
+    margin-bottom: 0 !important;
+  }
+  [sws-progress-steps],
+  .sws-progress-steps {
+    flex-direction: column;
+    position: absolute;
+    background: #fff;
+    height: 100%;
+    z-index: 40;
+    padding-right: 20px;
+    padding-left: 20px;
+    min-width: 150px;
+  }
+  [sws-progress-steps]:hover [sws-progress-steps__step-label],
+  [sws-progress-steps]:hover .sws-progress-steps__step-label,
+  [sws-progress-steps]:hover small[sws-progress-steps__substeps_label],
+  [sws-progress-steps]:hover small.sws-progress-steps__substeps_label, [sws-progress-steps]:focus [sws-progress-steps__step-label],
+  [sws-progress-steps]:focus .sws-progress-steps__step-label,
+  [sws-progress-steps]:focus small[sws-progress-steps__substeps_label],
+  [sws-progress-steps]:focus small.sws-progress-steps__substeps_label,
+  .sws-progress-steps:hover [sws-progress-steps__step-label],
+  .sws-progress-steps:hover .sws-progress-steps__step-label,
+  .sws-progress-steps:hover small[sws-progress-steps__substeps_label],
+  .sws-progress-steps:hover small.sws-progress-steps__substeps_label,
+  .sws-progress-steps:focus [sws-progress-steps__step-label],
+  .sws-progress-steps:focus .sws-progress-steps__step-label,
+  .sws-progress-steps:focus small[sws-progress-steps__substeps_label],
+  .sws-progress-steps:focus small.sws-progress-steps__substeps_label {
+    opacity: 1 !important;
+  }
+  [sws-progress-steps__step-container],
+  .sws-progress-steps__step-container {
+    width: 100% !important;
+    height: auto !important;
+  }
+  [sws-progress-steps__step-container] [sws-progress-steps__step],
+  [sws-progress-steps__step-container] .sws-progress-steps__step,
+  .sws-progress-steps__step-container [sws-progress-steps__step],
+  .sws-progress-steps__step-container .sws-progress-steps__step {
+    position: relative;
+    min-height: 1px;
+  }
+  [sws-progress-steps__step-container] [sws-progress-steps__step] [flex-center],
+  [sws-progress-steps__step-container] [sws-progress-steps__step] .flex-center,
+  [sws-progress-steps__step-container] .sws-progress-steps__step [flex-center],
+  [sws-progress-steps__step-container] .sws-progress-steps__step .flex-center,
+  .sws-progress-steps__step-container [sws-progress-steps__step] [flex-center],
+  .sws-progress-steps__step-container [sws-progress-steps__step] .flex-center,
+  .sws-progress-steps__step-container .sws-progress-steps__step [flex-center],
+  .sws-progress-steps__step-container .sws-progress-steps__step .flex-center {
+    align-items: flex-start;
+  }
+  [sws-progress-steps__line],
+  .sws-progress-steps__line {
+    flex: none;
+  }
+  [sws-progress-steps__step] a:focus [sws-progress-steps__step-label], [sws-progress-steps__step] a:focus .sws-progress-steps__step-label,
+  .sws-progress-steps__step a:focus [sws-progress-steps__step-label],
+  .sws-progress-steps__step a:focus .sws-progress-steps__step-label {
+    text-decoration: underline;
+  }
+  [sws-progress-steps__substeps] a:focus [sws-progress-steps__substeps_label], [sws-progress-steps__substeps] a:focus .sws-progress-steps__substeps_label,
+  .sws-progress-steps__substeps a:focus [sws-progress-steps__substeps_label],
+  .sws-progress-steps__substeps a:focus .sws-progress-steps__substeps_label {
+    text-decoration: underline;
+  }
+}
+
+.vertical [sws-progress-overlay],
+.vertical .sws-progress-overlay {
+  background: rgba(51, 51, 51, 0.54);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 20;
+}
+
+.vertical [sws-progress-steps__step-label],
+.vertical .sws-progress-steps__step-label {
+  vertical-align: middle;
+  align-self: center;
+  text-align: left;
+  background: transparent;
+  padding-left: 15px;
+}
+
+.vertical [sws-progress-steps__substeps-container],
+.vertical .sws-progress-steps__substeps-container {
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+  margin-left: 12px;
+  border-left: 3px solid grey;
+  padding-left: 30px;
+}
+
+.vertical [sws-progress-steps__substeps_label],
+.vertical .sws-progress-steps__substeps_label {
+  position: relative;
+  opacity: 1 !important;
+}
+
+.vertical [sws-progress-steps__step-indicator],
+.vertical .sws-progress-steps__step-indicator {
+  display: flex;
+  padding-top: 5px;
+}
+
+.vertical [sws-progress-steps__step-indicator] > div:first-child,
+.vertical .sws-progress-steps__step-indicator > div:first-child {
+  margin-bottom: 5px !important;
+  margin-top: 10px;
+}
+
+.vertical [sws-progress-steps__substeps_indicator] > div,
+.vertical .sws-progress-steps__substeps_indicator > div {
+  margin-bottom: 0 !important;
+}
+
+.vertical [sws-progress-steps],
+.vertical .sws-progress-steps {
+  flex-direction: column;
+  position: absolute;
+  background: #fff;
+  height: 100%;
+  z-index: 40;
+  padding-right: 20px;
+  padding-left: 20px;
+  min-width: 150px;
+}
+
+.vertical [sws-progress-steps]:hover [sws-progress-steps__step-label],
+.vertical [sws-progress-steps]:hover .sws-progress-steps__step-label,
+.vertical [sws-progress-steps]:hover small[sws-progress-steps__substeps_label],
+.vertical [sws-progress-steps]:hover small.sws-progress-steps__substeps_label, .vertical [sws-progress-steps]:focus [sws-progress-steps__step-label],
+.vertical [sws-progress-steps]:focus .sws-progress-steps__step-label,
+.vertical [sws-progress-steps]:focus small[sws-progress-steps__substeps_label],
+.vertical [sws-progress-steps]:focus small.sws-progress-steps__substeps_label,
+.vertical .sws-progress-steps:hover [sws-progress-steps__step-label],
+.vertical .sws-progress-steps:hover .sws-progress-steps__step-label,
+.vertical .sws-progress-steps:hover small[sws-progress-steps__substeps_label],
+.vertical .sws-progress-steps:hover small.sws-progress-steps__substeps_label,
+.vertical .sws-progress-steps:focus [sws-progress-steps__step-label],
+.vertical .sws-progress-steps:focus .sws-progress-steps__step-label,
+.vertical .sws-progress-steps:focus small[sws-progress-steps__substeps_label],
+.vertical .sws-progress-steps:focus small.sws-progress-steps__substeps_label {
+  opacity: 1 !important;
+}
+
+.vertical [sws-progress-steps__step-container],
+.vertical .sws-progress-steps__step-container {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.vertical [sws-progress-steps__step-container] [sws-progress-steps__step],
+.vertical [sws-progress-steps__step-container] .sws-progress-steps__step,
+.vertical .sws-progress-steps__step-container [sws-progress-steps__step],
+.vertical .sws-progress-steps__step-container .sws-progress-steps__step {
+  position: relative;
+  min-height: 1px;
+}
+
+.vertical [sws-progress-steps__step-container] [sws-progress-steps__step] [flex-center],
+.vertical [sws-progress-steps__step-container] [sws-progress-steps__step] .flex-center,
+.vertical [sws-progress-steps__step-container] .sws-progress-steps__step [flex-center],
+.vertical [sws-progress-steps__step-container] .sws-progress-steps__step .flex-center,
+.vertical .sws-progress-steps__step-container [sws-progress-steps__step] [flex-center],
+.vertical .sws-progress-steps__step-container [sws-progress-steps__step] .flex-center,
+.vertical .sws-progress-steps__step-container .sws-progress-steps__step [flex-center],
+.vertical .sws-progress-steps__step-container .sws-progress-steps__step .flex-center {
+  align-items: flex-start;
+}
+
+.vertical [sws-progress-steps__line],
+.vertical .sws-progress-steps__line {
+  flex: none;
+}
+
+.vertical [sws-progress-steps__step] a:focus [sws-progress-steps__step-label], .vertical [sws-progress-steps__step] a:focus .sws-progress-steps__step-label,
+.vertical .sws-progress-steps__step a:focus [sws-progress-steps__step-label],
+.vertical .sws-progress-steps__step a:focus .sws-progress-steps__step-label {
+  text-decoration: underline;
+}
+
+.vertical [sws-progress-steps__substeps] a:focus [sws-progress-steps__substeps_label], .vertical [sws-progress-steps__substeps] a:focus .sws-progress-steps__substeps_label,
+.vertical .sws-progress-steps__substeps a:focus [sws-progress-steps__substeps_label],
+.vertical .sws-progress-steps__substeps a:focus .sws-progress-steps__substeps_label {
+  text-decoration: underline;
+}
+
+[cursor-pointer] {
+  cursor: pointer;
+}
+
+.fix-margin {
+  margin-left: -55px;
+  margin-right: -55px;
+}
+
+.right-fix {
+  left: 0;
+  text-align: left !important;
+}
+
+.left-fix {
+  right: 0;
+  text-align: right !important;
+}
+
+.border-success {
+  border-color: rgba(17, 130, 4, 0.35) !important;
+}
+
+.text-secondary--moreprimary {
+  color: #138b9f !important;
+}
+
+.large-tooltip {
+  width: 200px;
+}
+
+.f-g-5 {
+  flex-grow: 3 !important;
+}
+
+@media (max-width: 599px) {
+  .mobile-substeps {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+/*# sourceMappingURL=multi-stepper.component.css.map */

@@ -1,0 +1,309 @@
+/**
+  THEMING SASS HOW-TO:
+  @include var(CSS PROPERTY NAME, COLOR VARIABLE);
+
+  EXAMPLE:
+  
+  [sws-progress-steps__step-label] {
+    @include var(color, color-primary);
+  }
+
+  Result:
+  [sws-progress-steps__step-label] {
+    color: orange;
+    color: var(--color-primary, orange); // :root variable, fallback if no variable
+  }
+
+  Theming Browser Support/Fallbacks:
+  if :root {--color-primary: purple;} is present, then the root variable will overwrite the color
+  if :root {--color-primary: purple;} is not present,  var(--color-primary, orange); will change the color to orange
+  if potatOS, the fallback color: orange; css will be used
+  Ref: https://vgpena.github.io/winning-with-css-variables/ 
+
+*/
+
+@mixin var($property, $varName) {
+    #{$property}: map-get($vars, $varName) !important;
+    #{$property}: var(--#{$varName}, map-get($vars, $varName)) !important;
+}
+
+// Variables
+$color-dark: #333;
+$color-semi-dark: #5e5e5e;
+$color-primary: #0088ce;
+$color-secondary: #16967c;
+$color-success: #11AF00;
+$color-secondary-hover: #16A085;
+// Variable Maps - FOR COLORS USED IN VAR MIXIN
+$vars: (color-primary: #0088ce, color-secondary: #16967c, color-secondary-hover: #16A085);
+
+.hide-md-down,
+[hide-md-down] {
+    @media (max-width: 900px) {
+        display: none !important;
+    }
+}
+
+.show-xs,
+[show-xs] {
+    @media (min-width: 599px) {
+        display: none !important;
+    }
+}
+
+[sws-progress-steps__substeps_label],
+.sws-progress-steps__substeps_label {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: bold;
+    opacity: 1;
+    transition: opacity .3s ease;
+    @media (min-width: 1100px) {
+        opacity: 0;
+    }
+}
+
+[sws-progress-steps__substeps_indicator],
+.sws-progress-steps__substeps_indicator {
+    &:hover {
+        +[sws-progress-steps__substeps_label],
+        .sws-progress-steps__substeps_label {
+            opacity: 1;
+            transition: opacity .3s ease;
+        }
+    }
+}
+
+.active-link {
+    font-weight: bold;
+    color: $color-dark;
+}
+
+a {
+    text-decoration: none !important;
+    color: $color-semi-dark;
+}
+
+[sws-progress-steps],
+.sws-progress-steps {
+    display: flex;
+    align-items: flex-start;
+    white-space: nowrap;
+    position: relative;
+    * {
+        transition: all .200s linear;
+    }
+    @media screen and (max-width: 1100px) {
+        flex-grow: 10;
+    }
+    & [sws-progress-steps__step-container],
+    & .sws-progress-steps__step-container {
+        display: flex;
+        position: relative;
+        width: 50px;
+        height: 50px;
+        align-items: baseline;
+        justify-content: center;
+    }
+    & [sws-progress-steps__step],
+    & .sws-progress-steps__step {
+        position: absolute;
+        min-height: 72px;
+        min-width: 0;
+        text-align: center;
+        flex: 1;
+        flex-basis: auto;
+        z-index: 1;
+        a {
+            &:hover,
+            &:focus {
+                outline: none;
+                & [sws-progress-steps__step-indicator],
+                & .sws-progress-steps__step-indicator {
+                    .fas {
+                        opacity: .5 !important;
+                    }
+                }
+                &.active-link {
+                    & [sws-progress-steps__step-indicator],
+                    & .sws-progress-steps__step-indicator {
+                        .fas {
+                            opacity: 1 !important;
+                        }
+                    }
+                }
+            }
+        }
+        & [sws-progress-steps__step-label],
+        & .sws-progress-steps__step-label {
+            text-transform: uppercase;
+            font-weight: 500;
+            font-size: 110%;
+            flex: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            background: transparent;
+            transition: opacity .3s ease, background .2s ease;
+            &.show-label {
+                opacity: 1 !important;
+                transition: opacity .3s ease, background .2s ease;
+                z-index: 2;
+                background: rgba(255, 255, 255, 0.9);
+            }
+        }
+    }
+    & [sws-progress-steps__line],
+    &.sws-progress-steps__line {
+        margin: 14px 0;
+        border-top-style: solid;
+        border-top-width: 2px;
+        flex: auto;
+        height: 0;
+        min-width: 32px;
+        flex: auto;
+        border-top-color: rgba(0, 0, 0, .12);
+    }
+    & [sws-progress-steps__substeps],
+    & .sws-progress-steps__substeps {
+        a {
+            text-decoration: none !important;
+            color: $color-dark;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            &:focus,
+            &:hover {
+                [sws-progress-steps__substeps_label],
+                .sws-progress-steps__substeps_label {
+                    opacity: 1 !important;
+                }
+                .fas {
+                    opacity: .5 !important;
+                }
+            }
+        }
+    }
+    [sws-progress-steps__substeps_link],
+    .sws-progress-steps__substeps_link {
+        position: relative;
+        text-align: center;
+        margin: 0 auto;
+        &:focus {
+          &.active-link {
+                & div > div {
+                    .fas {
+                        opacity: 1 !important;
+                    }
+                }
+            }
+        }
+    }
+    &:hover,
+    &:focus {
+        [sws-progress-steps__step-label],
+        .sws-progress-steps__step-label,
+        [sws-progress-steps__substeps_label],
+        .sws-progress-steps__substeps_label {
+            opacity: 0 !important;
+            transition: opacity .3s ease;
+        }
+    }
+}
+
+[text-hover-primary],
+.text-hover-primary {
+    a {
+        &:hover,
+        &:focus {
+            svg {
+                @include var(color, color-primary);
+            }
+        }
+    }
+    &:hover,
+    &:focus {
+        & a>svg {
+            @include var(color, color-primary);
+        }
+    }
+}
+
+[text-hover-secondary],
+.text-hover-secondary {
+    a {
+        &:hover,
+        &:focus {
+            svg {
+                @include var(color, color-secondary-hover);
+                &.text-white {
+                    color: white !important;
+                }
+            }
+        }
+    }
+    &:hover,
+    &:focus {
+        & a>svg {
+            @include var(color, color-secondary-hover);
+            &.text-white {
+                color: white !important;
+            }
+        }
+    }
+}
+
+/* Mobile UI */
+
+@media (max-width: 1100px) {
+    @import 'multi-stepper-mobile';
+}
+
+.vertical {
+    @import 'multi-stepper-mobile';
+}
+
+[cursor-pointer] {
+    cursor: pointer;
+}
+
+.fix-margin {
+    margin-left: -55px;
+    margin-right: -55px;
+}
+
+.right-fix {
+    left: 0;
+    text-align: left !important;
+}
+
+.left-fix {
+    right: 0;
+    text-align: right !important;
+}
+
+.border-success {
+    border-color: rgba(17, 130, 4, 0.35) !important;
+}
+
+.text-secondary--moreprimary {
+    color: #138b9f !important;
+}
+
+.large-tooltip {
+    width: 200px;
+}
+
+.f-g-5 {
+    flex-grow: 3 !important;
+}
+
+.mobile-substeps {
+    @media (max-width: 599px) {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

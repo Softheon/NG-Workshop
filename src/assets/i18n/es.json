@@ -1,0 +1,6 @@
+{
+  "common": {
+    "greeting": "¡Hola, {{name}}!",
+    "hello":  "Hola Mundo"
+  }
+}

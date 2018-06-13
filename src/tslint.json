@@ -1,0 +1,17 @@
+{
+    "extends": "../tslint.json",
+    "rules": {
+        "directive-selector": [
+            true,
+            "attribute",
+            "softheon",
+            "camelCase"
+        ],
+        "component-selector": [
+            true,
+            "element",
+            "softheon",
+            "kebab-case"
+        ]
+    }
+}

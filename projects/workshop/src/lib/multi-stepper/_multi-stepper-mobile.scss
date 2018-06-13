@@ -1,0 +1,114 @@
+[sws-progress-overlay],
+.sws-progress-overlay {
+    background: rgba(51, 51, 51, 0.54);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 20;
+}
+
+[sws-progress-steps__step-label],
+.sws-progress-steps__step-label {
+    vertical-align: middle;
+    align-self: center;
+    text-align: left;
+    background: transparent;
+    padding-left: 15px;
+}
+
+[sws-progress-steps__substeps-container],
+.sws-progress-steps__substeps-container {
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    margin-left: 12px;
+    border-left: 3px solid grey;
+    padding-left: 30px;
+}
+
+[sws-progress-steps__substeps_label],
+.sws-progress-steps__substeps_label {
+    position: relative;
+    opacity: 1 !important;
+}
+
+[sws-progress-steps__step-indicator],
+.sws-progress-steps__step-indicator {
+    display: flex;
+    padding-top: 5px;
+    >div:first-child {
+        margin-bottom: 5px !important;
+        margin-top: 10px;
+    }
+
+}
+
+[sws-progress-steps__substeps_indicator],
+.sws-progress-steps__substeps_indicator {
+    >div {
+        margin-bottom: 0 !important;
+    }
+}
+
+[sws-progress-steps],
+.sws-progress-steps {
+    flex-direction: column;
+    position: absolute;
+    background: #fff;
+    height: 100%;
+    z-index: 40;
+    padding-right: 20px;
+    padding-left: 20px;
+    min-width: 150px;
+    &:hover,
+    &:focus {
+        [sws-progress-steps__step-label],
+        .sws-progress-steps__step-label,
+        small[sws-progress-steps__substeps_label],
+        small.sws-progress-steps__substeps_label {
+            opacity: 1 !important;
+        }
+    }
+}
+
+[sws-progress-steps__step-container],
+.sws-progress-steps__step-container {
+    width: 100% !important;
+    height: auto !important;
+    [sws-progress-steps__step],
+    .sws-progress-steps__step {
+        position: relative;
+        min-height: 1px;
+        [flex-center],
+        .flex-center {
+            align-items: flex-start;
+        }
+    }
+}
+
+[sws-progress-steps__line],
+.sws-progress-steps__line {
+    flex: none;
+}
+
+[sws-progress-steps__step],
+.sws-progress-steps__step {
+    a {
+        &:focus {
+            [sws-progress-steps__step-label], .sws-progress-steps__step-label {
+                text-decoration: underline;
+            }
+        }
+    }
+}
+[sws-progress-steps__substeps], 
+.sws-progress-steps__substeps {
+a {
+    &:focus {
+        [sws-progress-steps__substeps_label], .sws-progress-steps__substeps_label {
+            text-decoration: underline;
+        }
+    }
+}
+    
+}

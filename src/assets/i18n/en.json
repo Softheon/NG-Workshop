@@ -1,0 +1,16 @@
+{
+  "common": {
+    "greeting": "Hello, {{name}}!",
+    "hello":  "Hello World!"
+  },
+  "nav": {
+      "start": "Start",
+      "about": "About Us",
+      "contact": "Contact Us",
+      "faq": "Frequently Asked Questions",
+      "hello": "Hello",
+      "test": "Test",
+      "testAgain": "Test Again",
+      "final": "Complete"
+  }
+}

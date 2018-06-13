@@ -1,0 +1,13 @@
+<!-- NG WORKSHOP -->
+<img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg" alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
+<h1 text-center workshop>NG-WORKSHOP</h1>
+
+<!-- Multi Stepper Example -->
+<div *ngIf="data">
+  <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
+</div>
+
+<!-- For reference, the returned data from the event emitter -->
+<div m-h-20>
+  <h6>{{blob | json}}</h6>
+</div>

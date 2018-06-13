@@ -1,0 +1,73 @@
+<div m-b-60 m-t-10 [class.vertical]="vertical">
+  <div p-a-10 flex-container align-items-v cursor-pointer (click)="toggleMenu()" *ngIf="!largeScreen || vertical">
+    <span p-r-10 m-h-15 text-primary>
+      <span class="fas fa-ellipsis-h fa-lg"></span>
+    </span>
+    {{navigationText}}
+  </div>
+  <div sws-progress-steps *ngIf="(!largeScreen && displayMenu) || (largeScreen && !vertical) || (vertical && displayMenu)">
+    <ng-container *ngFor="let step of pages; let i = index; let first = first; let last = last;">
+      <ng-container *ngIf="step.isIncluded != false">
+        <div sws-progress-steps__step-container>
+          <div sws-progress-steps__step [ngClass]="{'f-g-5': rla.isActive && !first && !last, 'right-fix': first, 'left-fix': last}"
+            (mouseenter)="showRoot(step)" (mouseleave)="hideRoot(step, true)" [class.text-hover-primary]="!(step.isPassed && rla.isActive)"
+            [class.text-hover-secondary]="step.isPassed && rla.isActive">
+            <a tabindex="0" routerLink="{{step.routerLink}}" routerLinkActive="active-link" #rla="routerLinkActive" (focus)="showRoot(step)"
+              (focusout)="hideRoot(step)" title="{{step.translationKey}}">
+              <div sws-progress-steps__step-indicator m-h-5 [class.text-hover-primary]="!(step.isPassed && rla.isActive)">
+                <div *ngIf="!step.isPassed && !rla.isActive" m-t-5 m-b-10 [ngClass]="{'m-l-5': first && largeScreen && !vertical}">
+                  <div class="fas fa-circle text-regular fa-lg"></div>
+                </div>
+                <div *ngIf="!step.isPassed && rla.isActive">
+                  <div class="fas fa-arrow-alt-circle-right text-primary fa-2x" m-b-5></div>
+                </div>
+                <div *ngIf="step.isPassed && !rla.isActive" m-t-5 m-b-10>
+                  <div class="fas fa-check-circle text-success fa-lg"></div>
+                </div>
+                <div *ngIf="step.isPassed && rla.isActive" class="fa-2x text-secondary--moreprimary" style="margin-top: -3px; margin-bottom: 4px;">
+                  <span class="fa-layers fa-fw">
+                    <i class="fas fa-circle text-secondary"></i>
+                    <i class="fa-inverse fas fa-pencil-alt text-white" data-fa-transform="shrink-8"></i>
+                  </span>
+                </div>
+                <div sws-progress-steps__step-label [@slideInOut]="!largeScreen || !vertical" *ngIf="(last && showLastNav) || rla.isActive || step.tempDisplay || !largeScreen || vertical"
+                  [ngClass]="{
+                     'text-left': first && largeScreen,
+                     'fix-margin': rla.isActive && !first && !last && largeScreen && !vertical,
+                     'text-right': last && largeScreen && !vertical,
+                     'show-label': step.tempDisplay
+                     }">
+                  {{step.translationKey}}
+                </div>
+              </div>
+            </a>
+            <div *ngIf="step.subPages && (rla.isActive || step.tempDisplay) || !largeScreen || vertical" class="mobile-substeps m-t-5"
+              flex-center flex-container-column>
+              <div flex-center sws-progress-steps__substeps-container>
+                <ng-container *ngFor="let substep of step.subPages; let j = index; let first = first;">
+                  <div *ngIf="substep.isIncluded != false" sws-progress-steps__substeps>
+                    <a sws-progress-steps__substeps_link routerLink="{{substep.routerLink}}" routerLinkActive="active-link" #subrla="routerLinkActive">
+                      <div m-a-5 text-hover-primary sws-progress-steps__substeps_indicator>
+                        <div m-b-20 [ngClass]="{
+                             'text-regular': !substep.isPassed && !subrla.isActive,
+                             'text-primary': !substep.isPassed && subrla.isActive,
+                             'text-success': substep.isPassed && !subrla.isActive,
+                             'text-secondary--moreprimary': substep.isPassed && subrla.isActive
+                             }">
+                          <div class="fas fa-circle"></div>
+                        </div>
+                      </div>
+                      <small sws-progress-steps__substeps_label>{{substep.translationKey}}</small>
+                    </a>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div sws-progress-steps__line *ngIf="!last && largeScreen && !vertical" [ngClass]="{'border-success': step.isPassed}"></div>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div sws-progress-overlay *ngIf="(!largeScreen && displayMenu) || (vertical && displayMenu)" (click)="toggleMenu()" [@fadeInOut]></div>
+</div>
