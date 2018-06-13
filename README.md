@@ -27,7 +27,7 @@ npm install --save @softheon/ng-workshop@latest
 #### Include a link to Softheon Workshop in your index.html
 
 ```html
-<link rel="stylesheet" ref="https://softheonworkshop.azureedge.net/alpha-9-5/workshop.min.css">
+<link rel="stylesheet" href="https://softheonworkshop.azureedge.net/alpha-9/workshop.min.css">
 ```
 
 #### Include a link to [Font Awesome 5 SVG with JS Library](https://fontawesome.com/get-started/svg-with-js) in your index.html
