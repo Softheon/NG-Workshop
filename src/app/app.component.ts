@@ -10,6 +10,23 @@ export class AppComponent {
   /** Temp Nav Data */
   public blob;
 
+
+  /**
+   * Example Card-Grid Data
+   */
+  public cardSize = 'md';
+  public cardContent = [
+    {
+      title: 'The Great Gatsby',
+      subtitle: 'F. Scott Fitzgerald',
+      desc: 'The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald.',
+      // fontIcon: 'fas fa-anchor',
+      imgUrl: 'https://i.imgur.com/PBaOIbC.gif',
+      linkTitle: 'Learn More',
+      link: './home'
+    }
+  ];
+
   /**
    * Example Multi-Stepper Data
    */

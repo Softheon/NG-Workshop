@@ -1,0 +1,65 @@
+<div p-a-30 flex-container-row flex-wrap flex-center>
+  <ng-container *ngFor="let content of blob; let i = index">
+    <ng-container *ngIf="cardSizeStyle == 'lg'">
+      <div class="sws-fade-in-stagger" sws-card text-center m-a-10>
+        <div *ngIf="content.imgUrl" sws-card__header bg-cover [ngStyle]="{'background-image': 'url(' + content.imgUrl + ')'}" p-b-30>
+          <div p-a-30></div>
+        </div>
+        <ng-container *ngIf="content.fontIcon">
+          <div class="fa-3x" p-a-15 flex-center>
+            <span [ngClass]="content.fontIcon" class=" text-regular"></span>
+          </div>
+        </ng-container>
+        <div [attr.sws-card__content--fancy]="content.imgUrl ? '' : null" p-t-15 flex-container-column flex-space-between>
+          <div>
+            <div h2 text-dark *ngIf="content.title">{{content.title}}</div>
+            <p *ngIf="content.desc" text-grey>{{content.desc}}</p>
+          </div>
+          <div p-t-5>
+            <a *ngIf="content.link && content.linkTitle" routerLink="{{content.link}}" sws-link m-t-10 title="{{content.linkTitle}}">{{content.linkTitle}}</a>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="cardSizeStyle == 'md'">
+      <div class="sws-fade-in-stagger" sws-card flex-1 flex-basis-auto flex-container m-a-10>
+        <ng-container *ngIf="content.fontIcon">
+          <div p-r-15 class="fa-4x" flex-container align-items-v>
+            <span [ngClass]="content.fontIcon" class="text-regular"></span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="content.imgUrl">
+          <div img-base card-img-l [ngStyle]="{'background-image': 'url(' + content.imgUrl + ')'}"></div>
+        </ng-container>
+        <div>
+          <div m-b-5>
+            <small text-upper semibold text-grey *ngIf="content.subtitle">{{content.subtitle}}</small>
+          </div>
+          <div h2 *ngIf="content.title">{{content.title}}</div>
+          <p *ngIf="content.desc" style="font-size: small;" m-b-0>{{content.desc}}</p>
+          <a *ngIf="content.link && content.linkTitle" routerLink="{{content.link}}" sws-link m-t-10 title="{{content.linkTitle}}">{{content.linkTitle}}</a>
+        </div>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="cardSizeStyle == 'sm'">
+      <div class="sws-fade-in-stagger" sws-card flex-1 flex-basis-auto flex-space-between m-a-10>
+        <div>
+          <div m-b-5>
+            <small text-upper semibold text-grey *ngIf="content.subtitle">{{content.subtitle}}</small>
+          </div>
+          <div h3 *ngIf="content.title">{{content.title}}</div>
+        </div>
+        <ng-container *ngIf="content.fontIcon">
+          <div class="fa-3x" flex-container align-items-v>
+            <span [ngClass]="content.fontIcon" class=" text-regular"></span>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="content.imgUrl">
+          <div img-base card-img-r [ngStyle]="{'background-image': 'url(' + content.imgUrl + ')'}"></div>
+        </ng-container>
+      </div>
+    </ng-container>
+  </ng-container>
+</div>

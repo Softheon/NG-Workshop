@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MultiStepperModule } from 'workshop';
+import { MultiStepperModule, CardGridModule } from 'workshop';
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -24,6 +24,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     MultiStepperModule,
+    CardGridModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {

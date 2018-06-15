@@ -7,6 +7,9 @@
   <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
 </div>
 
+<!-- Card Grid Example -->
+<sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
+
 <!-- For reference, the returned data from the event emitter -->
 <div m-h-20>
   <h6>{{blob | json}}</h6>
