@@ -11,6 +11,7 @@
 - [Getting Started](#getting-started)
 - [Components](#components)
      * [Multi-Stepper](#multi-stepper)
+     * [Card-Grid](#card-grid)
 - [NPM Repository](https://www.npmjs.com/package/@softheon/ng-workshop)
 
 
@@ -62,7 +63,7 @@ export class MyAppModule { }
 #### API reference for NG-Workshop Multi-Stepper Component
 
 ```TypeScript
-import { MultiStepperModule } from '@softheon/forms';
+import { MultiStepperModule } from '@softheon/ng-workshop';
 ```
 
 #### **Add component to your html**
@@ -131,7 +132,9 @@ Example with Translation Keys Text (using ngx-translate):
   });
 ```
 
-**TIP: If you are using ngx-translate, wrap the component in an ngIf**
+**TIP 1: If you are using ngx-translate, wrap the component in an ngIf**
+
+**TIP 2: We recommend putting the multistepper above your `<router-outlet></router-outlet>` html.**
 
 ```html
 <div *ngIf="data">
@@ -164,3 +167,70 @@ Example Configuration (Optional):
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-1.png "NG Workshop Example")
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-2.png "NG Workshop Example")
+
+
+### **Card-Grid**
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-Card-Grid-Header.png "NG Workshop Example")
+
+#### `<sws-card-grid>` is a component used to render a grid of cards styled content. Links are keyboard tab-able, and on initialization the grid displays a [GSAP](https://greensock.com/) cascading loading animation. 
+
+#### API reference for NG-Workshop Card-Grid Component
+
+```TypeScript
+import { CardGridModule } from '@softheon/ng-workshop';
+```
+
+#### **Add component to your html**
+```html
+<sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
+```
+
+#### **Pass the Card-Grid Data**
+
+```Typescript
+  public cardContent = [
+    {
+      title: 'The Great Gatsby',
+      subtitle: 'F. Scott Fitzgerald',
+      desc: 'The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald.',
+      imgUrl: 'https://i.imgur.com/PBaOIbC.gif', // comment out if using fontIcon
+      // fontIcon: 'fas fa-anchor', // uncomment if using imgUrl
+      linkTitle: 'Learn More',
+      link: './home'
+    }
+  ];
+```
+
+#### **Configurations**
+
+The input configuration `cardSize` adjusts the card size and style.
+
+Example Configuration (Optional):
+
+```Typescript
+  public cardSize = 'md';
+```
+
+
+#### **Configuration Properties**
+
+| Configuration Key | Example            | Required             | Description     |
+| ----------------- | :----------------: | :------------------: | --------------: |
+| cardSize          | 'lg' / 'md' / 'sm' | no (default is 'sm') | Card size style |
+
+#### **Card Conent  Properties**
+
+| Key       | Type   | Example                           | Description                                 |
+| --------- | :----: | :-------------------------------: | ------------------------------------------: |
+| title     | string | 'Epic Card Title'                 | Card Title, hidden if no value              |
+| subtitle  | string | 'Epic Subtitle'                   | Card Subtitle, hidden if no value           |
+| desc      | string | 'Lorem ipsum dolor dit amet'      | Card Description, hidden if no value        |
+| fontIcon  | string | 'fas fa-anchor'                   | font awesome icon class, hidden if no value |
+| imgUrl    | string | 'https://i.imgur.com/PBaOIbC.gif' | background image url, hidden if no value    |
+| linkTitle | string | 'Get Started'                     | link text & hover title, hidden if no value |
+| link      | string | './home'                          | link url (routerLink), hidden if no value   |
+
+#### **Examples**
+Left to Right: 'lg', 'md', 'sm' (default)
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Exmaple-Icons.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-Images.png "NG Workshop Example")

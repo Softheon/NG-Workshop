@@ -9,10 +9,12 @@
   "license": "MIT",
   "author": {
     "name": "Softheon NG-Workshop",
-    "url" : "https://hack.softheon.io/Workshop/"
+    "url": "https://hack.softheon.io/Workshop/"
   },
   "peerDependencies": {
     "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/core": "^6.0.0-rc.0 || ^6.0.0",
+    "gsap": "^2.0.1",
+    "@types/gsap": "^1.19.2"
   }
 }
