@@ -1,21 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
+
+import { Card } from 'workshop';
 
 @Component({
   selector: 'softheon-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   /** Temp Nav Data */
   public blob;
-
 
   /**
    * Example Card-Grid Data
    */
   public cardSize = 'md';
-  public cardContent = [
+
+  public testCard: Card = {
+    title: 'The Great Gatsby',
+    subtitle: 'F. Scott Fitzgerald',
+    desc: 'The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald.',
+    imgUrl: 'https://i.imgur.com/PBaOIbC.gif',
+    linkTitle: 'Learn More',
+    link: './home'
+  };
+
+  public cardContent: Card[] = [
     {
       title: 'The Great Gatsby',
       subtitle: 'F. Scott Fitzgerald',
@@ -26,6 +37,9 @@ export class AppComponent {
       link: './home'
     }
   ];
+
+  // best practice:
+  public cardArray: Card[] = new Array<Card>() ;
 
   /**
    * Example Multi-Stepper Data
@@ -38,7 +52,7 @@ export class AppComponent {
       url: './about',
       subPages: [
        { page: 'Our Story', url: './about/ourstory' },
-       { page: 'Frequently Asked Questions', url: './about/faq' },
+       { page: 'About Us - Frequently Asked Questions', url: './about/faq' },
        { page: 'Meet the Team', url: './about/team' }
      ]
     },
@@ -88,6 +102,29 @@ export class AppComponent {
   //   });
 
   // }
+
+  ngOnInit() {
+   this.cardArray = [
+      {
+        title: 'The Great Gatsby',
+        subtitle: 'F. Scott Fitzgerald',
+        desc: 'The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald.',
+        // fontIcon: 'fas fa-anchor',
+        imgUrl: 'https://i.imgur.com/PBaOIbC.gif',
+        linkTitle: 'Learn More',
+        link: './home'
+      },
+      {
+        title: 'The Great Gatsby',
+        subtitle: 'F. Scott Fitzgerald',
+        desc: 'The Great Gatsby is a 1925 novel written by American author F. Scott Fitzgerald.',
+        // fontIcon: 'fas fa-anchor',
+        imgUrl: 'https://i.imgur.com/PBaOIbC.gif',
+        linkTitle: 'Learn More',
+        link: './home'
+      }
+    ];
+  }
 
   /**
    * Event Handler Example

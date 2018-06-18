@@ -157,7 +157,9 @@ export class MultiStepperComponent implements OnInit {
     if (this.markStepsCompleted) {
       let found;
       const routerUrl = this.router.url ? this.router.url : '';
+      // truncate query parameters
       const url = (routerUrl && (routerUrl.match(/[?]/g) || []).length >= 1) ? routerUrl.substring(0, routerUrl.indexOf('?')) : routerUrl;
+      // extract base url
       const baseUrl = (url && (url.match(/[/]/g) || []).length >= 2) ? url.substring(0, url.lastIndexOf('/')) : url;
 
       // Current Root Page
@@ -165,10 +167,10 @@ export class MultiStepperComponent implements OnInit {
       this.currentRootPageIndex = this.pages.findIndex(c => c.routerLink === `.${baseUrl}`);
 
       // Current Sub Page
-      found = this.pages.find(o => !!o.subPages.find(c => c.routerLink === `.${url}`));
+      found = this.pages.find(o => !!o.subPages.find(c => c.routerLink.indexOf(`.${url}`) >= 0));
       if (found && found.subPages.length) {
-        this.currentSubPage = found.subPages.find(s => s.routerLink === `.${url}`);
-        this.currentSubPageIndex = found.subPages.findIndex(s => s.routerLink === `.${url}`);
+        this.currentSubPage = found.subPages.find(s => s.routerLink.indexOf(`.${url}`) >= 0);
+        this.currentSubPageIndex = found.subPages.findIndex(s => s.routerLink.indexOf(`.${url}`) >= 0);
       }
 
       this.markStepsAsComplete();
@@ -209,9 +211,9 @@ export class MultiStepperComponent implements OnInit {
       if (this.currentRootPage && this.currentRootPage.subPages.length) {
         const sub = root.firstChild;
         const subPath = sub.routeConfig.path;
-
-        this.currentSubPage = this.currentRootPage.subPages.find(s => s.routerLink === `./${rootPath}/${subPath}`);
-        this.currentSubPageIndex = this.currentRootPage.subPages.findIndex(s => s.routerLink === `./${rootPath}/${subPath}`);
+        const subUrl = `./${rootPath}/${subPath}`;
+        this.currentSubPage = this.currentRootPage.subPages.find(s => s.routerLink.indexOf(subUrl) >= 0);
+        this.currentSubPageIndex = this.currentRootPage.subPages.findIndex(s => s.routerLink.indexOf(subUrl) >= 0);
 
         // Event Emitters
         this.currentSubStep.emit(this.currentSubPage);

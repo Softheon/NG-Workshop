@@ -1,4 +1,5 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
+import { Card } from './card';
 
 import 'gsap';
 
@@ -12,12 +13,12 @@ declare var TimelineMax: any;
 })
 export class CardGridComponent implements OnInit, AfterViewInit {
   /** The Data Input */
-  @Input() public data;
+  @Input() public data: Card;
 
   /** The Configruation Input */
   @Input() public cardSize;
 
-  public blob = [];
+  public blob: Card;
 
   public cardSizeStyle = 'sm';
 
