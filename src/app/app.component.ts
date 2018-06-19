@@ -52,7 +52,7 @@ export class AppComponent implements OnInit {
       url: './about',
       subPages: [
        { page: 'Our Story', url: './about/ourstory' },
-       { page: 'About Us - Frequently Asked Questions', url: './about/faq' },
+       { page: 'Frequently Asked Questions', url: './about/faq' },
        { page: 'Meet the Team', url: './about/team' }
      ]
     },
