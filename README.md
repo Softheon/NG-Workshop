@@ -12,6 +12,7 @@
 - [Components](#components)
      * [Multi-Stepper](#multi-stepper)
      * [Card-Grid](#card-grid)
+     * [Nav-Header](#nav-header)
 - [NPM Repository](https://www.npmjs.com/package/@softheon/ng-workshop)
 
 
@@ -234,3 +235,148 @@ Example Configuration (Optional):
 Left to Right: 'lg', 'md', 'sm' (default)
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Exmaple-Icons.png "NG Workshop Example")
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-Images.png "NG Workshop Example")
+
+### **Nav-Header**
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example1.png "NG Workshop Example")
+
+#### `<sws-card-grid>` is a component used to render a navigation header. Entirely highly configurable, highly customizable, and keyboard tab-able.
+
+#### API reference for NG-Workshop Nav-Header Component
+
+
+Module.TS:
+
+```TypeScript
+import { NavHeaderModule } from '@softheon/ng-workshop';
+```
+
+Component.ts:
+
+```TypeScript
+import {  INavigation, NavConfig } from '@softheon/ng-workshop';
+```
+
+
+#### **Add component to your html**
+
+```html
+<sws-nav-header [navData]="navigation" [config]="navConfig"></sws-nav-header>
+```
+
+Example with Search Event Emmitter : 
+
+```html
+<sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
+```
+
+**TIP: If you don't provide any navData it will display an empty header**
+
+#### **Pass the Nav-Header Data**
+
+This will render the header in your workshop theme color with only the logo text "Navigation"
+
+```Typescript
+  public navigation: INavigation = {
+    logoText: 'Navigation',
+  };
+  
+  public navConfig: NavConfig = new NavConfig();
+
+  ngOnInit() {
+    this.navConfig.theme = 'theme';
+  }
+```
+
+This will render the light colored header with only a logo image and quick links
+
+```Typescript
+  public navigation: INavigation = {
+    logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg',
+    quickLinks: [
+      {
+        linkUrl: './about',
+        linkText: 'About Us',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './solutions',
+        linkText: 'Our Solutions',
+        fontAwesomeIcon: 'fas fa-anchor'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Contact Us',
+        fontAwesomeIcon: 'fas fa-coffee'
+      },
+      {
+        linkUrl: './blog',
+        linkText: 'Blog'
+      },
+    ],
+  };
+
+  public navConfig: NavConfig = new NavConfig();
+
+  ngOnInit() {
+    this.navConfig.theme = 'light';
+  }
+```
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example1.png "NG Workshop Example")
+
+This will render the theme colored header with only a text logo, searchbar, left menu navigation, and user menu
+
+```Typescript
+
+  public navConfig: NavConfig = new NavConfig();
+
+  public navigation: INavigation = {
+    logoText: 'The Great Gatsby',
+    userName: 'Jay Gatsby',
+    userEmail: 'jay@thegreatgatsby.com',
+    userMenuLinks: [
+      {
+        linkUrl: './home',
+        linkText: 'Settings',
+        fontAwesomeIcon: 'fas fa-anchor'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Languages',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './about/ourstory',
+        linkText: 'Logout'
+      }
+    ],
+    headingText : 'External Links',
+    menuLinks: [
+      {
+        linkUrl: './app1',
+        linkText: 'Left Menu Link A',
+      },
+      {
+        linkUrl: './app2',
+        linkText: 'Left Menu Link B',
+
+      },
+      {
+        linkUrl: './app3',
+        linkText: 'Left Menu Link C'
+      }
+    ],
+  };
+  
+  public navConfig: NavConfig = new NavConfig();
+
+  ngOnInit() {
+    this.navConfig.displayAppMenu = true;
+    this.navConfig.displaySearch = true;
+    this.navConfig.theme = 'theme';
+  }
+```
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example2.png "NG Workshop Example")
+
+### **MORE DOCUMENTATION COMING SOON**

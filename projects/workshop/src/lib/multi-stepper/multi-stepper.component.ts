@@ -4,7 +4,7 @@ import { trigger, transition, animate, style } from '@angular/animations';
 import { RootPage } from './page';
 import { Page } from './page';
 import { filter } from 'rxjs/operators';
-
+import { InnerWidthService } from '../common/inner-width.service';
 /** The Multi-Stepper Component */
 @Component({
   selector: 'sws-multi-stepper',
@@ -97,11 +97,13 @@ export class MultiStepperComponent implements OnInit {
   /**
    * The Constructor - Subscribes to router events and gets the current page
    * @param router The Angular Router
+   * @param innerWidthService the inner width service
    * @param route The Activated Route
    */
   constructor(
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private innerWidthService: InnerWidthService
   ) {
       // subscribe to router event
       this.router.events
@@ -116,8 +118,9 @@ export class MultiStepperComponent implements OnInit {
    * On Init
    */
   ngOnInit() {
-    this.innerWidth = window.innerWidth;
-    this.setScreenSizes();
+    this.innerWidthService.setScreenSizes();
+    this.largeScreen = this.innerWidthService.largeScreen;
+    this.showLastNavItem();
 
     /** Set up configurations */
     if (this.config !== undefined) {
@@ -184,8 +187,8 @@ export class MultiStepperComponent implements OnInit {
    */
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    this.innerWidth = window.innerWidth;
-    this.setScreenSizes();
+    this.showLastNavItem();
+    this.largeScreen = this.innerWidthService.largeScreen;
   }
 
   /** Gets the current route data */
@@ -314,13 +317,10 @@ export class MultiStepperComponent implements OnInit {
   }
 
   /**
-   * Sets the screen sizes for responsiveness
+   * Sets the screen sizes for responsiveness formerly setScreenSizes
    */
-  private setScreenSizes(): void {
-    this.innerWidth > 1100
-      ? (this.largeScreen = true)
-      : (this.largeScreen = false);
-    this.innerWidth > 1300
+  private showLastNavItem(): void {
+    this.innerWidthService.extraLargeScreen
       ? (this.showLastNav = true)
       : (this.showLastNav = false);
   }

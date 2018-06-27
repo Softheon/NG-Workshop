@@ -1,0 +1,430 @@
+@mixin var($property, $varName) {
+    #{$property}: map-get($vars, $varName) !important;
+    #{$property}: var(--#{$varName}, map-get($vars, $varName)) !important;
+}
+
+@mixin themify($themes: $themes) {
+    @each $theme, $map in $themes {
+  
+      .theme-#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+  
+        @content;
+        $theme-map: null !global;
+      }
+  
+    }
+  }
+
+  @function themed($key) {
+    @return map-get($theme-map, $key);
+  }
+
+/** DEFINE [any] CSS PROPERTIES HERE */
+/** TODO: MOVE TO SEPARATE FILE  @import 'themes.scss'; */
+$themes: (
+  dark: (
+    headerBackgroundColor: #222,
+    headerTextColor: #fff,
+    headerHoverColor: #3d3d3d !important,
+    headerFocusColor: #333 !important,
+    leftNavBackgroundColor: #2b2b2b,
+    leftNavSectionColor: #3d3d3d,
+    leftNavTextColor: #ececec,
+    leftNavHoverColor: #034465, // TEMP?? change to 0a0a0a ???
+    leftNavFocusColor: #0088ce,
+    leftNavBorder: 2px solid #252525,
+    leftNavFocusBorder: 2px solid #0088ce,
+    dropdownTextColor: #fff,
+    dropdownBackgroundColor: #2e2e2e,
+    dropdownBorderColor: #252525,
+    dropdownUserSectionColor: #252525,
+    searchBarBackgroundColor: #111,
+    searchBarCloseBackgroundColor: #222,
+    ),
+  light: (
+    headerBackgroundColor: #fff,
+    headerTextColor: #444,
+    headerHoverColor: #ecf0f1 !important, // #dfe6e9,
+    headerFocusColor: #d8dee6 !important,
+    leftNavBackgroundColor: #fff,
+    leftNavSectionColor: #dfe6e9,
+    leftNavTextColor: #444,
+    leftNavHoverColor: #ecf0f1,
+    leftNavFocusColor: #bac4d0,
+    leftNavBorder: 2px solid #dfe6e9,
+    leftNavFocusBorder: 2px solid #bac4d0,
+    dropdownTextColor: #fff,
+    dropdownBackgroundColor: #fff,
+    dropdownBorderColor: #d8dee6,
+    dropdownUserSectionColor: #dfe6e9, // Box shadow 0px 1px 3px 3px #88888829
+    searchBarBackgroundColor: #fff,
+    searchBarCloseBackgroundColor: #fff,
+  ),
+  theme: (
+    headerBackgroundColor: var(--color-primary,#0088ce),
+    headerTextColor: #fff,
+    headerHoverColor: rgba(61, 61, 61, 0.3) !important,
+    headerFocusColor: rgba(39, 39, 39, 0.4) !important,
+    leftNavBackgroundColor: #2b2b2b,
+    leftNavSectionColor: #3d3d3d !important,
+    leftNavTextColor: #ececec,
+    leftNavHoverColor: #0a0a0a,
+    leftNavFocusColor: var(--color-primary,#0088ce),
+    leftNavBorder: 2px solid #252525,
+    leftNavFocusBorder: 2px solid var(--color-primary,#0088ce),
+    dropdownTextColor: #fff,
+    dropdownBackgroundColor: #2e2e2e,
+    dropdownBorderColor: #252525,
+    dropdownUserSectionColor: #252525,
+    searchBarBackgroundColor: #2b2b2b,
+    searchBarCloseBackgroundColor:  var(--color-primary,#0088ce),
+  ),
+  clear: (
+    headerBackgroundColor: transparent,
+    headerTextColor: #222,
+    headerHoverColor: #ecf0f1 !important, // #dfe6e9,
+    headerFocusColor: #d8dee6 !important,
+    leftNavBackgroundColor: #fff,
+    leftNavSectionColor: #dfe6e9,
+    leftNavTextColor: #222,
+    leftNavHoverColor: #ecf0f1,
+    leftNavFocusColor: #bac4d0,
+    leftNavBorder: 2px solid #dfe6e9,
+    leftNavFocusBorder: 2px solid #bac4d0,
+    dropdownTextColor: #fff,
+    dropdownBackgroundColor: #fff,
+    dropdownBorderColor: #d8dee6,
+    dropdownUserSectionColor: #dfe6e9, // Box shadow 0px 1px 3px 3px #88888829
+    searchBarBackgroundColor: #fff,
+    searchBarCloseBackgroundColor: #fff,
+  ),
+);
+
+
+[sws-navbar] {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    vertical-align: middle;
+    overflow: hidden;
+    z-index: 35;
+    transition: background .3s ease;
+    @include themify($themes) {
+        background: themed('headerBackgroundColor');  
+        color: themed('headerTextColor');          
+      }
+    a, button {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        @include themify($themes) {
+            color: themed('headerTextColor');          
+          }
+    }
+    button {
+        border: none !important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: transparent;
+    }
+    ul {
+        height: auto;
+        line-height: unset;
+        list-style: none;
+        margin: 0;
+        padding-left: 0;
+
+        li {
+            align-self: auto;
+        }
+    }
+}
+
+[sws-nav__logo] {
+    width: 155px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+[sws-nav__logo-img] {
+    max-height: 40px;
+}
+
+[semibold] {
+    font-weight: 600;
+}
+
+[thing]:after {
+    content: '';
+    display: inline-block;
+    width: 50px;
+    margin-left: 10px;
+    height: 4px;
+    border-top: 2px solid white;
+}
+
+[fa-1-5],
+.fa-1-5 {
+    font-size: 1.5em;
+}
+
+[sws-nav-menu__list-item] {
+    -webkit-transition: background .3s;
+    transition: background .3s;
+    &:hover {
+        background: #034465;
+        cursor: pointer;
+        @include themify($themes) {
+            background: themed('leftNavHoverColor');  
+          }
+    }
+}
+
+[sws-nav-menu] {
+    position: absolute;
+    left: 0;
+    top: 64px;
+    width: 250px;
+    max-width: 250px;
+    height: 100%;
+    min-height: 500px;
+    z-index: 30;
+    overflow-y: auto;
+    height: calc(100vh - 64px);
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+    background: #2b2b2b;
+    color: #eee;
+
+    @include themify($themes) {
+        background: themed('leftNavBackgroundColor');
+        color: themed('leftNavTextColor');        
+      }
+}
+
+[nav-header-box], button[nav-header-box] {
+    width: 64px;
+    height: 64px;
+    -webkit-transition: background .3s;
+    transition: background .3s;
+    cursor: pointer;
+    &:hover, &:focus {
+        background: #3d3d3d;
+        @include themify($themes) {
+            background: themed('headerHoverColor');
+          }
+    }
+    color: transparent;
+    font-size: 0;
+    [nav-header-box__icon] {
+        font-size: 24px;
+        @include themify($themes) {
+            color: themed('headerTextColor');
+          }
+    }
+}
+
+[header-hover-effect] {
+    height: 34px;
+    -webkit-transition: background .3s;
+    transition: background .3s;
+    cursor: pointer;
+    &:hover {
+        background: #3d3d3d;
+        @include themify($themes) {
+            background: themed('headerHoverColor');
+          }
+    }
+    &.active-link, &:focus {
+        background: #333;
+        @include themify($themes) {
+            background: themed('headerFocusColor');
+          }
+    }
+}
+
+[sws-nav-menu__icon] {
+    .fa-caret-down {
+        padding-left: 10px !important;
+        margin-right: -6px;
+    }
+}
+
+[sws-nav-menu__header] {
+    background: #3d3d3d;
+    border-bottom: 2px solid #252525;
+    border-top: 2px solid #252525;
+    @include themify($themes) {
+        background: themed('leftNavSectionColor');
+        border-bottom: themed('leftNavBorder');
+        border-top: themed('leftNavBorder');
+        color: themed('headerTextColor');
+      }
+}
+
+[border-top-fix-style] {
+    margin-top: -2px;
+}
+
+[m-l-auto] {
+    margin-left: auto;
+}
+
+[sws-header-user-dropdown] {
+    background: #2e2e2e;
+    position: absolute;
+    top: 64px;
+    right: 0;
+    width: 250px;
+    z-index: 30;
+    overflow: hidden;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
+    -webkit-transition: ease .6s max-height;
+    transition: ease .6s max-height;
+    @include themify($themes) {
+        background: themed('dropdownBackgroundColor');
+      }
+    [sws-header-user-dropdown-header] {
+        background: #252525;
+        border-bottom: 2px solid #222;
+        @include themify($themes) {
+            background: themed('dropdownUserSectionColor');
+            border-bottom: themed('leftNavBorder');
+          }
+    }
+}
+
+[sws-nav-menu__app] {
+    width: 50%;
+    box-sizing: border-box;
+    border-bottom: 2px solid #252525;
+    border-right: 2px solid #252525;
+    -webkit-transition: all .3s;
+    transition: all .3s;
+    @include themify($themes) {
+        border-bottom: themed('leftNavBorder');
+        border-right: themed('leftNavBorder');
+      }
+    &:hover {
+        cursor: pointer;
+        background: #0a0a0a; // todo: var theme color
+        @include themify($themes) {
+            background: themed('leftNavHoverColor');
+          }
+    }
+    &:focus,
+    &:active {
+        background: #0088ce; // todo: var theme color
+        border-bottom: 2px solid #0088ce; // todo: var theme color
+        border-right: 2px solid #0088ce; // todo: var theme color
+        @include themify($themes) {
+            background: themed('leftNavFocusColor');
+            border-bottom: themed('leftNavFocusBorder');
+            border-right: themed('leftNavFocusBorder');
+          }
+    }
+}
+
+[sws-nav-menu__app-text] {
+    letter-spacing: 2px;
+}
+
+[sws-nav-search] {
+    display: flex;
+    label {
+        position: absolute;
+        top: 24px;
+        margin-left: 2px;
+    }
+    input {
+        height: 64px;
+        background: none;
+        border: none;
+        padding: 0 15px;
+        opacity: 0;
+        margin-left: 1px;
+        &:focus,
+        &:active {
+            &~label {
+                opacity: 0;
+            }
+        }
+        &:focus,
+        &:active,
+        &:valid {
+            opacity: 1;
+            background: #111;
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            width: 100%;
+            max-width: calc(100vw - 345px);
+            @include themify($themes) {
+                background: themed('searchBarBackgroundColor');
+              }
+        }
+    }
+    [nav-close-search] {
+        background: #2e2e2e;
+        z-index: 2;
+        right: 0;
+        position: absolute;
+        @include themify($themes) {
+            background: themed('searchBarCloseBackgroundColor');
+            &:hover, &:focus {
+                background: themed('leftNavSectionColor');
+            }
+          }
+    }
+}
+
+[sws-subnav] {
+    height: 36px;
+    [sws-subnav-links] {
+        a {
+            height: 36px;
+            box-sizing: border-box;
+            border-bottom: 2px solid transparent;
+            text-decoration: none;
+            color: #333;
+            -webkit-transition: background .3s;
+            transition: background .3s;
+            &:visited {
+                color: #333;
+            }
+            &:hover {
+                background: #cecece;
+            }
+            &.active-link, &:focus {
+                background: #dedede;
+                border-bottom: 2px solid #cecece;
+            }
+        }
+    }
+    @media screen and (max-width: 768px) {
+        justify-content: center;
+        height: auto;
+    }
+}
+
+[sws-nav-mobile-links] {
+    
+    @include themify($themes) {
+        background: themed('headerBackgroundColor');
+    }
+
+    a {
+        text-decoration: none;
+        &:visited {
+            text-decoration: none;
+        }
+        @include themify($themes) {
+            color: themed('headerTextColor');
+        }
+    }
+}

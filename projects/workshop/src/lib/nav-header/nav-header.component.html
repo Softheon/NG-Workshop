@@ -1,0 +1,155 @@
+<div class="theme-{{config?.theme ? config?.theme : 'dark'}}">
+  <nav sws-navbar role="navData" flex-container>
+    <div flex-container-row #headerContent>
+      <!-- Logo -->
+      <div sws-nav__logo p-l-15 *ngIf="navData?.logoImageUrl">
+        <a routerLink="{{navData?.logoLink ? navData?.logoLink : '/'}}" target="{{navData?.logoLinkTarget ? '_blank' : '_self'}}">
+          <img sws-nav__logo-img width="145" src="{{navData.logoImageUrl}}" alt="logo">
+        </a>
+      </div>
+      <div p-l-15 *ngIf="navData?.logoText">
+        <h1 h2>{{navData?.logoText}}</h1>
+      </div>
+      <div align-items-v flex-container  [attr.m-l-15]="(navData?.logoImageUrl || navData?.logoText) ? '' : null">
+        <!-- Menu Icon -->
+        <button id="menubutton" aria-haspopup="true" aria-controls="menu2" *ngIf="config.displayAppMenu && (navData?.applicationLinks?.length || navData?.menuLinks?.length)"
+          nav-header-box everything-center-container (click)="leftMenu = !leftMenu;">
+          <span nav-header-box__icon>
+            <i class="fas fa-th"></i>
+          </span>
+          Menu
+        </button>
+        <!-- Left Menu Navigation -->
+        <div sws-nav-menu [@toggleH]="leftMenu" *ngIf="leftMenu">
+          <div>
+            <!-- Apps -->
+            <div *ngIf="navData?.applicationLinks?.length" sws-nav-menu__header m-a-0 p-a-10 semibold text-upper>
+              {{navData?.appHeadingText ? navData?.appHeadingText : 'Applications'}}
+            </div>
+            <ul m-a-0 p-l-0 id="menu2" aria-labelledby="menubutton" tabindex="-1" *ngIf="navData?.applicationLinks?.length" flex-container
+              flex-wrap style="margin-right: -2px;box-sizing: border-box;">
+              <ng-container *ngFor="let applicationlinks of navData?.applicationLinks">
+                <li p-v-25 sws-nav-menu__app everything-center-container flex-container-column>
+                  <i *ngIf="applicationlinks.fontAwesomeIcon" class="{{applicationlinks.fontAwesomeIcon}} fa-lg"></i>
+                  <div text-upper m-t-5 sws-nav-menu__app-text>
+                    <a sws-link routerLink="{{applicationlinks.linkUrl}}" title="{{applicationlinks.linkText}}">{{applicationlinks.linkText}}</a>
+                  </div>
+                </li>
+              </ng-container>
+            </ul>
+            <!-- Regular List -->
+            <div *ngIf="navData?.menuLinks?.length" p-a-10 semibold text-upper sws-nav-menu__header border-top-fix-style>
+              {{navData?.headingText ? navData?.headingText : 'Regular Links'}}
+            </div>
+            <ul m-a-0 p-l-0 *ngIf="navData?.menuLinks?.length">
+              <ng-container *ngFor="let menulinks of navData?.menuLinks">
+                <li flex-container sws-nav-menu__list-item>
+                  <a sws-link p-a-15 full-width routerLink="{{menulinks.linkUrl}}" title="{{menulinks.linkText}}">
+                    <span m-r-10 *ngIf="menulinks.fontAwesomeIcon">
+                      <i class="{{menulinks.fontAwesomeIcon}}"></i>
+                    </span>
+                    {{menulinks.linkText}}
+                  </a>
+                </li>
+              </ng-container>
+            </ul>
+          </div>
+        </div>
+        <!-- Search -->
+        <div *ngIf="config.displaySearch" sws-nav-search>
+          <button nav-header-box everything-center-container (click)="showSearchBar = true">
+            <span nav-header-box__icon>
+              <i class="fas fa-search"></i>
+            </span>
+            Search
+          </button>
+          <ng-container *ngIf="showSearchBar">
+            <input autofocus [(ngModel)]="searchInput" (keydown)="keyDownFunction($event)" class="sws-search-bar" type="text" id="header-search-bar"
+              placeholder="Search..." [style.maxWidth]="maxWidth" />
+            <label *ngIf="showSearchBar" class="sws-search-bar" for="header-search-bar">Search</label>
+            <button nav-header-box everything-center-container nav-close-search (click)="showSearchBar = false" title="Close Search">
+              <span nav-header-box__icon>
+                <i class="fas fa-times"></i>
+              </span>
+              Close
+            </button>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div flex-container align-items-v m-l-auto>
+      <!-- Links -->
+      <div *ngIf="navData?.quickLinks?.length && navData?.quickLinks?.length < 5 && !tabletScreen" flex-container hidden-mobile
+        m-r-5>
+        <ng-container *ngFor="let quicklink of navData?.quickLinks">
+          <a semibold p-h-15 m-h-5 header-hover-effect routerLink="{{quicklink.linkUrl}}" title="{{quicklink.linkText}}" routerLinkActive="active-link">
+            <span m-r-10 *ngIf="quicklink.fontAwesomeIcon">
+              <i class="{{quicklink.fontAwesomeIcon}}"></i>
+            </span>
+            {{quicklink.linkText}}
+          </a>
+        </ng-container>
+      </div>
+      <!-- User Icon -->
+      <div *ngIf="config.displayUserMenu || (navData?.userName || navData?.userEmail)">
+        <button id="menubutton2" aria-haspopup="true" aria-controls="menu3" flex-container align-items-v flex-center p-h-10 nav-header-box
+          sws-nav-menu__icon (click)="userMenu = !userMenu;">
+          <span nav-header-box__icon>
+            <i class="fas fa-user-circle" style="font-size: 28px;"></i>
+            <i class="fas fa-caret-down" style="font-size: 14px; padding-bottom: 5px;"></i>
+          </span>
+          Menu
+        </button>
+        <!-- Header Menu -->
+        <div sws-header-user-dropdown [@toggleV]="userMenu" *ngIf="userMenu">
+          <div sws-header-user-dropdown-header p-a-15>
+            <div h5 lead>{{navData.userName}}</div>
+            <p m-b-0 m-t-5>{{navData.userEmail}}</p>
+          </div>
+          <ul id="menu3" aria-labelledby="menubutton2" tabindex="-1" flex-container-column *ngIf="navData?.userMenuLinks?.length">
+            <ng-container *ngFor="let usermenulink of navData?.userMenuLinks">
+              <li>
+                <a p-a-15 routerLink="{{usermenulink.linkUrl}}" title="{{usermenulink.linkText}}" sws-link>
+                  <span m-r-10 *ngIf="usermenulink.fontAwesomeIcon">
+                    <i class="{{usermenulink.fontAwesomeIcon}}"></i>
+                  </span>
+                  {{usermenulink.linkText}}
+                </a>
+              </li>
+            </ng-container>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Header for Quicklinks -->
+  <div sws-nav-mobile-links *ngIf="((navData?.quickLinks?.length && navData?.quickLinks?.length >= 5)) || (navData?.quickLinks?.length && navData?.quickLinks?.length < 5 && tabletScreen)"
+    everything-center-container flex-wrap p-v-5>
+    <ng-container *ngFor="let quicklink of navData?.quickLinks">
+      <a flex-container align-items-v semibold p-h-15 m-a-5 header-hover-effect routerLink="{{quicklink.linkUrl}}" title="{{quicklink.linkText}}"
+        routerLinkActive="active-link">
+        <span m-r-10 *ngIf="quicklink.fontAwesomeIcon">
+          <i class="{{quicklink.fontAwesomeIcon}}"></i>
+        </span>
+        {{quicklink.linkText}}
+      </a>
+    </ng-container>
+  </div>
+
+  <!-- Subheader -->
+  <nav *ngIf="(config.displaySubNavMenu && navData?.subHeaderLinks?.length)" bg-light p-h-15>
+    <div align-items-v flex-container full-width sws-subnav align-items-v [attr.everything-center-container]="tabletScreen ? '' : null">
+      <div sws-subnav-links *ngIf="navData?.subHeaderLinks?.length" flex-container flex-wrap>
+        <ng-container *ngFor="let subheaderlink of navData?.subHeaderLinks">
+          <a semibold p-a-10 routerLink="{{subheaderlink.linkUrl}}" title="{{subheaderlink.linkText}}" routerLinkActive="active-link">
+            <span m-r-10 *ngIf="subheaderlink.fontAwesomeIcon">
+              <i class="{{subheaderlink.fontAwesomeIcon}}"></i>
+            </span>
+            {{subheaderlink.linkText}}
+          </a>
+        </ng-container>
+      </div>
+    </div>
+  </nav>
+</div>
