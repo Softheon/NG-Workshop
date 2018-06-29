@@ -523,7 +523,7 @@ This will render the theme colored header with an external logo url, an external
 
 #### **Navigation Header Link 'ILink' Properties**
 
-**TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object **
+**TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
 
 | Key             | Type   | Required  | Example                   | Description                                  |
 | --------------- | :----: | :-------: | :-----------------------: | -------------------------------------------: |
