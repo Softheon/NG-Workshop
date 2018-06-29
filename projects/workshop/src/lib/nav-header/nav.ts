@@ -1,10 +1,20 @@
+/** The Link Interface */
 export interface ILink {
-    linkUrl: string;
+
+    /** The Link Text */
     linkText: string;
-    newTab?: boolean;
+
+    /** The Link Url */
+    linkUrl?: string;
+
+    /** The External Link Url */
+    externalLinkUrl?: string;
+
+    /** The Font Awesome icon class */
     fontAwesomeIcon?: string;
 }
 
+/** The Navigation Interface */
 export interface INavigation {
 
     /** The user name */
@@ -19,11 +29,11 @@ export interface INavigation {
     /** The logo image url */
     logoImageUrl?: string;
 
-    /** The logo link url */
-    logoLink?: boolean;
+    /** If the logo is to go to a different routerLink instead of '/' */
+    logoLink?: string;
 
-    /** Whether or not to open the logo link in a new tab */
-    logoLinkTarget?: string;
+    /** Header Logo - Clicking logo goes to external link */
+    externalLogoLink?: string;
 
     /** Left Menu Applications Heading Text */
     appHeadingText?: string;
@@ -56,6 +66,7 @@ export interface INavConfig {
     theme?: string;
 }
 
+/** The Nav Congif Class */
 export class NavConfig implements INavConfig {
     /** Whether or not to display the Left Nav Applications Menu */
     public displayAppMenu?: boolean;

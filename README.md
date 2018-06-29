@@ -239,7 +239,7 @@ Left to Right: 'lg', 'md', 'sm' (default)
 ### **Nav-Header**
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example1.png "NG Workshop Example")
 
-#### `<sws-card-grid>` is a component used to render a navigation header. Entirely highly configurable, highly customizable, and keyboard tab-able.
+#### `<sws-nav-header>` is a component used to render a navigation header. Entirely highly configurable, highly customizable, and keyboard tab-able.
 
 #### API reference for NG-Workshop Nav-Header Component
 
@@ -290,6 +290,7 @@ This will render the header in your workshop theme color with only the logo text
 This will render the light colored header with only a logo image and quick links
 
 ```Typescript
+
   public navigation: INavigation = {
     logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg',
     quickLinks: [
@@ -327,8 +328,6 @@ This will render the light colored header with only a logo image and quick links
 This will render the theme colored header with only a text logo, searchbar, left menu navigation, and user menu
 
 ```Typescript
-
-  public navConfig: NavConfig = new NavConfig();
 
   public navigation: INavigation = {
     logoText: 'The Great Gatsby',
@@ -379,4 +378,156 @@ This will render the theme colored header with only a text logo, searchbar, left
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example2.png "NG Workshop Example")
 
-### **MORE DOCUMENTATION COMING SOON**
+This will render the light theme header with only an svg image logo and left menu navigation (with custom section heading text)
+
+```Typescript
+
+  public navigation: INavigation = {
+    logoImageUrl: 'http://tiny.cc/4oe4uy',
+    logoLink: './customhomepage',
+    appHeadingText: 'Additional Apps',
+    headingText: 'External Links',
+    applicationLinks: [
+      {
+        linkUrl: './home',
+        linkText: 'Clarity',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Equity',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './about/ourstory',
+        linkText: 'Remedy',
+        fontAwesomeIcon: 'fas fa-chess'
+      }
+    ],
+    menuLinks: [
+      {
+        externalLinkUrl: 'https://www.w3.org/TR/wai-aria-practices-1.1/examples/menu-button/menu-button-links.html',
+        linkText: 'Left Menu Link A',
+      },
+      {
+        linkUrl: './app2',
+        linkText: 'Left Menu Link B',
+
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Left Menu Link C'
+      }
+    ],
+  };
+  
+  public navConfig: NavConfig = new NavConfig();
+
+  ngOnInit() {
+    this.navConfig.displayAppMenu = true;
+    this.navConfig.theme = 'light';
+  }
+```
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example3.png "NG Workshop Example")
+
+
+This will render the light theme header with only an svg image logo and left menu navigation (with custom section heading text)
+
+```Typescript
+
+  public navigation: INavigation = {
+    logoImageUrl: 'http://tiny.cc/i5e4uy',
+    externalLogoLink: 'https://www.softheon.com/Site/home',
+    quickLinks: [
+      {
+        externalLinkUrl: 'https://www.softheon.com/Site/home',
+        linkText: 'Contact',
+      },
+      {
+        linkUrl: './blog',
+        linkText: 'Blog'
+      },
+    ],
+    subHeaderLinks: [
+      {
+        linkUrl: './page1',
+        linkText: 'About Us',
+
+      },
+      {
+        linkUrl: './page2',
+        linkText: 'Careers'
+      },
+      {
+        linkUrl: './page3',
+        linkText: 'Learn More'
+      },
+      {
+        linkUrl: './page4',
+        linkText: 'Our Solutions'
+      },
+      {
+        linkUrl: './page5',
+        linkText: 'Media'
+      },
+      {
+        linkUrl: './page6',
+        linkText: 'News'
+      },
+    ],
+  };
+  
+  public navConfig: NavConfig = new NavConfig();
+
+  ngOnInit() {
+    this.navConfig.displaySubNavMenu = true;
+    this.navConfig.theme = 'theme';
+  }
+```
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example4.png "NG Workshop Example")
+
+
+#### **Configuration Properties**
+
+| Configuration Key | Example                               | Required                | Description                    |
+| ----------------- | :-----------------------------------: | :---------------------: | -----------------------------: |
+| displayAppMenu    | 'true / false'                        | no (default is 'false') | Display left menu              |
+| displaySearch     | 'true / false'                        | no (default is 'false') | Display search bar             |
+| displaySubNavMenu | 'true / false'                        | no (default is 'false') | Display sub nav menu           |
+| displayUserMenu   | 'true / false'                        | no (default is 'false') | Display user icon and dropdown |
+| theme             | 'dark' / 'light' / 'theme'  / 'clear' | no (default is 'dark')  | The header theme color         |
+
+#### **Navigation Header Content 'INavigation' Properties**
+
+**TIP: All properties are optional**
+**TIP: All external links open in new tab as target="_blank"**
+
+| Key              | Type    | Example                           | Description                                                                  |
+| ---------------- | :-----: | :-------------------------------: | ---------------------------------------------------------------------------: |
+| userName         | string  | 'Jay Gatsby'                      | User's name in the user menu                                                 |
+| userEmail        | string  | 'jay@thegreatgatsby.com'          | User's email  user menu                                                      |
+| logoText         | string  | 'The Great Gatsby'                | Header Text as Logo                                                          |
+| logoImageUrl     | string  | 'https://i.imgur.com/PBaOIbC.gif' | Header Logo image url                                                        |
+| logoLink         | string  | './customhomepage'                | Header Logo - If the logo is to go to a different routerLink instead of '/'  |
+| externalLogoLink | string  | 'https://www.google.com/'         | Header Logo - Clicking logo goes to external link                            |
+| appHeadingText   | string  | 'Additional Apps'                 | Custom text for application links in the left menu, default : "Applications" |
+| headingText      | string  | 'External Links'                  | Custom text for secondary links in the left menu, default : "Regular Links"  |
+| userMenuLinks    | ILink[] | 'userMenuLinks: [{...}]'          | ILink Object Array of link data in the user menu                             |
+| applicationLinks | ILink[] | 'applicationLinks: [{...}]'       | ILink Object Array of link data in the left menu                             |
+| menuLinks        | ILink[] | 'menuLinks: [{...}]'              | ILink Object Array of link data in the left menu                             |
+| quickLinks       | ILink[] | 'quickLinks: [{...}]'             | ILink Object Array of link data in the header                                |
+| subHeaderLinks   | ILink[] | 'subHeaderLinks: [{...}]'         | ILink Object Array of link data in the subheader                             |
+
+
+#### **Navigation Header Link 'ILink' Properties**
+
+**TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object **
+
+| Key             | Type   | Required  | Example                   | Description                                  |
+| --------------- | :----: | :-------: | :-----------------------: | -------------------------------------------: |
+| linkText        | string | required  | 'Epic Subtitle'           | The link text                                |
+| linkUrl         | string | optional* | './contact'               | The link url                                 |
+| externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
+| fontAwesomeIcon | string | optional  | 'fas fa-anchor'           | Font Awesome icon class                      |

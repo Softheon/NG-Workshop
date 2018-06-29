@@ -15,7 +15,7 @@ const routes: Routes = [{ path: 'navheader', component: NavHeaderComponent}];
     BrowserAnimationsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   declarations: [NavHeaderComponent],

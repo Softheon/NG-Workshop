@@ -49,10 +49,10 @@ $themes: (
   light: (
     headerBackgroundColor: #fff,
     headerTextColor: #444,
-    headerHoverColor: #ecf0f1 !important, // #dfe6e9,
-    headerFocusColor: #d8dee6 !important,
+    headerHoverColor: #ecf0f1 !important,
+    headerFocusColor: #e2e7e9 !important,
     leftNavBackgroundColor: #fff,
-    leftNavSectionColor: #dfe6e9,
+    leftNavSectionColor: #ECEFF1,
     leftNavTextColor: #444,
     leftNavHoverColor: #ecf0f1,
     leftNavFocusColor: #bac4d0,
@@ -61,7 +61,7 @@ $themes: (
     dropdownTextColor: #fff,
     dropdownBackgroundColor: #fff,
     dropdownBorderColor: #d8dee6,
-    dropdownUserSectionColor: #dfe6e9, // Box shadow 0px 1px 3px 3px #88888829
+    dropdownUserSectionColor: #ECEFF1, // Box shadow 0px 1px 3px 3px #88888829
     searchBarBackgroundColor: #fff,
     searchBarCloseBackgroundColor: #fff,
   ),
@@ -88,7 +88,7 @@ $themes: (
     headerBackgroundColor: transparent,
     headerTextColor: #222,
     headerHoverColor: #ecf0f1 !important, // #dfe6e9,
-    headerFocusColor: #d8dee6 !important,
+    headerFocusColor: #E0E0E0 !important,
     leftNavBackgroundColor: #fff,
     leftNavSectionColor: #dfe6e9,
     leftNavTextColor: #222,
@@ -99,7 +99,7 @@ $themes: (
     dropdownTextColor: #fff,
     dropdownBackgroundColor: #fff,
     dropdownBorderColor: #d8dee6,
-    dropdownUserSectionColor: #dfe6e9, // Box shadow 0px 1px 3px 3px #88888829
+    dropdownUserSectionColor: #EEEEEE,
     searchBarBackgroundColor: #fff,
     searchBarCloseBackgroundColor: #fff,
   ),

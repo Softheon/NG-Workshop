@@ -27,41 +27,96 @@ export class AppComponent implements OnInit {
   public navConfig: NavConfig = new NavConfig();
 
   public navigation: INavigation = {
-    logoText: 'The Great Gatsby',
-    userName: 'Jay Gatsby',
-    userEmail: 'jay@thegreatgatsby.com',
-    userMenuLinks: [
+    logoImageUrl: 'http://tiny.cc/i5e4uy',
+    quickLinks: [
       {
-        linkUrl: './home',
-        linkText: 'Settings',
-        fontAwesomeIcon: 'fas fa-anchor'
+        externalLinkUrl: 'https://www.softheon.com/Site/home',
+        linkText: 'Contact',
       },
       {
-        linkUrl: './contact',
-        linkText: 'Languages',
-        fontAwesomeIcon: 'fas fa-chess'
+        linkUrl: './blog',
+        linkText: 'Blog'
       },
-      {
-        linkUrl: './about/ourstory',
-        linkText: 'Logout'
-      }
     ],
-    headingText : 'External Links',
-    menuLinks: [
+    subHeaderLinks: [
       {
-        linkUrl: './app1',
-        linkText: 'Left Menu Link A',
-      },
-      {
-        linkUrl: './app2',
-        linkText: 'Left Menu Link B',
+        linkUrl: './page1',
+        linkText: 'About Us',
 
       },
       {
-        linkUrl: './app3',
-        linkText: 'Left Menu Link C'
-      }
+        linkUrl: './page2',
+        linkText: 'Careers'
+      },
+      {
+        linkUrl: './page3',
+        linkText: 'Learn More'
+      },
+      {
+        linkUrl: './page4',
+        linkText: 'Our Solutions'
+      },
+      {
+        linkUrl: './page5',
+        linkText: 'Media'
+      },
+      {
+        linkUrl: './page6',
+        linkText: 'News'
+      },
     ],
+    // userName: 'Jay Gatsby',
+    // userEmail: 'jay@thegreatgatsby.com',
+    // userMenuLinks: [
+    //   {
+    //     externalLinkUrl: 'https://www.youtube.com/',
+    //     linkText: 'Settings',
+    //     fontAwesomeIcon: 'fas fa-anchor'
+    //   },
+    //   {
+    //     linkUrl: './contact',
+    //     linkText: 'Languages',
+    //     fontAwesomeIcon: 'fas fa-chess'
+    //   },
+    //   {
+    //     linkUrl: './about/ourstory',
+    //     linkText: 'Logout'
+    //   }
+    // ],
+    // appHeadingText: 'Additional Apps',
+    // headingText: 'External Links',
+    // menuLinks: [
+    //   {
+    //     externalLinkUrl: 'https://www.w3.org/TR/wai-aria-practices-1.1/examples/menu-button/menu-button-links.html',
+    //     linkText: 'Left Menu Link A',
+    //   },
+    //   {
+    //     linkUrl: './app2',
+    //     linkText: 'Left Menu Link B',
+
+    //   },
+    //   {
+    //     linkUrl: './contact',
+    //     linkText: 'Left Menu Link C'
+    //   }
+    // ],
+    // applicationLinks: [
+    //   {
+    //     linkUrl: './home',
+    //     linkText: 'Clarity',
+    //     fontAwesomeIcon: 'fas fa-chess'
+    //   },
+    //   {
+    //     linkUrl: './contact',
+    //     linkText: 'Equity',
+    //     fontAwesomeIcon: 'fas fa-chess'
+    //   },
+    //   {
+    //     linkUrl: './about/ourstory',
+    //     linkText: 'Remedy',
+    //     fontAwesomeIcon: 'fas fa-chess'
+    //   }
+    // ],
   };
 
   /**
@@ -297,18 +352,11 @@ export class AppComponent implements OnInit {
   //   // }
   // }
 
-
   ngOnInit() {
-    // this.navConfig.displaySubNavMenu = true;
     this.navConfig.displayAppMenu = true;
-    this.navConfig.displaySearch = true;
-
-
-    // this.navConfig.displayAppMenu = true;
+    this.navConfig.theme = 'theme';
+    this.navConfig.displaySubNavMenu = true;
     // this.navConfig.displaySearch = true;
-    // // this.navConfig.displaySubNavMenu = true;
-    // this.navConfig.theme = 'clear';
-
 
     this.cardArray = [
       {
@@ -348,6 +396,5 @@ export class AppComponent implements OnInit {
    */
   public searchSomething(event) {
     this.searchItem = event;
-    console.log(this.searchItem);
   }
 }

@@ -13,7 +13,7 @@ const routes: Routes = [{ path: 'multistepper', component: MultiStepperComponent
     BrowserAnimationsModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   declarations: [MultiStepperComponent],

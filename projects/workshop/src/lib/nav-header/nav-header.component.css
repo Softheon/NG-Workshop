@@ -248,7 +248,7 @@
 }
 
 .theme-light [header-hover-effect].active-link, .theme-light [header-hover-effect]:focus {
-  background: #d8dee6 !important;
+  background: #e2e7e9 !important;
 }
 
 .theme-theme [header-hover-effect].active-link, .theme-theme [header-hover-effect]:focus {
@@ -256,7 +256,7 @@
 }
 
 .theme-clear [header-hover-effect].active-link, .theme-clear [header-hover-effect]:focus {
-  background: #d8dee6 !important;
+  background: #E0E0E0 !important;
 }
 
 [sws-nav-menu__icon] .fa-caret-down {
@@ -278,7 +278,7 @@
 }
 
 .theme-light [sws-nav-menu__header] {
-  background: #dfe6e9;
+  background: #ECEFF1;
   border-bottom: 2px solid #dfe6e9;
   border-top: 2px solid #dfe6e9;
   color: #444;
@@ -346,7 +346,7 @@
 }
 
 .theme-light [sws-header-user-dropdown] [sws-header-user-dropdown-header] {
-  background: #dfe6e9;
+  background: #ECEFF1;
   border-bottom: 2px solid #dfe6e9;
 }
 
@@ -356,7 +356,7 @@
 }
 
 .theme-clear [sws-header-user-dropdown] [sws-header-user-dropdown-header] {
-  background: #dfe6e9;
+  background: #EEEEEE;
   border-bottom: 2px solid #dfe6e9;
 }
 
@@ -513,7 +513,7 @@
 }
 
 .theme-light [sws-nav-search] [nav-close-search]:hover, .theme-light [sws-nav-search] [nav-close-search]:focus {
-  background: #dfe6e9;
+  background: #ECEFF1;
 }
 
 .theme-theme [sws-nav-search] [nav-close-search] {
