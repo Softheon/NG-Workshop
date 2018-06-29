@@ -27,6 +27,8 @@ export class AppComponent implements OnInit {
   public navConfig: NavConfig = new NavConfig();
 
   public navigation: INavigation = {
+    userName: 'Jay Gatsby',
+    userEmail: 'jay@thegreatgatsby.com',
     logoImageUrl: 'http://tiny.cc/i5e4uy',
     quickLinks: [
       {
@@ -37,8 +39,6 @@ export class AppComponent implements OnInit {
         linkUrl: './blog',
         linkText: 'Blog'
       },
-    ],
-    subHeaderLinks: [
       {
         linkUrl: './page1',
         linkText: 'About Us',
@@ -256,7 +256,7 @@ export class AppComponent implements OnInit {
       imgUrl: 'https://i.imgur.com/PBaOIbC.gif',
       linkTitle: 'Learn More',
       link: './home'
-    }
+    },
   ];
 
   // best practice:
@@ -354,9 +354,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.navConfig.displayAppMenu = true;
-    this.navConfig.theme = 'theme';
-    this.navConfig.displaySubNavMenu = true;
-    // this.navConfig.displaySearch = true;
+    this.navConfig.displaySearch = true;
+    this.navConfig.displayUserMenu = true;
+    // this.navConfig.displaySubNavMenu = true;
+    // this.navConfig.theme = 'theme';
 
     this.cardArray = [
       {
