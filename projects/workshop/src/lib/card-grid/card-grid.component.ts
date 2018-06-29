@@ -1,9 +1,9 @@
 import { Component, OnInit, AfterViewInit, Input } from '@angular/core';
 import { Card } from './card';
 
-import 'gsap';
+// import 'gsap';
 
-declare var TimelineMax: any;
+// declare var TimelineMax: any;
 
 /** The Card Grid Component */
 @Component({
@@ -38,15 +38,15 @@ export class CardGridComponent implements OnInit, AfterViewInit {
   /** After View Initializes */
   ngAfterViewInit() {
     /** Greensock Card Stagger Effect */
-    const tl = new TimelineMax({ delay: 0.3 });
+    // const tl = new TimelineMax({ delay: 0.3 });
 
-    tl.staggerFromTo(
-      '.sws-fade-in-stagger',
-      0.5,
-      { opacity: 0 },
-      { opacity: 1 },
-      0.175
-    );
+    // tl.staggerFromTo(
+    //   '.sws-fade-in-stagger',
+    //   0.5,
+    //   { opacity: 0 },
+    //   { opacity: 1 },
+    //   0.175
+    // );
 
     /** 2nd Pass - Experimental Greensock
      * // const cols = 10;

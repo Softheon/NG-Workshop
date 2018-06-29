@@ -40,6 +40,18 @@ Example:
 <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
 ```
 
+<!-- #### Include the [GSAP](https://greensock.com/gsap) package in your package.json under 'dependencies'
+
+Example:
+
+```json
+  ...
+  "dependencies": {
+    "gsap": "^2.0.1",
+  },
+  ...
+``` -->
+
 #### Add your components
 
 ```TypeScript
@@ -173,7 +185,9 @@ Example Configuration (Optional):
 ### **Card-Grid**
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-Card-Grid-Header.png "NG Workshop Example")
 
-#### `<sws-card-grid>` is a component used to render a grid of cards styled content. Links are keyboard tab-able, and on initialization the grid displays a [GSAP](https://greensock.com/) cascading loading animation. 
+#### `<sws-card-grid>` is a component used to render a grid of cards styled content. Links are keyboard tab-able.
+
+ <!-- and on initialization the grid displays a [GSAP](https://greensock.com/) cascading loading animation.  -->
 
 #### API reference for NG-Workshop Card-Grid Component
 
@@ -487,6 +501,61 @@ This will render the theme colored header with an external logo url, an external
 ```
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example4.png "NG Workshop Example")
+
+When there are more than 4 quick links, the ui renders them under the header.
+
+```Typescript
+
+  public navigation: INavigation = {
+    userName: 'Jay Gatsby',
+    userEmail: 'jay@thegreatgatsby.com',
+    logoImageUrl: 'http://tiny.cc/i5e4uy',
+    quickLinks: [
+      {
+        externalLinkUrl: 'https://www.softheon.com/Site/home',
+        linkText: 'Contact',
+      },
+      {
+        linkUrl: './blog',
+        linkText: 'Blog'
+      },
+      {
+        linkUrl: './page1',
+        linkText: 'About Us',
+
+      },
+      {
+        linkUrl: './page2',
+        linkText: 'Careers'
+      },
+      {
+        linkUrl: './page3',
+        linkText: 'Learn More'
+      },
+      {
+        linkUrl: './page4',
+        linkText: 'Our Solutions'
+      },
+      {
+        linkUrl: './page5',
+        linkText: 'Media'
+      },
+      {
+        linkUrl: './page6',
+        linkText: 'News'
+      },
+    ],
+  };
+  
+  public navConfig: NavConfig = new NavConfig();
+
+  ngOnInit() {
+    this.navConfig.displaySearch = true;
+    this.navConfig.displayUserMenu = true;
+  }
+```
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example5.png "NG Workshop Example")
 
 
 #### **Configuration Properties**
