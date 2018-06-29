@@ -432,7 +432,7 @@ This will render the light theme header with only an svg image logo and left men
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example3.png "NG Workshop Example")
 
 
-This will render the light theme header with only an svg image logo and left menu navigation (with custom section heading text)
+This will render the theme colored header with an external logo url, an external link in the header quick links, and subheader menu
 
 ```Typescript
 
