@@ -1,22 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MultiStepperComponent } from './multi-stepper.component';
+import { NavHeaderComponent } from './nav-header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
-const routes: Routes = [{ path: 'multistepper', component: MultiStepperComponent}];
+const routes: Routes = [{ path: 'navheader', component: NavHeaderComponent}];
 
-/** The NG-Workshop Multi Stepper Module */
+
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(
       routes,
       // { enableTracing: true } // <-- debugging purposes only
     )
   ],
-  declarations: [MultiStepperComponent],
-  exports: [MultiStepperComponent]
+  declarations: [NavHeaderComponent],
+  exports: [NavHeaderComponent]
 })
-export class MultiStepperModule { }
+export class NavHeaderModule { }

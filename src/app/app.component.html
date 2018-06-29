@@ -1,11 +1,23 @@
+<sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
+
+<!-- TEMP NG WORKSHOP -->
+<div sws-parallax everything-center-container sws-default-banner-img style="width: 100%;height: 300px;">
+    <div display-4 text-light>Welcome to Workshop</div>
+</div>
+
+
 <!-- NG WORKSHOP -->
-<img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg" alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
+<img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"
+  alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
 <h1 text-center workshop>NG-WORKSHOP</h1>
 
 <!-- Multi Stepper Example -->
 <div *ngIf="data">
   <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
 </div>
+
+<!-- <sws-nav-header></sws-nav-header> -->
+
 
 <router-outlet></router-outlet>
 
@@ -14,5 +26,11 @@
 
 <!-- For reference, the returned data from the event emitter -->
 <div m-h-20>
-  <h6>{{blob | json}}</h6>
+  <p h6>{{blob | json}}</p>
+</div>
+<div>
+<!-- CONTENT GOES HERE: 
+  <div class="toggle" [@toggle]="show" (@toggle.start)="animationStarted($event)" (@toggle.done)="animationDone($event)" *ngIf="show">
+    <h1>HELLO WORLD!!!!!!</h1>
+  </div> -->
 </div>

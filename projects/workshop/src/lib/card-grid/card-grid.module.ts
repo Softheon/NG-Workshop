@@ -11,7 +11,7 @@ const routes: Routes = [{ path: 'cardgrid', component: CardGridComponent}];
     CommonModule,
     RouterModule.forRoot(
       routes,
-      { enableTracing: true } // <-- debugging purposes only
+      // { enableTracing: true } // <-- debugging purposes only
     )
   ],
   declarations: [CardGridComponent],
