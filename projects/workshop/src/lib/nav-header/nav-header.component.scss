@@ -150,10 +150,17 @@ $themes: (
     text-align: center;
     display: flex;
     justify-content: center;
+    &.tinyLogo {
+        max-width: 64px;
+    }
 }
 
 [sws-nav__logo-img] {
-    max-height: 40px;
+    max-height: 50px;
+    max-width: 145px;
+    &.tinyLogo {
+        max-width: 64px;
+    }
 }
 
 [semibold] {

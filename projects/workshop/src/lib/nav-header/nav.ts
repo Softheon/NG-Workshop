@@ -64,6 +64,7 @@ export interface INavConfig {
     displaySubNavMenu?: boolean;
     displayUserMenu?: boolean;
     theme?: string;
+    smallLogo?: boolean;
 }
 
 /** The Nav Congif Class */
@@ -83,12 +84,16 @@ export class NavConfig implements INavConfig {
     /** The theme config */
     public theme?: string;
 
+    /** The small logo setting */
+    public smallLogo?: boolean;
+
     /** The Constructor for the Nav Config */
-    constructor(appMenu?: boolean, search?: boolean, userMenu?: boolean, subNavMenu?: boolean, theme?: string) {
+    constructor(appMenu?: boolean, search?: boolean, userMenu?: boolean, subNavMenu?: boolean, theme?: string, smLogo?: boolean) {
         this.displayAppMenu = appMenu != null ? appMenu : false;
         this.displaySearch = search != null ? search : false;
         this.displayUserMenu = userMenu != null ? userMenu : false;
         this.displaySubNavMenu = subNavMenu != null ? subNavMenu : false;
         this.theme = theme != null ? theme : 'dark';
+        this.smallLogo = smLogo != null ? smLogo : false;
     }
 }
