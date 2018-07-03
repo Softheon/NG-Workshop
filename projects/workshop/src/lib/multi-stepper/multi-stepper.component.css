@@ -44,6 +44,7 @@
   text-align: center;
   font-weight: bold;
   opacity: 1;
+  -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease;
 }
 
@@ -59,6 +60,7 @@
 .sws-progress-steps__substeps_indicator:hover + [sws-progress-steps__substeps_label],
 .sws-progress-steps__substeps_indicator:hover .sws-progress-steps__substeps_label {
   opacity: 1;
+  -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease;
 }
 
@@ -74,21 +76,28 @@ a {
 
 [sws-progress-steps],
 .sws-progress-steps {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
   white-space: nowrap;
   position: relative;
 }
 
 [sws-progress-steps] *,
 .sws-progress-steps * {
+  -webkit-transition: all .200s linear;
   transition: all .200s linear;
 }
 
 @media screen and (max-width: 1100px) {
   [sws-progress-steps],
   .sws-progress-steps {
-    flex-grow: 10;
+    -webkit-box-flex: 10;
+        -ms-flex-positive: 10;
+            flex-grow: 10;
   }
 }
 
@@ -96,12 +105,18 @@ a {
 [sws-progress-steps] .sws-progress-steps__step-container,
 .sws-progress-steps [sws-progress-steps__step-container],
 .sws-progress-steps .sws-progress-steps__step-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   position: relative;
   width: 50px;
   height: 50px;
-  align-items: baseline;
-  justify-content: center;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 [sws-progress-steps] [sws-progress-steps__step],
@@ -112,8 +127,11 @@ a {
   min-height: 72px;
   min-width: 0;
   text-align: center;
-  flex: 1;
-  flex-basis: auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -ms-flex-preferred-size: auto;
+      flex-basis: auto;
   z-index: 1;
 }
 
@@ -174,11 +192,14 @@ a {
   text-transform: uppercase;
   font-weight: 500;
   font-size: 110%;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   background: transparent;
+  -webkit-transition: opacity .3s ease, background .2s ease;
   transition: opacity .3s ease, background .2s ease;
 }
 
@@ -191,6 +212,7 @@ a {
 .sws-progress-steps .sws-progress-steps__step [sws-progress-steps__step-label].show-label,
 .sws-progress-steps .sws-progress-steps__step .sws-progress-steps__step-label.show-label {
   opacity: 1 !important;
+  -webkit-transition: opacity .3s ease, background .2s ease;
   transition: opacity .3s ease, background .2s ease;
   z-index: 2;
   background: rgba(255, 255, 255, 0.9);
@@ -202,7 +224,9 @@ a {
   margin: 14px 0;
   border-top-style: solid;
   border-top-width: 2px;
-  flex: auto;
+  -webkit-box-flex: 1;
+      -ms-flex: auto;
+          flex: auto;
   height: 0;
   min-width: 32px;
   flex: auto;
@@ -215,9 +239,15 @@ a {
 .sws-progress-steps .sws-progress-steps__substeps a {
   text-decoration: none !important;
   color: #333;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 [sws-progress-steps] [sws-progress-steps__substeps] a:focus [sws-progress-steps__substeps_label],
@@ -245,6 +275,34 @@ a {
 .sws-progress-steps [sws-progress-steps__substeps] a:hover .fas,
 .sws-progress-steps .sws-progress-steps__substeps a:focus .fas,
 .sws-progress-steps .sws-progress-steps__substeps a:hover .fas {
+  opacity: .5 !important;
+}
+
+[sws-progress-steps] [sws-progress-steps__substeps]:focus [sws-progress-steps__substeps_label],
+[sws-progress-steps] [sws-progress-steps__substeps]:focus .sws-progress-steps__substeps_label, [sws-progress-steps] [sws-progress-steps__substeps]:hover [sws-progress-steps__substeps_label],
+[sws-progress-steps] [sws-progress-steps__substeps]:hover .sws-progress-steps__substeps_label,
+[sws-progress-steps] .sws-progress-steps__substeps:focus [sws-progress-steps__substeps_label],
+[sws-progress-steps] .sws-progress-steps__substeps:focus .sws-progress-steps__substeps_label,
+[sws-progress-steps] .sws-progress-steps__substeps:hover [sws-progress-steps__substeps_label],
+[sws-progress-steps] .sws-progress-steps__substeps:hover .sws-progress-steps__substeps_label,
+.sws-progress-steps [sws-progress-steps__substeps]:focus [sws-progress-steps__substeps_label],
+.sws-progress-steps [sws-progress-steps__substeps]:focus .sws-progress-steps__substeps_label,
+.sws-progress-steps [sws-progress-steps__substeps]:hover [sws-progress-steps__substeps_label],
+.sws-progress-steps [sws-progress-steps__substeps]:hover .sws-progress-steps__substeps_label,
+.sws-progress-steps .sws-progress-steps__substeps:focus [sws-progress-steps__substeps_label],
+.sws-progress-steps .sws-progress-steps__substeps:focus .sws-progress-steps__substeps_label,
+.sws-progress-steps .sws-progress-steps__substeps:hover [sws-progress-steps__substeps_label],
+.sws-progress-steps .sws-progress-steps__substeps:hover .sws-progress-steps__substeps_label {
+  opacity: 1 !important;
+}
+
+[sws-progress-steps] [sws-progress-steps__substeps]:focus .fas, [sws-progress-steps] [sws-progress-steps__substeps]:hover .fas,
+[sws-progress-steps] .sws-progress-steps__substeps:focus .fas,
+[sws-progress-steps] .sws-progress-steps__substeps:hover .fas,
+.sws-progress-steps [sws-progress-steps__substeps]:focus .fas,
+.sws-progress-steps [sws-progress-steps__substeps]:hover .fas,
+.sws-progress-steps .sws-progress-steps__substeps:focus .fas,
+.sws-progress-steps .sws-progress-steps__substeps:hover .fas {
   opacity: .5 !important;
 }
 
@@ -280,6 +338,7 @@ a {
 .sws-progress-steps:focus [sws-progress-steps__substeps_label],
 .sws-progress-steps:focus .sws-progress-steps__substeps_label {
   opacity: 0 !important;
+  -webkit-transition: opacity .3s ease;
   transition: opacity .3s ease;
 }
 
@@ -336,16 +395,25 @@ a {
   [sws-progress-steps__step-label],
   .sws-progress-steps__step-label {
     vertical-align: middle;
-    align-self: center;
+    -ms-flex-item-align: center;
+        -ms-grid-row-align: center;
+        align-self: center;
     text-align: left;
     background: transparent;
     padding-left: 15px;
   }
   [sws-progress-steps__substeps-container],
   .sws-progress-steps__substeps-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    align-items: baseline;
-    flex-direction: column;
+    -webkit-box-align: baseline;
+        -ms-flex-align: baseline;
+            align-items: baseline;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     margin-left: 12px;
     border-left: 3px solid grey;
     padding-left: 30px;
@@ -357,6 +425,8 @@ a {
   }
   [sws-progress-steps__step-indicator],
   .sws-progress-steps__step-indicator {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     padding-top: 5px;
   }
@@ -371,7 +441,10 @@ a {
   }
   [sws-progress-steps],
   .sws-progress-steps {
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     position: absolute;
     background: #fff;
     height: 100%;
@@ -417,11 +490,15 @@ a {
   .sws-progress-steps__step-container [sws-progress-steps__step] .flex-center,
   .sws-progress-steps__step-container .sws-progress-steps__step [flex-center],
   .sws-progress-steps__step-container .sws-progress-steps__step .flex-center {
-    align-items: flex-start;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
   }
   [sws-progress-steps__line],
   .sws-progress-steps__line {
-    flex: none;
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
   }
   [sws-progress-steps__step] a:focus [sws-progress-steps__step-label], [sws-progress-steps__step] a:focus .sws-progress-steps__step-label,
   .sws-progress-steps__step a:focus [sws-progress-steps__step-label],
@@ -447,7 +524,9 @@ a {
 .vertical [sws-progress-steps__step-label],
 .vertical .sws-progress-steps__step-label {
   vertical-align: middle;
-  align-self: center;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
   text-align: left;
   background: transparent;
   padding-left: 15px;
@@ -455,9 +534,16 @@ a {
 
 .vertical [sws-progress-steps__substeps-container],
 .vertical .sws-progress-steps__substeps-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: baseline;
-  flex-direction: column;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-left: 12px;
   border-left: 3px solid grey;
   padding-left: 30px;
@@ -471,6 +557,8 @@ a {
 
 .vertical [sws-progress-steps__step-indicator],
 .vertical .sws-progress-steps__step-indicator {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding-top: 5px;
 }
@@ -488,7 +576,10 @@ a {
 
 .vertical [sws-progress-steps],
 .vertical .sws-progress-steps {
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   position: absolute;
   background: #fff;
   height: 100%;
@@ -538,12 +629,16 @@ a {
 .vertical .sws-progress-steps__step-container [sws-progress-steps__step] .flex-center,
 .vertical .sws-progress-steps__step-container .sws-progress-steps__step [flex-center],
 .vertical .sws-progress-steps__step-container .sws-progress-steps__step .flex-center {
-  align-items: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
 }
 
 .vertical [sws-progress-steps__line],
 .vertical .sws-progress-steps__line {
-  flex: none;
+  -webkit-box-flex: 0;
+      -ms-flex: none;
+          flex: none;
 }
 
 .vertical [sws-progress-steps__step] a:focus [sws-progress-steps__step-label], .vertical [sws-progress-steps__step] a:focus .sws-progress-steps__step-label,
@@ -590,13 +685,25 @@ a {
 }
 
 .f-g-5 {
-  flex-grow: 3 !important;
+  -webkit-box-flex: 3 !important;
+      -ms-flex-positive: 3 !important;
+          flex-grow: 3 !important;
 }
 
 @media (max-width: 599px) {
   .mobile-substeps {
-    align-items: flex-start;
-    flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
+}
+
+.disabled-step {
+  pointer-events: none;
+  cursor: default;
 }
 /*# sourceMappingURL=multi-stepper.component.css.map */

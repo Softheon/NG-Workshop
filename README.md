@@ -174,6 +174,7 @@ Example Configuration (Optional):
 | navTxt             | 'My Awesome Nav' | no (default is 'Navigation') | Text that's displayed next to the mobile/vertical menu icon |
 | showLastNav        | true / false     | no (default is false)        | On horizontal view the text                                 |
 | markStepsCompleted | true / false     | no (default is true)         | Indicates progress completion at each page index            |
+| skipAhead          | true / false     | no (default is true)         | Allows the user to skip ahead of their current step         |
 
 #### **Examples**
 
@@ -567,6 +568,7 @@ When there are more than 4 quick links, the ui renders them under the header.
 | displaySubNavMenu | 'true / false'                        | no (default is 'false') | Display sub nav menu           |
 | displayUserMenu   | 'true / false'                        | no (default is 'false') | Display user icon and dropdown |
 | theme             | 'dark' / 'light' / 'theme'  / 'clear' | no (default is 'dark')  | The header theme color         |
+| smallLogo         | 'true / false'                        | no (default is 'false') | Gives logo max-width of 64px   |
 
 #### **Navigation Header Content 'INavigation' Properties**
 

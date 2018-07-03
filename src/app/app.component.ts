@@ -26,210 +26,115 @@ export class AppComponent implements OnInit {
 
   public navConfig: NavConfig = new NavConfig();
 
-  public navigation: INavigation = {
-    userName: 'Jay Gatsby',
-    userEmail: 'jay@thegreatgatsby.com',
-    logoImageUrl: 'http://tiny.cc/i5e4uy',
-    quickLinks: [
-      {
-        externalLinkUrl: 'https://www.softheon.com/Site/home',
-        linkText: 'Contact',
-      },
-      {
-        linkUrl: './blog',
-        linkText: 'Blog'
-      },
-      {
-        linkUrl: './page1',
-        linkText: 'About Us',
-
-      },
-      {
-        linkUrl: './page2',
-        linkText: 'Careers'
-      },
-      {
-        linkUrl: './page3',
-        linkText: 'Learn More'
-      },
-      {
-        linkUrl: './page4',
-        linkText: 'Our Solutions'
-      },
-      {
-        linkUrl: './page5',
-        linkText: 'Media'
-      },
-      {
-        linkUrl: './page6',
-        linkText: 'News'
-      },
-    ],
-    // userName: 'Jay Gatsby',
-    // userEmail: 'jay@thegreatgatsby.com',
-    // userMenuLinks: [
-    //   {
-    //     externalLinkUrl: 'https://www.youtube.com/',
-    //     linkText: 'Settings',
-    //     fontAwesomeIcon: 'fas fa-anchor'
-    //   },
-    //   {
-    //     linkUrl: './contact',
-    //     linkText: 'Languages',
-    //     fontAwesomeIcon: 'fas fa-chess'
-    //   },
-    //   {
-    //     linkUrl: './about/ourstory',
-    //     linkText: 'Logout'
-    //   }
-    // ],
-    // appHeadingText: 'Additional Apps',
-    // headingText: 'External Links',
-    // menuLinks: [
-    //   {
-    //     externalLinkUrl: 'https://www.w3.org/TR/wai-aria-practices-1.1/examples/menu-button/menu-button-links.html',
-    //     linkText: 'Left Menu Link A',
-    //   },
-    //   {
-    //     linkUrl: './app2',
-    //     linkText: 'Left Menu Link B',
-
-    //   },
-    //   {
-    //     linkUrl: './contact',
-    //     linkText: 'Left Menu Link C'
-    //   }
-    // ],
-    // applicationLinks: [
-    //   {
-    //     linkUrl: './home',
-    //     linkText: 'Clarity',
-    //     fontAwesomeIcon: 'fas fa-chess'
-    //   },
-    //   {
-    //     linkUrl: './contact',
-    //     linkText: 'Equity',
-    //     fontAwesomeIcon: 'fas fa-chess'
-    //   },
-    //   {
-    //     linkUrl: './about/ourstory',
-    //     linkText: 'Remedy',
-    //     fontAwesomeIcon: 'fas fa-chess'
-    //   }
-    // ],
-  };
-
   /**
    * Example Navigation Data
    */
-  // public navigation: INavigation = {
-  //   // logoText: 'Hello World! This Is Sparta',
-  //   // logoImageUrl: 'https://www.softheon.com/HTMLCache/Resources/Logo-navbar-01.png',
-  //   // logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg',
-  //   userName: 'Jay Gatsby',
-  //   userEmail: 'jay@thegreatgatsby.com',
-  //   userMenuLinks: [
-  //     {
-  //       linkUrl: './home',
-  //       linkText: 'Settings',
-  //       fontAwesomeIcon: 'fas fa-anchor'
-  //     },
-  //     {
-  //       linkUrl: './contact',
-  //       linkText: 'Languages',
-  //       fontAwesomeIcon: 'fas fa-chess'
-  //     },
-  //     {
-  //       linkUrl: './about/ourstory',
-  //       linkText: 'Logout'
-  //     }
-  //   ],
-  //   quickLinks: [
-  //     {
-  //       linkUrl: './home',
-  //       linkText: 'Quick Link A',
-  //       fontAwesomeIcon: 'fas fa-chess'
-  //     },
-  //     {
-  //       linkUrl: './contact',
-  //       linkText: 'Quick Link B',
-  //       fontAwesomeIcon: 'fas fa-anchor'
-  //     },
-  //     {
-  //       linkUrl: './about/ourstory',
-  //       linkText: 'Quick Link C',
-  //       fontAwesomeIcon: 'fas fa-coffee'
-  //     },
-  //     {
-  //       linkUrl: './home',
-  //       linkText: 'Quick Link D'
-  //     },
-  //   ],
-  //   applicationLinks: [
-  //     {
-  //       linkUrl: './home',
-  //       linkText: 'Clarity',
-  //       fontAwesomeIcon: 'fas fa-chess'
-  //     },
-  //     {
-  //       linkUrl: './contact',
-  //       linkText: 'Equity',
-  //       fontAwesomeIcon: 'fas fa-chess'
-  //     },
-  //     {
-  //       linkUrl: './about/ourstory',
-  //       linkText: 'Remedy',
-  //       fontAwesomeIcon: 'fas fa-chess'
-  //     }
-  //   ],
-  //   menuLinks: [
-  //     {
-  //       linkUrl: './home',
-  //       linkText: 'Left Menu Link A',
-  //       fontAwesomeIcon: 'fas fa-anchor'
-  //     },
-  //     {
-  //       linkUrl: './contact',
-  //       linkText: 'Left Menu Link B',
+  public navigation: INavigation = {
+    logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
+    userName: 'Jay Gatsby',
+    userEmail: 'jay@thegreatgatsby.com',
+    userMenuLinks: [
+      {
+        linkUrl: './home',
+        linkText: 'Settings',
+        fontAwesomeIcon: 'fas fa-anchor'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Languages',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        externalLinkUrl: 'https://angular.io/',
+        linkText: 'Logout'
+      }
+    ],
+    quickLinks: [
+      {
+        linkUrl: './home',
+        linkText: 'Quick Link A',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Quick Link B',
+        fontAwesomeIcon: 'fas fa-anchor'
+      },
+      {
+        linkUrl: './about/ourstory',
+        linkText: 'Quick Link C',
+        fontAwesomeIcon: 'fas fa-coffee'
+      },
+      {
+        linkUrl: './home',
+        linkText: 'Quick Link D'
+      },
+    ],
+    applicationLinks: [
+      {
+        linkUrl: './home',
+        linkText: 'Clarity',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Equity',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './about/ourstory',
+        linkText: 'Remedy',
+        fontAwesomeIcon: 'fas fa-chess'
+      }
+    ],
+    menuLinks: [
+      {
+        linkUrl: './home',
+        linkText: 'Left Menu Link A',
+        fontAwesomeIcon: 'fas fa-anchor'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Left Menu Link B',
 
-  //     },
-  //     {
-  //       linkUrl: './about/ourstory',
-  //       linkText: 'Left Menu Link C'
-  //     }
-  //   ],
-  //   subHeaderLinks: [
-  //     {
-  //       linkUrl: './contact',
-  //       linkText: 'Left Menu Link B',
-  //       fontAwesomeIcon: 'fas fa-anchor'
-  //     },
-  //     {
-  //       linkUrl: './about/ourstory',
-  //       linkText: 'Left Menu Link C',
-  //       fontAwesomeIcon: 'fas fa-coffee'
-  //     },
-  //     {
-  //       linkUrl: './home',
-  //       linkText: 'Quick Link A',
-  //       fontAwesomeIcon: 'fas fa-chess'
-  //     },
-  //     {
-  //       linkUrl: './contact',
-  //       linkText: 'Quick Link B',
-  //       fontAwesomeIcon: 'fas fa-anchor'
-  //     },
-  //     {
-  //       linkUrl: './about/ourstory',
-  //       linkText: 'Quick Link C',
-  //       fontAwesomeIcon: 'fas fa-coffee'
-  //     },
-  //     {
-  //       linkUrl: './home',
-  //       linkText: 'Quick Link D'
-  //     },
-  //   ]
-  // };
+      },
+      {
+        linkUrl: './about/ourstory',
+        linkText: 'Left Menu Link C'
+      }
+    ],
+    subHeaderLinks: [
+      {
+        linkUrl: './contact',
+        linkText: 'Left Menu Link B',
+        fontAwesomeIcon: 'fas fa-anchor'
+      },
+      {
+        linkUrl: './about/ourstory',
+        linkText: 'Left Menu Link C',
+        fontAwesomeIcon: 'fas fa-coffee'
+      },
+      {
+        linkUrl: './home',
+        linkText: 'Quick Link A',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
+        linkUrl: './contact',
+        linkText: 'Quick Link B',
+        fontAwesomeIcon: 'fas fa-anchor'
+      },
+      {
+        linkUrl: './about/ourstory',
+        linkText: 'Quick Link C',
+        fontAwesomeIcon: 'fas fa-coffee'
+      },
+      {
+        linkUrl: './home',
+        linkText: 'Quick Link D'
+      },
+    ]
+  };
 
   /**
    * Example Card-Grid Data
@@ -268,12 +173,13 @@ export class AppComponent implements OnInit {
   // public data;
   public data = [
     { page: 'Welcome', url: './welcome' },
+    { page: 'Contact Us', url: './contact' },
     {
       page: 'About Us',
       url: './about',
       subPages: [
         { page: 'Our Story', url: './about/ourstory' },
-        { page: 'Frequently Asked Questions', url: './about/faq' },
+        { page: 'Frequently Asked Questions', url: './about/hello' },
         { page: 'Meet the Team', url: './about/team' }
       ]
     },
@@ -286,17 +192,18 @@ export class AppComponent implements OnInit {
         { page: 'Project C', url: './project/projectc' }
       ]
     },
-    { page: 'Contact Us', url: './contact' }
+    { page: 'Finito', url: './wat' },
   ];
 
   /**
    * Example Config Options
    */
-  // public config = {
-  //   dir: 'v',
-  //   markStepsCompleted: false,
-  //   navTxt: 'Check Out This Awesome Nav!'
-  // };
+  public config = {
+    skipAhead: false,
+    // dir: 'v',
+    // markStepsCompleted: false,
+    // navTxt: 'Check Out This Awesome Nav!'
+  };
 
   // /**
   //  * Set the Data !
@@ -356,6 +263,7 @@ export class AppComponent implements OnInit {
     this.navConfig.displayAppMenu = true;
     this.navConfig.displaySearch = true;
     this.navConfig.displayUserMenu = true;
+    this.navConfig.smallLogo = true;
     // this.navConfig.displaySubNavMenu = true;
     // this.navConfig.theme = 'theme';
 

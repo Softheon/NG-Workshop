@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
 import { ContactComponent } from './contact/contact.component';
 import { SublevelComponent } from './about/sublevel/sublevel.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { HelloComponent } from './welcome/hello/hello.component';
 
 /**
  * Creates the translate HTTP loader
@@ -31,11 +33,19 @@ const appRoutes: Routes = [
     }
   },
   {
+    path: 'welcome',
+    component: WelcomeComponent,
+    data: {
+      page: 'welcome'
+    }
+  },
+  {
     path: 'about',
     children: [
       { path: '', redirectTo: 'about', pathMatch: 'full' },
       { path: 'about', component: AboutComponent },
       { path: 'ourstory', component: SublevelComponent },
+      { path: 'hello', component: HelloComponent },
     ]
   },
   { path: '**', redirectTo: '/', pathMatch: 'full' }
@@ -46,7 +56,9 @@ const appRoutes: Routes = [
     AppComponent,
     AboutComponent,
     ContactComponent,
-    SublevelComponent
+    SublevelComponent,
+    WelcomeComponent,
+    HelloComponent
   ],
   imports: [
     BrowserModule,

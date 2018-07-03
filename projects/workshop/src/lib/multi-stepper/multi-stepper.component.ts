@@ -92,7 +92,10 @@ export class MultiStepperComponent implements OnInit {
   public displayMenu = false;
 
   /** Configuration - whether or not to mark steps as completed */
-  private markStepsCompleted = true;
+  public markStepsCompleted = true;
+
+  /** Configuration - whether or not to skip ahead from the current step */
+  public skipAhead = true;
 
   /**
    * The Constructor - Subscribes to router events and gets the current page
@@ -132,6 +135,9 @@ export class MultiStepperComponent implements OnInit {
       }
       if (this.config.markStepsCompleted === false) {
         this.markStepsCompleted = false;
+      }
+      if (this.config.skipAhead === false) {
+        this.skipAhead = false;
       }
 
       this.navigationText = this.config.navTxt ? this.config.navTxt : this.navigationText;

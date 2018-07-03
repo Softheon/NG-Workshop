@@ -36,7 +36,6 @@ $color-success: #11AF00;
 $color-secondary-hover: #16A085;
 // Variable Maps - FOR COLORS USED IN VAR MIXIN
 $vars: (color-primary: #0088ce, color-secondary: #16967c, color-secondary-hover: #16A085);
-
 .hide-md-down,
 [hide-md-down] {
     @media (max-width: 900px) {
@@ -174,7 +173,7 @@ a {
             color: $color-dark;
             display: flex;
             align-items: center;
-            justify-content: center;
+            justify-content: center; 
             &:focus,
             &:hover {
                 [sws-progress-steps__substeps_label],
@@ -186,6 +185,16 @@ a {
                 }
             }
         }
+        &:focus,
+        &:hover {
+            [sws-progress-steps__substeps_label],
+            .sws-progress-steps__substeps_label {
+                opacity: 1 !important;
+            }
+            .fas {
+                opacity: .5 !important;
+            }
+        }
     }
     [sws-progress-steps__substeps_link],
     .sws-progress-steps__substeps_link {
@@ -193,8 +202,8 @@ a {
         text-align: center;
         margin: 0 auto;
         &:focus {
-          &.active-link {
-                & div > div {
+            &.active-link {
+                & div>div {
                     .fas {
                         opacity: 1 !important;
                     }
@@ -306,4 +315,9 @@ a {
         align-items: flex-start;
         flex-direction: column;
     }
+}
+
+.disabled-step {
+    pointer-events: none;
+    cursor: default;
 }

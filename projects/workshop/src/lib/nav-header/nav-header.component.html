@@ -2,15 +2,15 @@
   <nav sws-navbar role="navData" flex-container>
     <div flex-container-row #headerContent>
       <!-- Logo -->
-      <div sws-nav__logo p-l-15 *ngIf="navData?.logoImageUrl">
+      <div sws-nav__logo p-l-15 *ngIf="navData?.logoImageUrl" [class.tinyLogo]="config?.smallLogo">
         <ng-container *ngIf="!navData?.externalLogoLink">
             <a routerLink="{{navData?.logoLink ? navData?.logoLink : '/'}}" flex-center>
-              <img sws-nav__logo-img src="{{navData.logoImageUrl}}" alt="logo" style="max-height: 50px;max-width: 145px;">
+              <img sws-nav__logo-img src="{{navData.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
             </a>
         </ng-container>
         <ng-container *ngIf="navData?.externalLogoLink">
           <a href="{{navData?.externalLogoLink}}" target="_blank" flex-center>
-            <img sws-nav__logo-img src="{{navData.logoImageUrl}}" alt="logo" style="max-height: 50px;max-width: 145px;">
+            <img sws-nav__logo-img src="{{navData.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
           </a>
         </ng-container>
       </div>
