@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
-import { Card } from 'workshop';
-
-import { INavigation, NavConfig } from 'workshop';
+import { INavigation, NavConfig, IFooter, FooterConfig, Card } from 'workshop';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -23,6 +21,15 @@ export class AppComponent implements OnInit {
   /** Temp Data */
   public blob;
   public searchItem;
+
+  /**
+   * Example Footer Data
+   */
+  public footerConfig: FooterConfig = new FooterConfig();
+
+  public footer: IFooter = {
+    phoneNumber: '5555555555'
+  };
 
   public navConfig: NavConfig = new NavConfig();
 
@@ -260,6 +267,9 @@ export class AppComponent implements OnInit {
   // }
 
   ngOnInit() {
+
+    this.footerConfig.theme = 'dark';
+
     this.navConfig.displayAppMenu = true;
     this.navConfig.displaySearch = true;
     this.navConfig.displayUserMenu = true;

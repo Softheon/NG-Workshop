@@ -1,0 +1,14 @@
+<div class="theme-{{config?.theme ? config?.theme : 'dark'}}">
+  <footer sws-footer>
+    <div flex-space-between center-v p-a-10 style="flex-wrap:nowrap">
+      <div flex-1 *ngIf="footerData?.phoneNumber">
+        <a sws-footer-link sws-link href="tel:+{{footerData?.phoneNumber}}">Contact Us: {{footerData?.phoneNumber}}</a>
+      </div>
+      <div flex-1 text-right>
+        <small>
+          © 2018 - All Rights Reserved
+        </small>
+      </div>
+    </div>
+  </footer>
+</div>

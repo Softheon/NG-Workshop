@@ -1,0 +1,88 @@
+/** DEFINE [any] CSS PROPERTIES HERE */
+/** TODO: MOVE TO SEPARATE FILE  @import 'themes.scss'; */
+[sws-footer],
+.sws-footer {
+  width: 100%;
+  z-index: 20;
+  background: #333;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-bottom: -40px;
+}
+
+.theme-dark [sws-footer], .theme-dark
+.sws-footer {
+  background: #222;
+  color: #fff;
+}
+
+.theme-light [sws-footer], .theme-light
+.sws-footer {
+  background: #fff;
+  color: #444;
+}
+
+.theme-grey [sws-footer], .theme-grey
+.sws-footer {
+  background: #ecf0f1 !important;
+  color: #444;
+}
+
+.theme-theme [sws-footer], .theme-theme
+.sws-footer {
+  background: var(--color-primary, #0088ce);
+  color: #fff;
+}
+
+.theme-clear [sws-footer], .theme-clear
+.sws-footer {
+  background: transparent;
+  color: #222;
+}
+
+[sws-footer].sws-footer-fixed,
+.sws-footer.sws-footer-fixed {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+}
+
+[sws-footer] [sws-footer-link], [sws-footer] .sws-footer-link,
+.sws-footer [sws-footer-link],
+.sws-footer .sws-footer-link {
+  color: #fff;
+}
+
+.theme-dark [sws-footer] [sws-footer-link], .theme-dark [sws-footer] .sws-footer-link, .theme-dark
+.sws-footer [sws-footer-link], .theme-dark
+.sws-footer .sws-footer-link {
+  color: #fff;
+}
+
+.theme-light [sws-footer] [sws-footer-link], .theme-light [sws-footer] .sws-footer-link, .theme-light
+.sws-footer [sws-footer-link], .theme-light
+.sws-footer .sws-footer-link {
+  color: #444;
+}
+
+.theme-grey [sws-footer] [sws-footer-link], .theme-grey [sws-footer] .sws-footer-link, .theme-grey
+.sws-footer [sws-footer-link], .theme-grey
+.sws-footer .sws-footer-link {
+  color: #444;
+}
+
+.theme-theme [sws-footer] [sws-footer-link], .theme-theme [sws-footer] .sws-footer-link, .theme-theme
+.sws-footer [sws-footer-link], .theme-theme
+.sws-footer .sws-footer-link {
+  color: #fff;
+}
+
+.theme-clear [sws-footer] [sws-footer-link], .theme-clear [sws-footer] .sws-footer-link, .theme-clear
+.sws-footer [sws-footer-link], .theme-clear
+.sws-footer .sws-footer-link {
+  color: #222;
+}
+/*# sourceMappingURL=footer.component.css.map */
