@@ -13,8 +13,8 @@
      * [Multi-Stepper](#multi-stepper)
      * [Card-Grid](#card-grid)
      * [Nav-Header](#nav-header)
+     * [Footer](#footer)
 - [NPM Repository](https://www.npmjs.com/package/@softheon/ng-workshop)
-
 
 ## **Getting Started**
 
@@ -268,7 +268,7 @@ import { NavHeaderModule } from '@softheon/ng-workshop';
 Component.ts:
 
 ```TypeScript
-import {  INavigation, NavConfig } from '@softheon/ng-workshop';
+import { INavigation, NavConfig } from '@softheon/ng-workshop';
 ```
 
 
@@ -602,3 +602,68 @@ When there are more than 4 quick links, the ui renders them under the header.
 | linkUrl         | string | optional* | './contact'               | The link url                                 |
 | externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
 | fontAwesomeIcon | string | optional  | 'fas fa-anchor'           | Font Awesome icon class                      |
+
+### **Footer**
+
+#### `<sws-footer>` is a component used to render a footer.
+
+#### API reference for NG-Workshop Footer Component
+
+Module.ts:
+
+```TypeScript
+import { FooterModule } from '@softheon/ng-workshop';
+```
+
+Component.ts:
+
+```TypeScript
+import { IFooter, footerConfig } from '@softheon/ng-workshop';
+
+public footer: IFooter = {
+  phoneNumber: '5555555555'
+};
+
+public footerConfig: FooterConfig = new FooterConfig();
+
+ngOnInit() {
+  this.footerConfig.theme = 'light';
+}
+```
+
+Styles.css (or global CSS file):
+
+```CSS
+  html {
+      height: 100%;
+      box-sizing: border-box;
+  }
+
+  body {
+      position: relative;
+      margin: 0;
+      min-height: calc(100% - 40px);
+      margin-bottom: 40px;
+  }
+```
+
+#### **Add component to your html**
+
+```html
+<sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
+```
+
+#### **Footer Content 'IFooter' Properties**
+
+
+| Key         | Type   | Example      | Description      |
+| ----------- | :----: | :----------: | ---------------: |
+| phoneNumber | string | '5555555555' | The Phone Number |
+
+#### **Configuration Properties**
+
+| Configuration Key | Example                                       | Required               | Description            |
+| ----------------- | :-------------------------------------------: | :--------------------: | ---------------------: |
+| theme             | 'dark' / 'light' / 'grey' / 'clear' / 'theme' | no (default is 'dark') | The footer theme color |
+
+**MORE DOCUMENTATION COMING SOON!!**

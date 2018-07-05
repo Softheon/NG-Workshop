@@ -1,0 +1,90 @@
+@mixin var($property, $varName) {
+    #{$property}: map-get($vars, $varName) !important;
+    #{$property}: var(--#{$varName}, map-get($vars, $varName)) !important;
+}
+
+@mixin themify($themes: $themes) {
+    @each $theme, $map in $themes {
+  
+      .theme-#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+  
+        @content;
+        $theme-map: null !global;
+      }
+  
+    }
+  }
+
+  @function themed($key) {
+    @return map-get($theme-map, $key);
+  }
+
+/** DEFINE [any] CSS PROPERTIES HERE */
+/** TODO: MOVE TO SEPARATE FILE  @import 'themes.scss'; */
+$themes: (
+  dark: (
+    footerBackgroundColor: #222,
+    footerTextColor: #fff,
+    footerHoverColor: #3d3d3d !important,
+    footerFocusColor: #333 !important,
+    ),
+  light: (
+    footerBackgroundColor: #fff,
+    footerTextColor: #444,
+    footerHoverColor: #ecf0f1 !important,
+    footerFocusColor: #e2e7e9 !important,
+  ),
+  grey: (
+    footerBackgroundColor: #ecf0f1 !important,
+    footerTextColor: #444,
+    footerHoverColor: #e2e7e9 !important,
+    footerFocusColor: #E0E0E0 !important,
+  ),
+  theme: (
+    footerBackgroundColor: var(--color-primary,#0088ce),
+    footerTextColor: #fff,
+    footerHoverColor: rgba(61, 61, 61, 0.3) !important,
+    footerFocusColor: rgba(39, 39, 39, 0.4) !important,
+  ),
+  clear: (
+    footerBackgroundColor: transparent,
+    footerTextColor: #222,
+    footerHoverColor: #ecf0f1 !important, // #dfe6e9,
+    footerFocusColor: #E0E0E0 !important,
+  ),
+);
+
+[sws-footer],
+.sws-footer {
+  width: 100%;
+  z-index: 20;
+  background: #333;
+  color: #fff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin-bottom: -40px;
+  @include themify($themes) {
+    background: themed('footerBackgroundColor');  
+    color: themed('footerTextColor');          
+  }
+
+  &.sws-footer-fixed {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+  }
+
+  [sws-footer-link], .sws-footer-link {
+    color: #fff;
+    @include themify($themes) {
+      color: themed('footerTextColor');          
+    }
+  }
+}
