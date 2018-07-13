@@ -1,13 +1,418 @@
 <div class="theme-{{config?.theme ? config?.theme : 'dark'}}">
-  <footer sws-footer>
-    <div flex-space-between center-v p-a-10 style="flex-wrap:nowrap">
-      <div flex-1 *ngIf="footerData?.phoneNumber">
-        <a sws-footer-link sws-link href="tel:+{{footerData?.phoneNumber}}">Contact Us: {{footerData?.phoneNumber}}</a>
+  <footer *ngIf="config?.size == 'sm'" sws-footer p-a-15>
+    <div mobile-column mobile-center footer-mobile-padding align-items-v flex-space-between style="flex-wrap:nowrap">
+      <div align-items-v flex-1 *ngIf="footerData?.contactUs">
+        <i p-r-10 *ngIf="footerData?.contactUs?.fontAwesomeIcon" class="{{footerData?.contactUs?.fontAwesomeIcon}}"></i>
+        <ng-container *ngIf="footerData?.contactUs?.externalLinkUrl">
+          <a sws-link href="{{footerData?.contactUs?.externalLinkUrl}}" title="{{footerData?.contactUs?.linkText}}" target="_blank">
+            <span h6 semibold text-upper>{{footerData?.contactUs?.linkText}}</span>
+          </a>
+        </ng-container>
+        <ng-container *ngIf="footerData?.contactUs?.linkUrl">
+          <a sws-link routerLink="{{footerData?.contactUs?.linkUrl}}" title="{{footerData?.contactUs?.linkText}}">
+            <span h6 semibold text-upper>{{footerData?.contactUs?.linkText}}</span>
+          </a>
+        </ng-container>
+      </div>
+      <div align-items-v flex-1 *ngIf="footerData?.contactPhoneNumber">
+        <i class="fas fa-phone-volume"></i>
+        <span p-h-10 h6 semibold text-upper>Contact:</span>
+        <a sws-footer-link sws-link href="tel:+{{footerData?.contactPhoneNumber}}">{{footerData?.contactPhoneNumber}}</a>
+      </div>
+      <div flex-1>
+        <div flex-center flex-container-column>
+          <div m-v-5 m-l-20 flex-center style="width: 350px;" class="fa-lg">
+            <a m-r-20 *ngIf="footerData?.socialLinkedInUrl" href="{{footerData?.socialLinkedInUrl}}" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+              <span invisible-absolute>LinkedIn</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialFacebookUrl" href="{{footerData?.socialFacebookUrl}}" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+              <span invisible-absolute>Facebook</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialTwitterUrl" href="{{footerData?.socialTwitterUrl}}" target="_blank">
+              <i class="fab fa-twitter"></i>
+              <span invisible-absolute>Twitter</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialYoutubeUrl" href="{{footerData?.socialYoutubeUrl}}" target="_blank">
+              <i class="fab fa-youtube"></i>
+              <span invisible-absolute>Youtube</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialInstagramUrl" href="{{footerData?.socialInstagramUrl}}" target="_blank">
+              <i class="fab fa-instagram"></i>
+              <span invisible-absolute>Instagram</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGooglePlusUrl" href="{{footerData?.socialGooglePlusUrl}}" target="_blank">
+              <i class="fab fa-google-plus-g"></i>
+              <span invisible-absolute>Google Plus</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialPinterestUrl" href="{{footerData?.socialPinterestUrl}}" target="_blank">
+              <i class="fab fa-pinterest-p"></i>
+              <span invisible-absolute>Pintrest</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGithubUrl" href="{{footerData?.socialGithubUrl}}" target="_blank">
+              <i class="fab fa-github"></i>
+              <span invisible-absolute>Github</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialNPMUrl" href="{{footerData?.socialNPMUrl}}" target="_blank">
+              <i class="fab fa-npm"></i>
+              <span invisible-absolute>NPM</span>
+            </a>
+          </div>
+        </div>
       </div>
       <div flex-1 text-right>
-        <small>
-          © 2018 - All Rights Reserved
+        <small> &copy;
+          <span>{{footerData?.copyrightText ? footerData?.copyrightText : '2018 - All Rights Reserved'}}</span>
         </small>
+        <small>
+          <!-- Privacy -->
+          <ng-container *ngIf="footerData?.privacy">
+            &bull;
+            <sws-link [linkData]="footerData?.privacy"></sws-link>
+          </ng-container>
+
+          <!-- Terms -->
+          <ng-container *ngIf="footerData?.terms">
+            &bull;
+            <sws-link [linkData]="footerData?.terms"></sws-link>
+          </ng-container>
+          <span *ngIf="footerData?.releaseVersionNo">
+            &bull; v{{footerData?.releaseVersionNo}}
+          </span>
+        </small>
+      </div>
+    </div>
+  </footer>
+
+  <footer *ngIf="config?.size == 'md'" sws-footer p-a-5>
+    <div mobile-column mobile-center flex-space-between footer-mobile-padding style="max-width: 1200px; margin: 0 auto;" m-b-15>
+      <div flex-1 text-right *ngIf="footerData?.aboutText">
+        <p h6 semibold text-upper>{{footerData?.aboutTitle ? footerData?.aboutTitle : 'About us:'}}</p>
+        {{footerData?.aboutText}}
+      </div>
+      <div flex-1 m-h-30 mobile-order-3>
+        <div flex-center flex-container-column>
+          <p h6 semibold text-center text-upper>{{footerData?.socialMediaTitle ? footerData?.socialMediaTitle : 'Connect With Us:'}}</p>
+          <div m-v-5 m-l-20 flex-center style="width: 350px;" class="fa-lg">
+            <a m-r-20 *ngIf="footerData?.socialLinkedInUrl" href="{{footerData?.socialLinkedInUrl}}" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+              <span invisible-absolute>LinkedIn</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialFacebookUrl" href="{{footerData?.socialFacebookUrl}}" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+              <span invisible-absolute>Facebook</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialTwitterUrl" href="{{footerData?.socialTwitterUrl}}" target="_blank">
+              <i class="fab fa-twitter"></i>
+              <span invisible-absolute>Twitter</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialYoutubeUrl" href="{{footerData?.socialYoutubeUrl}}" target="_blank">
+              <i class="fab fa-youtube"></i>
+              <span invisible-absolute>Youtube</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialInstagramUrl" href="{{footerData?.socialInstagramUrl}}" target="_blank">
+              <i class="fab fa-instagram"></i>
+              <span invisible-absolute>Instagram</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGooglePlusUrl" href="{{footerData?.socialGooglePlusUrl}}" target="_blank">
+              <i class="fab fa-google-plus-g"></i>
+              <span invisible-absolute>Google Plus</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialPinterestUrl" href="{{footerData?.socialPinterestUrl}}" target="_blank">
+              <i class="fab fa-pinterest-p"></i>
+              <span invisible-absolute>Pintrest</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGithubUrl" href="{{footerData?.socialGithubUrl}}" target="_blank">
+              <i class="fab fa-github"></i>
+              <span invisible-absolute>Github</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialNPMUrl" href="{{footerData?.socialNPMUrl}}" target="_blank">
+              <i class="fab fa-npm"></i>
+              <span invisible-absolute>NPM</span>
+            </a>
+          </div>
+          <div flex-1 text-right m-t-20>
+            <small> &copy;
+              <span>{{footerData?.copyrightText ? footerData?.copyrightText : '2018 - All Rights Reserved'}}</span>
+            </small>
+            <small>
+              <!-- Privacy -->
+              <ng-container *ngIf="footerData?.privacy">
+                &bull;
+                <sws-link [linkData]="footerData?.privacy"></sws-link>
+              </ng-container>
+              <!-- Terms -->
+              <ng-container *ngIf="footerData?.terms">
+                &bull;
+                <sws-link [linkData]="footerData?.terms"></sws-link>
+              </ng-container>
+              <span *ngIf="footerData?.releaseVersionNo">
+                &bull; v{{footerData?.releaseVersionNo}}
+              </span>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div flex-1 flex-container>
+        <div p-h-15>
+          <p h6 semibold text-upper> {{footerData?.contactTitle ? footerData?.contactTitle : 'Contact Us:'}}</p>
+          <a sws-footer-link sws-link *ngIf="footerData?.contactPhoneNumber" href="tel:+{{footerData?.contactPhoneNumber}}">{{footerData?.contactPhoneNumber}}</a>
+          <p m-v-5 *ngIf="footerData?.contactEmail">
+            {{footerData?.contactEmail}}
+          </p>
+          <p m-v-5 *ngIf="footerData?.contactAddress">
+            {{footerData?.contactAddress}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <footer *ngIf="config?.size == 'lg'" sws-footer p-a-30>
+    <div mobile-column mobile-center flex-space-between style="margin: 0 auto; align-items: stretch;">
+      <div flex-2 p-h-30 mobile-order-5>
+        <div flex-container-column flex-space-between full-height>
+          <div>
+            <p h6 semibold text-upper m-t-5>{{footerData?.aboutTitle ? footerData?.aboutTitle : 'About us:'}}</p>
+            <p>
+              {{footerData?.aboutText}}
+            </p>
+          </div>
+          <div m-t-10>
+            <div *ngIf="footerData?.footerLogoUrl">
+              <img src="{{footerData?.footerLogoUrl}}" width="200" alt="logo">
+            </div>
+            <small> &copy;
+              <span>{{footerData?.copyrightText ? footerData?.copyrightText : '2018 - All Rights Reserved'}}</span>
+            </small>
+            <small>
+              <!-- Privacy -->
+              <ng-container *ngIf="footerData?.privacy">
+                &bull;
+                <sws-link [linkData]="footerData?.privacy"></sws-link>
+              </ng-container>
+              <!-- Terms -->
+              <ng-container *ngIf="footerData?.terms">
+                &bull;
+                <sws-link [linkData]="footerData?.terms"></sws-link>
+              </ng-container>
+              <span *ngIf="footerData?.releaseVersionNo">
+                &bull; v{{footerData?.releaseVersionNo}}
+              </span>
+            </small>
+          </div>
+        </div>
+      </div>
+      <div flex-1 p-h-10 *ngIf="footerData?.linkGroup1">
+        <div flex-container-column m-t-5>
+          <p h6 semibold m-b-10 m-t-0 text-upper *ngIf="footerData?.linkGroup1Title">
+            {{footerData?.linkGroup1Title ? footerData?.linkGroup1Title : 'Quick Links:'}}
+          </p>
+          <ng-container *ngFor="let link of footerData?.linkGroup1">
+            <sws-link [linkData]="link" m-b-5></sws-link>
+          </ng-container>
+        </div>
+      </div>
+      <div flex-1 p-h-10 *ngIf="footerData?.linkGroup2">
+        <div flex-container-column m-t-5>
+          <p h6 semibold m-b-10 m-t-0 text-upper *ngIf="footerData?.linkGroup2Title">
+            {{footerData?.linkGroup2Title ? footerData?.linkGroup2Title : 'Quick Links:'}}
+          </p>
+          <ng-container *ngFor="let link of footerData?.linkGroup2">
+            <sws-link [linkData]="link" m-b-5></sws-link>
+          </ng-container>
+        </div>
+      </div>
+      <div flex-1 p-h-10 style="flex-basis: auto;max-width: 350px; margin: 0 auto;">
+        <div flex-container-column flex-space-between full-height>
+          <div>
+            <p h6 semibold text-upper m-t-5>Contact us:</p>
+            <a sws-footer-link sws-link *ngIf="footerData?.contactPhoneNumber" href="tel:+{{footerData?.contactPhoneNumber}}">{{footerData?.contactPhoneNumber}}</a>
+            <br> {{footerData?.contactEmail}}
+            <br>
+            <br> {{footerData?.contactAddress}}
+          </div>
+          <div m-v-10 p-l-5 style="width: 350px;" class="fa-lg">
+            <a m-r-20 *ngIf="footerData?.socialLinkedInUrl" href="{{footerData?.socialLinkedInUrl}}" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+              <span invisible-absolute>LinkedIn</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialFacebookUrl" href="{{footerData?.socialFacebookUrl}}" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+              <span invisible-absolute>Facebook</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialTwitterUrl" href="{{footerData?.socialTwitterUrl}}" target="_blank">
+              <i class="fab fa-twitter"></i>
+              <span invisible-absolute>Twitter</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialYoutubeUrl" href="{{footerData?.socialYoutubeUrl}}" target="_blank">
+              <i class="fab fa-youtube"></i>
+              <span invisible-absolute>Youtube</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialInstagramUrl" href="{{footerData?.socialInstagramUrl}}" target="_blank">
+              <i class="fab fa-instagram"></i>
+              <span invisible-absolute>Instagram</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGooglePlusUrl" href="{{footerData?.socialGooglePlusUrl}}" target="_blank">
+              <i class="fab fa-google-plus-g"></i>
+              <span invisible-absolute>Google Plus</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialPinterestUrl" href="{{footerData?.socialPinterestUrl}}" target="_blank">
+              <i class="fab fa-pinterest-p"></i>
+              <span invisible-absolute>Pintrest</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGithubUrl" href="{{footerData?.socialGithubUrl}}" target="_blank">
+              <i class="fab fa-github"></i>
+              <span invisible-absolute>Github</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialNPMUrl" href="{{footerData?.socialNPMUrl}}" target="_blank">
+              <i class="fab fa-npm"></i>
+              <span invisible-absolute>NPM</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <footer *ngIf="config?.size == 'xl'" sws-footer p-a-30>
+    <div mobile-column mobile-center flex-space-between style="margin: 0 auto; align-items: stretch;">
+      <div flex-1 style="flex-basis: auto;max-width: 350px; margin: 0 auto;">
+        <div flex-container-column flex-space-between full-height>
+          <div>
+            <p h6 semibold text-upper m-t-5>Contact us:</p>
+            <a sws-footer-link sws-link *ngIf="footerData?.contactPhoneNumber" href="tel:+{{footerData?.contactPhoneNumber}}">{{footerData?.contactPhoneNumber}}</a>
+            <br> {{footerData?.contactEmail}}
+            <br>
+            <br> {{footerData?.contactAddress}}
+          </div>
+          <div m-v-10 p-l-5 style="width: 350px;" class="fa-lg">
+            <a m-r-20 *ngIf="footerData?.socialLinkedInUrl" href="{{footerData?.socialLinkedInUrl}}" target="_blank">
+              <i class="fab fa-linkedin-in"></i>
+              <span invisible-absolute>LinkedIn</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialFacebookUrl" href="{{footerData?.socialFacebookUrl}}" target="_blank">
+              <i class="fab fa-facebook-f"></i>
+              <span invisible-absolute>Facebook</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialTwitterUrl" href="{{footerData?.socialTwitterUrl}}" target="_blank">
+              <i class="fab fa-twitter"></i>
+              <span invisible-absolute>Twitter</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialYoutubeUrl" href="{{footerData?.socialYoutubeUrl}}" target="_blank">
+              <i class="fab fa-youtube"></i>
+              <span invisible-absolute>Youtube</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialInstagramUrl" href="{{footerData?.socialInstagramUrl}}" target="_blank">
+              <i class="fab fa-instagram"></i>
+              <span invisible-absolute>Instagram</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGooglePlusUrl" href="{{footerData?.socialGooglePlusUrl}}" target="_blank">
+              <i class="fab fa-google-plus-g"></i>
+              <span invisible-absolute>Google Plus</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialPinterestUrl" href="{{footerData?.socialPinterestUrl}}" target="_blank">
+              <i class="fab fa-pinterest-p"></i>
+              <span invisible-absolute>Pintrest</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialGithubUrl" href="{{footerData?.socialGithubUrl}}" target="_blank">
+              <i class="fab fa-github"></i>
+              <span invisible-absolute>Github</span>
+            </a>
+            <a m-r-20 *ngIf="footerData?.socialNPMUrl" href="{{footerData?.socialNPMUrl}}" target="_blank">
+              <i class="fab fa-npm"></i>
+              <span invisible-absolute>NPM</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div flex-2 m-h-30>
+        <p h6 semibold text-upper m-t-5>{{footerData?.aboutTitle ? footerData?.aboutTitle : 'About us:'}}</p>
+        <p>
+          {{footerData?.aboutText}}
+        </p>
+      </div>
+      <div flex-1 p-h-10 *ngIf="footerData?.linkGroup1">
+        <div flex-container-column m-t-5>
+          <p h6 semibold m-b-10 m-t-0 text-upper *ngIf="footerData?.linkGroup1Title">
+            {{footerData?.linkGroup1Title ? footerData?.linkGroup1Title : 'Quick Links:'}}
+          </p>
+          <ng-container *ngFor="let link of footerData?.linkGroup1">
+            <sws-link [linkData]="link" m-b-5></sws-link>
+          </ng-container>
+        </div>
+      </div>
+      <div flex-1 p-h-10 *ngIf="footerData?.linkGroup2">
+        <div flex-container-column>
+          <p h6 semibold m-b-10 m-t-5 text-upper>
+            {{footerData?.linkGroup2Title ? footerData?.linkGroup2Title : 'Quick Links:'}}
+          </p>
+          <ng-container *ngFor="let link of footerData?.linkGroup2">
+            <sws-link [linkData]="link" m-b-5></sws-link>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <div m-t-30 mobile-center>
+      <p h6 semibold text-upper m-t-5>Attention:</p>
+      <p m-t-0 m-b-0>
+        This website is operated by [Company Name Here] and is not the Health Insurance Marketplace. In offering this website, [Company
+        Name Here], is required to comply with all applicable federal laws, including the standards established under 45
+        CFR 155.220(c) and (d) and standards established under 45 CFR 155.260 to protect the privacy and security of personally
+        identifiable information. This website may not display all data on Qualified Health Plans being offered in NM through
+        the Health Insurance Marketplace. To see all available data on Qualified Health Plan options in NM, go to the Health
+        Insurance Marketplace website at HealthCare.gov. [Company Name Here] complies with applicable Federal civil rights
+        laws and does not discriminate on the basis of race, color, national origin, age, disability, or sex.
+      </p>
+    </div>
+    <div flex-container align-items-v m-t-20 mobile-center mobile-column>
+      <div flex-1>
+        <div m-t-10>
+          <div *ngIf="footerData?.footerLogoUrl">
+            <img src="{{footerData?.footerLogoUrl}}" width="200" alt="logo">
+          </div>
+          <small> &copy;
+            <span>{{footerData?.copyrightText ? footerData?.copyrightText : '2018 - All Rights Reserved'}}</span>
+          </small>
+          <small>
+            <!-- Privacy -->
+            <ng-container *ngIf="footerData?.privacy">
+              &bull;
+              <sws-link [linkData]="footerData?.privacy"></sws-link>
+            </ng-container>
+            <!-- Terms -->
+            <ng-container *ngIf="footerData?.terms">
+              &bull;
+              <sws-link [linkData]="footerData?.terms"></sws-link>
+            </ng-container>
+            <span *ngIf="footerData?.releaseVersionNo">
+              &bull; v{{footerData?.releaseVersionNo}}
+            </span>
+          </small>
+        </div>
+      </div>
+      <div flex-2 text-right>
+        <p m-t-10>
+          <!-- Privacy -->
+          <ng-container *ngIf="footerData?.privacy">
+            <sws-link [linkData]="footerData?.privacy"></sws-link>
+            &bull;
+          </ng-container>
+          <!-- Terms -->
+          <ng-container *ngIf="footerData?.terms">
+            <sws-link [linkData]="footerData?.terms"></sws-link>
+            &bull;
+          </ng-container>
+          Other Language Resources &bull; Summary of Benefits &amp; Coverage
+        </p>
+        <div m-t-10>
+          <label semibold>
+            Language Support:
+          </label>
+          English &bull; Español &bull; Diné bizaad &bull; Tiếng Việt &bull; Deutsch &bull; 中文 &bull; اللغة العربية &bull; 한국어 &bull;
+          Tagalog &bull; 日本語 &bull; Français &bull; Italiano &bull; Русский &bull; हिन्दी &bull; فارسی &bull; ภาษาไทย
+        </div>
       </div>
     </div>
   </footer>

@@ -1,15 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
-import { FooterComponent } from './footer.component';
+import { LinkComponent } from './link.component';
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
-describe('FooterComponent', () => {
-  let component: FooterComponent;
-  let fixture: ComponentFixture<FooterComponent>;
+describe('LinkComponent', () => {
+  let component: LinkComponent;
+  let fixture: ComponentFixture<LinkComponent>;
 
   /**
    * The mock router
@@ -24,18 +23,16 @@ describe('FooterComponent', () => {
   beforeEach(async(() => {
     routerStub = { events: of(''), url: './homer' };
     activatedRouteStub = {};
-
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ],
+      declarations: [ LinkComponent ],
       imports: [ RouterTestingModule],
-      providers: [{ provide: Router, useValue: routerStub }],
-      schemas: [CUSTOM_ELEMENTS_SCHEMA]
+      providers: [{ provide: Router, useValue: routerStub }]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(LinkComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

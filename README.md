@@ -29,7 +29,7 @@ npm install --save @softheon/ng-workshop@latest
 #### Include a link to Softheon Workshop in your index.html
 
 ```html
-<link rel="stylesheet" href="https://softheonworkshop.azureedge.net/alpha-9/workshop.min.css">
+<link rel="stylesheet" href="https://softheonworkshop.azureedge.net/alpha-9-6/workshop.min.css">
 ```
 
 #### Include a link to [Font Awesome 5 SVG with JS Library](https://fontawesome.com/get-started/svg-with-js) in your index.html
@@ -604,8 +604,10 @@ When there are more than 4 quick links, the ui renders them under the header.
 | fontAwesomeIcon | string | optional  | 'fas fa-anchor'           | Font Awesome icon class                      |
 
 ### **Footer**
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-1.png "NG Workshop Example")
 
 #### `<sws-footer>` is a component used to render a footer.
+
 
 #### API reference for NG-Workshop Footer Component
 
@@ -618,32 +620,26 @@ import { FooterModule } from '@softheon/ng-workshop';
 Component.ts:
 
 ```TypeScript
-import { IFooter, footerConfig } from '@softheon/ng-workshop';
+import { IFooter, FooterConfig } from '@softheon/ng-workshop';
 
 public footer: IFooter = {
-  phoneNumber: '5555555555'
+    contactPhoneNumber: '5555555555',
+    copyrightText: '2018 Workshop, All Rights Reserved',
 };
 
 public footerConfig: FooterConfig = new FooterConfig();
 
 ngOnInit() {
   this.footerConfig.theme = 'light';
+  this.footerConfig.size = 'md';
 }
 ```
 
 Styles.css (or global CSS file):
 
 ```CSS
-  html {
+  html, body {
       height: 100%;
-      box-sizing: border-box;
-  }
-
-  body {
-      position: relative;
-      margin: 0;
-      min-height: calc(100% - 40px);
-      margin-bottom: 40px;
   }
 ```
 
@@ -653,17 +649,70 @@ Styles.css (or global CSS file):
 <sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
 ```
 
+Example HTML with flexbox positioning: 
+
+```html
+<div flex-container-column flex-space-between full-height>
+  <div>
+    <!-- Content Goes here -->
+   </div>
+   <sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
+</div>
+```
+
 #### **Footer Content 'IFooter' Properties**
+**TIP: All properties are optional**
+**TIP: All external links open in new tab as target="_blank"**
 
+| Key                 | Type    | Example                                               | Description                         |
+| ------------------- | :-----: | :---------------------------------------------------: | ----------------------------------: |
+| footerLogoUrl       | string  | 'https://i.imgur.com/PBaOIbC.gif'                     | The Footer Logo Url                 |
+| copyrightText       | string  | '2018 Workshop, All Rights Reserved'                  | The Copyright Text                  |
+| releaseVersionNo    | string  | '1.0.0.beta'                                          | The Release Version Number          |
+| terms               | ILink   | 'terms: {...}'                                        | The Terms of Use Link               |
+| privacy             | ILink   | 'privacy: {...}'                                      | The Privacy Policy Link             |
+| contactUs           | ILink   | 'contactUs: {...}'                                    | The Contact Us Link Object          |
+| contactTitle        | string  | 'Contact Us'                                          | The Contact Title Text              |
+| contactPhoneNumber  | string  | '5555555555'                                          | The Contact Phone Number            |
+| contactEmail        | string  | 'hello@example.com'                                   | The Contact Email                   |
+| contactAddress      | string  | '1 Street, Awesome City, State, Zip'                  | The Contact Address                 |
+| aboutTitle          | string  | 'About Our Company'                                   | The About Section Description Title |
+| aboutText           | string  | 'This is how awesome we are.'                         | The About Section Description Text  |
+| linkGroup1Title     | string  | 'Quick Links'                                         | The Link Group 1 title              |
+| linkGroup2Title     | string  | 'Resources'                                           | The Link Group 1 title              |
+| linkGroup1          | ILink[] | 'linkGroup1: [{...}]'                                 | The Link Group 1                    |
+| linkGroup2          | ILink[] | 'linkGroup2: [{...}]'                                 | The Link Group 2                    |
+| socialMediaTitle    | string  | 'Connect With Us'                                     | The Social Media Title              |
+| socialLinkedInUrl   | string  | 'https://www.linkedin.com/company/softheon'           | The Social Media Url                |
+| socialFacebookUrl   | string  | 'https://facebook.com/'                               | The Social Media Url                |
+| socialTwitterUrl    | string  | 'https://twitter.com/'                                | The Social Media Url                |
+| socialYoutubeUrl    | string  | 'https://www.youtube.com/'                            | The Social Media Url                |
+| socialInstagramUrl  | string  | 'https://www.instagram.com'                           | The Social Media Url                |
+| socialGooglePlusUrl | string  | 'https://plus.google.com'                             | The Social Media Url                |
+| socialPinterestUrl  | string  | 'https://www.pinterest.com/'                          | The Social Media Url                |
+| socialGithubUrl     | string  | 'https://github.com/Softheon/NG-Workshop'             | The Social Media Url                |
+| socialNPMUrl        | string  | 'https://www.npmjs.com/package/@softheon/ng-workshop' | The Social Media Url                |
 
-| Key         | Type   | Example      | Description      |
-| ----------- | :----: | :----------: | ---------------: |
-| phoneNumber | string | '5555555555' | The Phone Number |
+#### **Navigation Header Link 'ILink' Properties**
+
+**TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
+
+| Key             | Type   | Required  | Example                   | Description                                  |
+| --------------- | :----: | :-------: | :-----------------------: | -------------------------------------------: |
+| linkText        | string | required  | 'Epic Subtitle'           | The link text                                |
+| linkUrl         | string | optional* | './contact'               | The link url                                 |
+| externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
+| fontAwesomeIcon | string | optional  | 'fas fa-anchor'           | Font Awesome icon class                      |
 
 #### **Configuration Properties**
 
 | Configuration Key | Example                                       | Required               | Description            |
 | ----------------- | :-------------------------------------------: | :--------------------: | ---------------------: |
 | theme             | 'dark' / 'light' / 'grey' / 'clear' / 'theme' | no (default is 'dark') | The footer theme color |
+| size              | 'sm' / 'md' / 'lg'                            | no (default is 'sm')   | The footer size style  |
 
-**MORE DOCUMENTATION COMING SOON!!**
+Examples:
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-1.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-2.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-3.png "NG Workshop Example")

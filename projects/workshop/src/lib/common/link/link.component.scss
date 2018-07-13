@@ -1,0 +1,8 @@
+a, a:visited {
+    color: var(--footer-text-color, #0088ce);
+    border-bottom-color: var(--footer-link-border-color, #0088ce);
+}
+
+a [sws-link] {
+    margin-bottom: 5px;
+}
