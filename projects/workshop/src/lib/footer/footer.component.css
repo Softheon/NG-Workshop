@@ -1,16 +1,165 @@
 /** DEFINE [any] CSS PROPERTIES HERE */
 /** TODO: MOVE TO SEPARATE FILE  @import 'themes.scss'; */
+[m-auto],
+.m-auto {
+  margin: 0 auto !important;
+}
+
+[invisible-absolute],
+.invisible-absolute {
+  position: absolute;
+  color: transparent;
+  width: 0;
+  font-size: 3px;
+}
+
+@media screen and (max-width: 992px) {
+  [mobile-column],
+  .mobile-column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  [mobile-center],
+  .mobile-center {
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  [mobile-center] [text-right], [mobile-center] .text-right,
+  .mobile-center [text-right],
+  .mobile-center .text-right {
+    text-align: center !important;
+  }
+  [footer-mobile-padding] > div,
+  .footer-mobile-padding > div {
+    margin: 8px 0;
+  }
+  [mobile-order-10],
+  .mobile-order-10 {
+    -webkit-box-ordinal-group: 11;
+        -ms-flex-order: 10;
+            order: 10;
+  }
+  [mobile-order-9],
+  .mobile-order-9 {
+    -webkit-box-ordinal-group: 10;
+        -ms-flex-order: 9;
+            order: 9;
+  }
+  [mobile-order-8],
+  .mobile-order-8 {
+    -webkit-box-ordinal-group: 9;
+        -ms-flex-order: 8;
+            order: 8;
+  }
+  [mobile-order-7],
+  .mobile-order-7 {
+    -webkit-box-ordinal-group: 8;
+        -ms-flex-order: 7;
+            order: 7;
+  }
+  [mobile-order-6],
+  .mobile-order-6 {
+    -webkit-box-ordinal-group: 7;
+        -ms-flex-order: 6;
+            order: 6;
+  }
+  [mobile-order-5],
+  .mobile-order-5 {
+    -webkit-box-ordinal-group: 6;
+        -ms-flex-order: 5;
+            order: 5;
+  }
+  [mobile-order-4],
+  .mobile-order-4 {
+    -webkit-box-ordinal-group: 5;
+        -ms-flex-order: 4;
+            order: 4;
+  }
+  [mobile-order-3],
+  .mobile-order-3 {
+    -webkit-box-ordinal-group: 4;
+        -ms-flex-order: 3;
+            order: 3;
+  }
+  [mobile-order-2],
+  .mobile-order-2 {
+    -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+            order: 2;
+  }
+  [mobile-order-1],
+  .mobile-order-1 {
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1;
+  }
+}
+
 [sws-footer],
 .sws-footer {
   width: 100%;
-  z-index: 20;
+  z-index: 3;
   background: #333;
   color: #fff;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: -40px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.theme-dark [sws-footer], .theme-dark
+.sws-footer {
+  --footer-bg-color: rgba(255, 255, 255, 0.7) !important;
+  --footer-text-color: #fff;
+  --footer-hover-color: #3d3d3d !important;
+  --footer-focus-color: #333 !important;
+  --footer-link-hover-color: var(--color-primary, #0088ce);
+  --footer-link-border-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.theme-light [sws-footer], .theme-light
+.sws-footer {
+  --footer-bg-color: var(--color-primary, #0088ce);
+  --footer-text-color: #444;
+  --footer-hover-color: #ecf0f1 !important;
+  --footer-focus-color: #e2e7e9 !important;
+  --footer-link-hover-color: var(--color-primary, #0088ce);
+  --footer-link-border-color: var(--color-primary, #0088ce);
+}
+
+.theme-grey [sws-footer], .theme-grey
+.sws-footer {
+  --footer-bg-color: var(--color-primary, #0088ce);
+  --footer-text-color: #444;
+  --footer-hover-color: #e2e7e9 !important;
+  --footer-focus-color: #E0E0E0 !important;
+  --footer-link-hover-color: var(--color-primary, #0088ce);
+  --footer-link-border-color: var(--color-primary, #0088ce);
+}
+
+.theme-theme [sws-footer], .theme-theme
+.sws-footer {
+  --footer-bg-color: rgba(255, 255, 255, 0.7) !important;
+  --footer-text-color: #fff;
+  --footer-hover-color: rgba(61, 61, 61, 0.3) !important;
+  --footer-focus-color: rgba(39, 39, 39, 0.4) !important;
+  --footer-link-hover-color: var(--color-primary, #0088ce);
+  --footer-link-border-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.theme-clear [sws-footer], .theme-clear
+.sws-footer {
+  --footer-bg-color: var(--color-primary, #0088ce);
+  --footer-text-color: #222;
+  --footer-hover-color: #ecf0f1 !important;
+  --footer-focus-color: #E0E0E0 !important;
+  --footer-link-hover-color: var(--color-primary, #0088ce);
+  --footer-link-border-color: var(--color-primary, #0088ce);
 }
 
 .theme-dark [sws-footer], .theme-dark
@@ -50,6 +199,83 @@
   bottom: 0;
 }
 
+[sws-footer] a, [sws-footer] sws-link a,
+.sws-footer a,
+.sws-footer sws-link a {
+  -webkit-transition: color .3s ease;
+  transition: color .3s ease;
+}
+
+.theme-dark [sws-footer] a, .theme-dark [sws-footer] sws-link a, .theme-dark
+.sws-footer a, .theme-dark
+.sws-footer sws-link a {
+  color: #fff;
+}
+
+.theme-light [sws-footer] a, .theme-light [sws-footer] sws-link a, .theme-light
+.sws-footer a, .theme-light
+.sws-footer sws-link a {
+  color: #444;
+}
+
+.theme-grey [sws-footer] a, .theme-grey [sws-footer] sws-link a, .theme-grey
+.sws-footer a, .theme-grey
+.sws-footer sws-link a {
+  color: #444;
+}
+
+.theme-theme [sws-footer] a, .theme-theme [sws-footer] sws-link a, .theme-theme
+.sws-footer a, .theme-theme
+.sws-footer sws-link a {
+  color: #fff;
+}
+
+.theme-clear [sws-footer] a, .theme-clear [sws-footer] sws-link a, .theme-clear
+.sws-footer a, .theme-clear
+.sws-footer sws-link a {
+  color: #222;
+}
+
+.theme-dark [sws-footer] a:hover, .theme-dark [sws-footer] a:focus, .theme-dark [sws-footer] sws-link a:hover, .theme-dark [sws-footer] sws-link a:focus, .theme-dark
+.sws-footer a:hover, .theme-dark
+.sws-footer a:focus, .theme-dark
+.sws-footer sws-link a:hover, .theme-dark
+.sws-footer sws-link a:focus {
+  color: var(--color-primary, #0088ce);
+}
+
+.theme-light [sws-footer] a:hover, .theme-light [sws-footer] a:focus, .theme-light [sws-footer] sws-link a:hover, .theme-light [sws-footer] sws-link a:focus, .theme-light
+.sws-footer a:hover, .theme-light
+.sws-footer a:focus, .theme-light
+.sws-footer sws-link a:hover, .theme-light
+.sws-footer sws-link a:focus {
+  color: var(--color-primary, #0088ce);
+}
+
+.theme-grey [sws-footer] a:hover, .theme-grey [sws-footer] a:focus, .theme-grey [sws-footer] sws-link a:hover, .theme-grey [sws-footer] sws-link a:focus, .theme-grey
+.sws-footer a:hover, .theme-grey
+.sws-footer a:focus, .theme-grey
+.sws-footer sws-link a:hover, .theme-grey
+.sws-footer sws-link a:focus {
+  color: var(--color-primary, #0088ce);
+}
+
+.theme-theme [sws-footer] a:hover, .theme-theme [sws-footer] a:focus, .theme-theme [sws-footer] sws-link a:hover, .theme-theme [sws-footer] sws-link a:focus, .theme-theme
+.sws-footer a:hover, .theme-theme
+.sws-footer a:focus, .theme-theme
+.sws-footer sws-link a:hover, .theme-theme
+.sws-footer sws-link a:focus {
+  color: var(--color-primary, #0088ce);
+}
+
+.theme-clear [sws-footer] a:hover, .theme-clear [sws-footer] a:focus, .theme-clear [sws-footer] sws-link a:hover, .theme-clear [sws-footer] sws-link a:focus, .theme-clear
+.sws-footer a:hover, .theme-clear
+.sws-footer a:focus, .theme-clear
+.sws-footer sws-link a:hover, .theme-clear
+.sws-footer sws-link a:focus {
+  color: var(--color-primary, #0088ce);
+}
+
 [sws-footer] [sws-footer-link], [sws-footer] .sws-footer-link,
 .sws-footer [sws-footer-link],
 .sws-footer .sws-footer-link {
@@ -84,5 +310,40 @@
 .sws-footer [sws-footer-link], .theme-clear
 .sws-footer .sws-footer-link {
   color: #222;
+}
+
+.theme-dark [sws-footer] [sws-link], .theme-dark [sws-footer] .sws-link, .theme-dark [sws-footer] sws-link a, .theme-dark
+.sws-footer [sws-link], .theme-dark
+.sws-footer .sws-link, .theme-dark
+.sws-footer sws-link a {
+  border-bottom-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.theme-light [sws-footer] [sws-link], .theme-light [sws-footer] .sws-link, .theme-light [sws-footer] sws-link a, .theme-light
+.sws-footer [sws-link], .theme-light
+.sws-footer .sws-link, .theme-light
+.sws-footer sws-link a {
+  border-bottom-color: var(--color-primary, #0088ce);
+}
+
+.theme-grey [sws-footer] [sws-link], .theme-grey [sws-footer] .sws-link, .theme-grey [sws-footer] sws-link a, .theme-grey
+.sws-footer [sws-link], .theme-grey
+.sws-footer .sws-link, .theme-grey
+.sws-footer sws-link a {
+  border-bottom-color: var(--color-primary, #0088ce);
+}
+
+.theme-theme [sws-footer] [sws-link], .theme-theme [sws-footer] .sws-link, .theme-theme [sws-footer] sws-link a, .theme-theme
+.sws-footer [sws-link], .theme-theme
+.sws-footer .sws-link, .theme-theme
+.sws-footer sws-link a {
+  border-bottom-color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.theme-clear [sws-footer] [sws-link], .theme-clear [sws-footer] .sws-link, .theme-clear [sws-footer] sws-link a, .theme-clear
+.sws-footer [sws-link], .theme-clear
+.sws-footer .sws-link, .theme-clear
+.sws-footer sws-link a {
+  border-bottom-color: var(--color-primary, #0088ce);
 }
 /*# sourceMappingURL=footer.component.css.map */

@@ -28,7 +28,55 @@ export class AppComponent implements OnInit {
   public footerConfig: FooterConfig = new FooterConfig();
 
   public footer: IFooter = {
-    phoneNumber: '5555555555'
+    contactPhoneNumber: '5555555555',
+    // releaseVersionNo: '1.2.0.beta',
+    // copyrightText: '2018 Workshop, All Rights Reserved',
+    // aboutTitle: 'About Our Company',
+    footerLogoUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo.png',
+    aboutText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+    contactEmail: 'info@someonesemail.com',
+    contactAddress: '1 Street, Awesome City, State, Zip',
+    // contactUs: {
+    //   externalLinkUrl: 'https://github.com/Softheon/NG-Workshop',
+    //   linkText: 'Contact',
+    //   fontAwesomeIcon: 'fas fa-anchor'
+    // },
+    // terms: {
+    //   externalLinkUrl: 'https://github.com/Softheon/NG-Workshop',
+    //   linkText: 'Terms'
+    // },
+    // privacy: {
+    //   linkUrl: './about/ourstory',
+    //   linkText: 'Privacy'
+    // },
+    // socialMediaTitle: 'Follow us:',
+    socialLinkedInUrl: 'https://www.linkedin.com/company/softheon',
+    socialFacebookUrl: 'https://facebook.com/',
+    socialTwitterUrl: 'https://twitter.com/',
+    socialYoutubeUrl: 'https://www.youtube.com/',
+    socialInstagramUrl: 'https://www.instagram.com',
+    socialGooglePlusUrl: 'https://plus.google.com/discover',
+    socialPinterestUrl: 'https://www.pinterest.com/',
+    socialGithubUrl: 'https://github.com/Softheon/NG-Workshop',
+    socialNPMUrl: 'https://www.npmjs.com/package/@softheon/ng-workshop',
+    linkGroup1Title: 'Section 1',
+    linkGroup1: [{
+      externalLinkUrl: 'https://angular.io/',
+      linkText: 'Lorem',
+    },
+    {
+      linkUrl: './home',
+      linkText: 'Ipsum',
+    }],
+    linkGroup2Title: 'Section 2',
+    linkGroup2: [{
+      externalLinkUrl: 'https://angular.io/',
+      linkText: 'Lorem',
+    },
+    {
+      linkUrl: './home',
+      linkText: 'Ipsum',
+    }],
   };
 
   public navConfig: NavConfig = new NavConfig();
@@ -269,6 +317,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
 
     this.footerConfig.theme = 'dark';
+    this.footerConfig.size = 'sm';
 
     this.navConfig.displayAppMenu = true;
     this.navConfig.displaySearch = true;

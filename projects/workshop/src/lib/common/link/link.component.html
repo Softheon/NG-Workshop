@@ -1,0 +1,13 @@
+<span m-r-10 *ngIf="linkData?.fontAwesomeIcon">
+  <i class="{{linkData?.fontAwesomeIcon}}"></i>
+</span>
+<ng-container *ngIf="linkData?.externalLinkUrl">
+  <a sws-link href="{{linkData?.externalLinkUrl}}" title="{{linkData?.linkText}}" target="_blank">
+    {{linkData?.linkText}}
+  </a>
+</ng-container>
+<ng-container *ngIf="linkData?.linkUrl">
+  <a sws-link routerLink="{{linkData?.linkUrl}}" title="{{linkData?.linkText}}">
+    {{linkData?.linkText}}
+  </a>
+</ng-container>

@@ -32,44 +32,111 @@ $themes: (
     footerTextColor: #fff,
     footerHoverColor: #3d3d3d !important,
     footerFocusColor: #333 !important,
-    ),
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: rgba(255, 255, 255, 0.7)!important,
+  ),
   light: (
     footerBackgroundColor: #fff,
     footerTextColor: #444,
     footerHoverColor: #ecf0f1 !important,
     footerFocusColor: #e2e7e9 !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: var(--color-primary,#0088ce),
   ),
   grey: (
     footerBackgroundColor: #ecf0f1 !important,
     footerTextColor: #444,
     footerHoverColor: #e2e7e9 !important,
     footerFocusColor: #E0E0E0 !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: var(--color-primary,#0088ce),
   ),
   theme: (
     footerBackgroundColor: var(--color-primary,#0088ce),
     footerTextColor: #fff,
     footerHoverColor: rgba(61, 61, 61, 0.3) !important,
     footerFocusColor: rgba(39, 39, 39, 0.4) !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: rgba(255, 255, 255, 0.7)!important,
   ),
   clear: (
     footerBackgroundColor: transparent,
     footerTextColor: #222,
     footerHoverColor: #ecf0f1 !important, // #dfe6e9,
     footerFocusColor: #E0E0E0 !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: var(--color-primary,#0088ce),
   ),
 );
 
+// TODO: ADD TO WORKSHOP
+[m-auto],
+.m-auto {
+    margin: 0 auto !important;
+}
+
+// TODO: ADD TO WORKSHOP
+[invisible-absolute],
+.invisible-absolute {
+  position: absolute;
+  color: transparent;
+  width: 0;
+  font-size: 3px;
+}
+
+@media screen and (max-width: 992px) {
+  [mobile-column],
+  .mobile-column {
+    flex-direction: column;
+  }
+
+  [mobile-center],
+  .mobile-center {
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    [text-right], .text-right {
+      text-align: center !important;
+    }
+  }
+
+  [footer-mobile-padding] > div,
+  .footer-mobile-padding > div {
+    margin: 8px 0;
+  }
+
+  $i: 10;
+  @while $i > 0 {
+    [mobile-order-#{$i}],
+    .mobile-order-#{$i} { 
+      order: $i; 
+    }
+    $i: $i - 1;
+  }
+}
+
 [sws-footer],
 .sws-footer {
+  @include themify($themes) {
+    --footer-bg-color: themed('linkBorderColor');   
+    --footer-text-color: themed('footerTextColor');
+    --footer-hover-color: themed('footerHoverColor');
+    --footer-focus-color: themed('footerFocusColor');
+    --footer-link-hover-color: themed('linkHoverColor');
+    --footer-link-border-color: themed('linkBorderColor');     
+  }
+
   width: 100%;
-  z-index: 20;
+  z-index: 3;
   background: #333;
   color: #fff;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  margin-bottom: -40px;
+  box-sizing: border-box;
+  // position: absolute;
+  // right: 0;
+  // bottom: 0;
+  // left: 0;
+  // margin-bottom: -40px;
   @include themify($themes) {
     background: themed('footerBackgroundColor');  
     color: themed('footerTextColor');          
@@ -81,10 +148,29 @@ $themes: (
     bottom: 0;
   }
 
+  a, sws-link a, {
+    transition: color .3s ease;
+    @include themify($themes) {
+      color: themed('footerTextColor');          
+    }
+    &:hover, &:focus {
+      @include themify($themes) {
+        color: themed('linkHoverColor');          
+      }
+    }
+  }
+
   [sws-footer-link], .sws-footer-link {
     color: #fff;
     @include themify($themes) {
       color: themed('footerTextColor');          
     }
   }
+
+  [sws-link], .sws-link, sws-link a {
+    @include themify($themes) {
+      border-bottom-color: themed('linkBorderColor');     
+    }
+  }
+
 }

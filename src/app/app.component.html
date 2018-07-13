@@ -1,38 +1,119 @@
-<sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
+<div flex-container-column flex-space-between full-height>
+  <div>
+    <sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
+    <!-- TEMP NG WORKSHOP -->
+    <div sws-parallax everything-center-container sws-default-banner-img style="width: 100%;height: 300px;">
+      <div display-4 text-white>Welcome to NG-Workshop</div>
+    </div>
 
-<!-- TEMP NG WORKSHOP -->
-<div sws-parallax everything-center-container sws-default-banner-img style="width: 100%;height: 300px;">
-    <div display-4 text-light>Welcome to Workshop</div>
-</div>
-
-
-<!-- NG WORKSHOP -->
-<img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"
+    <!-- NG WORKSHOP -->
+    <!-- <img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"
   alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
-<h1 text-center workshop>NG-WORKSHOP</h1>
+<h1 text-center workshop>NG-WORKSHOP</h1> -->
 
-<!-- Multi Stepper Example -->
-<div *ngIf="data">
-  <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
-</div>
+    <!-- Multi Stepper Example -->
+    <div *ngIf="data" m-t-30>
+      <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
+    </div>
 
-<!-- <sws-nav-header></sws-nav-header> -->
+    <router-outlet></router-outlet>
 
+    <!-- Card Grid Example -->
+    <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
 
-<router-outlet></router-outlet>
-
-<!-- Card Grid Example -->
-<sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
-
-<!-- For reference, the returned data from the event emitter -->
-<div m-h-20>
-  <p h6>{{blob | json}}</p>
-</div>
-<div>
-<!-- CONTENT GOES HERE: 
+    <!-- For reference, the returned data from the event emitter -->
+    <div m-h-20>
+      <p h6>{{blob | json}}</p>
+    </div>
+    <div>
+      <!-- CONTENT GOES HERE: 
   <div class="toggle" [@toggle]="show" (@toggle.start)="animationStarted($event)" (@toggle.done)="animationDone($event)" *ngIf="show">
     <h1>HELLO WORLD!!!!!!</h1>
   </div> -->
+    </div>
+  </div>
+  <sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
 </div>
 
-<sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
+
+<!-- <div p-a-10 flex-center flex-container-column><img src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg" width="100">
+  <div m-t-15>
+      [social icons go here]
+  </div></div> -->
+
+
+
+<!-- <div m-v-30>
+    <p h6 text-center semibold text-upper>Quick Links:</p>
+    <div flex-container align-items-v flex-space-evenly style="max-width: 1200px;margin: 0 auto;">
+      <p m-t-0 m-b-5>Link A</p>
+      <p m-t-0 m-b-5>Link B</p>
+      <p m-t-0 m-b-5>Link C</p>
+      <p m-t-0 m-b-5>Link D</p>
+      <p m-t-0 m-b-5>Link E</p>
+      <p m-t-0 m-b-5>Link F</p>
+    </div>
+  </div> -->
+<!-- <div p-t-15 align-items-v flex-space-between style="flex-wrap:nowrap;max-width: 1200px;margin: 0 auto;">
+    <div flex-1>
+      <small>
+        <a sws-footer-link sws-link>Terms</a>
+      </small>
+    </div>
+    <div flex-1 text-center>
+      <small> © 2018 - All Rights Reserved </small>
+    </div>
+    <div flex-1 text-right>
+      <small>
+        <a sws-footer-link sws-link>Privacy</a>
+      </small>
+    </div>
+   <div flex-1 text-right>
+        <small> © 2018 - All Rights Reserved </small>
+        <small>  &bull; Terms  &bull; Privacy </small>
+      </div>
+  </div> -->
+
+<!-- 
+<footer sws-footer bg-light p-a-20>
+  <div align-items-v flex-space-between>
+    <div>[quick links go here]</div>
+    <div everything-center-container flex-container-column>
+      <img  p-a-10 src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg" width="100">
+      <p semibold text-center m-b-20 m-t-5>Awesome title goes here!</p>
+    </div>
+    <div>
+      <p semibold>Contact Us</p>
+      1(800) 236-7941 
+      <br>  info@softheon.com 
+      <br>  
+      <br>  1500 Stony Brook Rd. 
+      <br>  Stony Brook, NY 11794
+      <br>
+      <br>
+  </div>
+  </div>
+  <div align-items-v flex-space-between style="flex-wrap:nowrap">
+    <div  flex-1 class="ng-star-inserted">
+      <a  sws-footer-link sws-link href="tel:+5555555555">Contact Us: 5555555555</a>
+    </div>
+    <div flex-1>
+      <div flex-center flex-container-column>
+        <div flex-space-evenly style="width: 500px; font-size: 1.5em">
+          <i class="fab fa-linkedin-in"></i>
+          <i class="fab fa-facebook-f"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-youtube"></i>
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-google-plus-g"></i>
+          <i class="fab fa-pinterest-p"></i>
+          <i class="fab fa-github"></i>
+          <i class="fab fa-npm"></i>
+        </div>
+      </div>
+    </div>
+    <div  flex-1 text-right>
+      <small > © 2018 - All Rights Reserved </small>
+    </div>
+  </div>
+</footer> -->
