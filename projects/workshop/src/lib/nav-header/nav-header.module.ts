@@ -13,10 +13,7 @@ const routes: Routes = [{ path: 'navheader', component: NavHeaderComponent}];
     CommonModule,
     FormsModule,
     BrowserAnimationsModule,
-    RouterModule.forRoot(
-      routes,
-      // { enableTracing: true } // <-- debugging purposes only
-    )
+    RouterModule
   ],
   declarations: [NavHeaderComponent],
   exports: [NavHeaderComponent]
