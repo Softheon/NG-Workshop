@@ -16,7 +16,7 @@
             <p *ngIf="content.desc" text-grey>{{content.desc}}</p>
           </div>
           <div p-t-5>
-            <a *ngIf="content.link && content.linkTitle" routerLink="{{content.link}}" sws-link m-t-10 title="{{content.linkTitle}}">{{content.linkTitle}}</a>
+            <a *ngIf="content.link && content.linkTitle" [routerLink]="content.link" sws-link m-t-10 title="{{content.linkTitle}}">{{content.linkTitle}}</a>
           </div>
         </div>
       </div>
@@ -38,7 +38,7 @@
           </div>
           <div h2 *ngIf="content.title">{{content.title}}</div>
           <p *ngIf="content.desc" style="font-size: small;" m-b-0>{{content.desc}}</p>
-          <a *ngIf="content.link && content.linkTitle" routerLink="{{content.link}}" sws-link m-t-10 title="{{content.linkTitle}}">{{content.linkTitle}}</a>
+          <a *ngIf="content.link && content.linkTitle" [routerLink]="content.link" sws-link m-t-10 title="{{content.linkTitle}}">{{content.linkTitle}}</a>
         </div>
       </div>
     </ng-container>
