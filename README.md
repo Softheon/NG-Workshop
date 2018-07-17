@@ -14,6 +14,7 @@
      * [Card-Grid](#card-grid)
      * [Nav-Header](#nav-header)
      * [Footer](#footer)
+     * [Vertical-Multi-Stepper](#vertical-multi-stepper)
 - [NPM Repository](https://www.npmjs.com/package/@softheon/ng-workshop)
 
 ## **Getting Started**
@@ -706,13 +707,107 @@ Example HTML with flexbox positioning:
 
 #### **Configuration Properties**
 
-| Configuration Key | Example                                       | Required               | Description            |
-| ----------------- | :-------------------------------------------: | :--------------------: | ---------------------: |
-| theme             | 'dark' / 'light' / 'grey' / 'clear' / 'theme' | no (default is 'dark') | The footer theme color |
-| size              | 'sm' / 'md' / 'lg'                            | no (default is 'sm')   | The footer size style  |
+| Configuration Key | Example                                       | Required | Description            |
+| ----------------- | :-------------------------------------------: | :------: | ---------------------: |
+| theme             | 'dark' / 'light' / 'grey' / 'clear' / 'theme' | yes      | The footer theme color |
+| size              | 'sm' / 'md' / 'lg'                            | yes      | The footer size style  |
 
 Examples:
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-1.png "NG Workshop Example")
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-2.png "NG Workshop Example")
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-3.png "NG Workshop Example")
+
+
+### **Vertical-Multi-Stepper**
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Vertical-Multi-Stepper-2.png "NG Workshop Example")
+
+#### `<sws-multi-stepper-v>` is a component used to render a vertical multistepper.
+
+
+#### API reference for NG-Workshop Vertical-Multi-Stepper Component
+
+Module.ts:
+
+```TypeScript
+import { MultiStepperVModule } from '@softheon/ng-workshop';
+```
+
+Component.ts:
+
+```TypeScript
+import { IMultiStepper2 } from '@softheon/ng-workshop';
+
+public stepData2: IMultiStepper2 = {
+    menuText: 'MENU',
+    steps: [
+      {
+        stepTitle: 'Checkout',
+        stepUrl: './checkout',
+        stepIndex: 1,
+        isSubStep: false
+      },
+      {
+        stepTitle: 'Shipping',
+        stepUrl: './checkout/shipping',
+        stepIndex: 2,
+        isSubStep: true
+      },
+      {
+        stepTitle: 'Billing',
+        stepUrl: './checkout/billing',
+        stepIndex: 3,
+        isSubStep: true
+      },
+      {
+        stepTitle: 'Review',
+        stepUrl: './about/ourstory',
+        stepIndex: 4,
+        isSubStep: false
+      },
+      {
+        stepTitle: 'Finish',
+        stepUrl: './about/ourstory',
+        stepIndex: 5,
+        isSubStep: false
+      }
+    ]
+  };
+```
+
+#### **Add component to your html**
+
+```html
+<sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
+```
+
+
+Example 2-column HTML with flexbox positioning: 
+
+```html
+
+<div flex-container mobile-column>
+   <div m-t-15>
+     <sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
+   </div>
+   <div full-width m-a-10>
+      <!-- Content Goes here -->
+    </div>
+</div>
+```
+
+Styles.css (or global CSS file):
+
+```CSS
+ @media screen and (max-width: 992px) {
+  [mobile-column],
+  .mobile-column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+```
+
+**More documentation coming soon!**

@@ -1,0 +1,313 @@
+@mixin var($property, $varName) {
+    #{$property}: map-get($vars, $varName) !important;
+    #{$property}: var(--#{$varName}, map-get($vars, $varName)) !important;
+}
+
+@mixin themify($themes: $themes) {
+    @each $theme, $map in $themes {
+  
+      .theme-#{$theme} & {
+        $theme-map: () !global;
+        @each $key, $submap in $map {
+          $value: map-get(map-get($themes, $theme), '#{$key}');
+          $theme-map: map-merge($theme-map, ($key: $value)) !global;
+        }
+  
+        @content;
+        $theme-map: null !global;
+      }
+  
+    }
+  }
+
+  @function themed($key) {
+    @return map-get($theme-map, $key);
+  }
+
+/** DEFINE [any] CSS PROPERTIES HERE */
+/** TODO: MOVE TO SEPARATE FILE  @import 'themes.scss'; */
+$themes: (
+  dark: (
+    stepperBackgroundColor: #222,
+    stepperTextColor: #fff,
+    stepperActiveColor: #fff,
+    stepperHoverColor: #3d3d3d !important,
+    stepperFocusColor: #333 !important,
+    stepColor: #333 !important,
+    stepPassedColor: #333 !important,
+    stepEditColor: #333 !important,
+    stepHoverColor: #333 !important,
+
+    
+
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: rgba(255, 255, 255, 0.7)!important,
+  ),
+  light: (
+    footerBackgroundColor: #fff,
+    footerTextColor: #444,
+    footerHoverColor: #ecf0f1 !important,
+    footerFocusColor: #e2e7e9 !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: var(--color-primary,#0088ce),
+  ),
+  grey: (
+    footerBackgroundColor: #ecf0f1 !important,
+    footerTextColor: #444,
+    footerHoverColor: #e2e7e9 !important,
+    footerFocusColor: #E0E0E0 !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: var(--color-primary,#0088ce),
+  ),
+  theme: (
+    footerBackgroundColor: var(--color-primary,#0088ce),
+    footerTextColor: #fff,
+    footerHoverColor: rgba(61, 61, 61, 0.3) !important,
+    footerFocusColor: rgba(39, 39, 39, 0.4) !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: rgba(255, 255, 255, 0.7)!important,
+  ),
+  clear: (
+    footerBackgroundColor: transparent,
+    footerTextColor: #222,
+    footerHoverColor: #ecf0f1 !important, // #dfe6e9,
+    footerFocusColor: #E0E0E0 !important,
+    linkHoverColor: var(--color-primary,#0088ce),
+    linkBorderColor: var(--color-primary,#0088ce),
+  ),
+);
+
+button[button-reset] {
+    border: none !important;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background: transparent;
+}
+
+
+// [sws-multistepper-v__step] {
+// }
+[sws-multistepper-v],
+.sws-multistepper-v {
+    width: 250px;
+    color: #444;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 3px;
+    }
+    a {
+        text-decoration: none;
+        color: #444;
+    }
+    [sws-multistepper-v-section],
+    .sws-multistepper-v-section {
+        background: #ECEFF1;
+        border-bottom: 2px solid #e2e7e9;
+        border-top: 2px solid #e2e7e9;
+    }
+    [sws-multistepper-v__step],
+    [sws-multistepper-v__substep] {
+        position: relative;
+        ul,
+        li {
+            list-style-type: none;
+        }
+        padding-left: 0;
+        a {
+            text-decoration: none;
+        }
+
+        &.active > div {
+
+            &:first-child {
+                z-index: 1;
+            }
+
+           & > a {
+                background: rgba(206, 205, 205, 0.56);
+                border-right: 4px solid #0088ce;
+            }
+        }
+
+        &:hover, &:focus {
+            > div {
+                & > a {
+                    background: rgba(199, 199, 199, 0.56);
+                }
+            }
+        }
+
+        & > div > a:focus {
+            background: rgba(199, 199, 199, 0.56);
+        }
+    }
+
+    [sws-multistepper-v__substep] {
+        &:hover, &:focus {
+            li > a {
+                    background: rgba(199, 199, 199, 0.56);
+                }
+            
+        }
+        li > a {
+            &:focus {
+                background: rgba(199, 199, 199, 0.56);
+            }
+        }
+    }
+
+    [sws-multistepper-v__step-indicator], .sws-multistepper-v__step-indicator {
+        width: 44px; 
+        min-width: 44px;
+        height: 44px; 
+        box-sizing: border-box;
+
+        > svg {
+            z-index: 1;
+        }
+
+        // &:before {
+        //     content: '';
+        //     display: block;
+        //     content: '';
+        //     display: block;
+        //     width: 2px;
+        //     height: 26px;
+        //     background: #444;
+        //     position: absolute;
+        //     top: 0;
+        // }
+        // &:after {
+        //     content: '';
+        //     display: block;
+        //     content: '';
+        //     display: block;
+        //     width: 2px;
+        //     height: 26px;
+        //     background: #444;
+        //     position: absolute;
+        //     bottom: -1px;
+        // }
+    }
+
+    [sws-multistepper-v__substep-indicator], .sws-multistepper-v__substep-indicator {
+        width: 44px; 
+        min-width: 44px;
+        height: 44px; 
+        box-sizing: border-box;
+        
+        > svg {
+            z-index: 1;
+        }
+
+        // &:before {
+        //     content: '';
+        //     display: block;
+        //     content: '';
+        //     display: block;
+        //     width: 2px;
+        //     height: 26px;
+        //     background: #444;
+        //     position: absolute;
+        //     top: 0;
+        // }
+        // &:after {
+        //     content: '';
+        //     display: block;
+        //     content: '';
+        //     display: block;
+        //     width: 2px;
+        //     height: 26px;
+        //     background: #444;
+        //     position: absolute;
+        //     bottom: -1px;
+        // }
+    }
+
+    [sws-multistepper-v__step-container], .sws-multistepper-v__step-container {
+        // li:first-child > div > a {
+        //     color: #0088ce;
+        //     // div {
+        //     //     &:before {
+        //     //         content: none;
+        //     //     }
+        //     // }
+        // }
+        // li:last-child > div > a {
+        //     // color: purple;
+        //     // div {
+        //     //     &:after {
+        //     //         content: none;
+        //     //     }
+        //     // }
+        // }
+    }
+
+    [sws-multistepper-v__step-line], .sws-multistepper-v__step-line {
+        display: block;
+        height: 45px;
+        width: 2px;
+        background: #444;
+        position: absolute;
+        left: 21px;    
+        top: 20px;
+    }
+
+    [sws-multistepper-v__substep-label], .sws-multistepper-v__substep-label{
+        font-weight: 500;
+    }
+    [sws-multistepper-v__step-label], .sws-multistepper-v__step-label{
+        font-weight: 500;
+    }
+
+}
+
+[sws-multistepper-v__step-link].active, .sws-multistepper-v__step-link.active {
+    background: rgba(206, 205, 205, 0.56);
+    border-right: 4px solid var(--color-primary,#0088ce),;
+}
+
+[sws-multistepper-v__substep-link].active, .sws-multistepper-v__substep-link.active {
+    background: rgba(206, 205, 205, 0.56);
+    border-right: 4px solid var(--color-primary,#006394),;
+}
+
+
+.disabled-step {
+    pointer-events: none;
+    cursor: default;
+    border: none;
+    background: transparent;
+}
+
+
+@media screen and (max-width: 992px) {
+
+    [sws-multistepper-v], .sws-multistepper-v {
+        width: 100%;
+    }
+    [mobile-column],
+    .mobile-column {
+      flex-direction: column;
+    }
+  
+    [mobile-center],
+    .mobile-center {
+      align-items: center;
+      text-align: center;
+      justify-content: center;
+  
+      [text-right], .text-right {
+        text-align: center !important;
+      }
+    }
+
+    $i: 10;
+    @while $i > 0 {
+      [mobile-order-#{$i}],
+      .mobile-order-#{$i} { 
+        order: $i; 
+      }
+      $i: $i - 1;
+    }
+}

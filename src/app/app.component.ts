@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
-import { INavigation, NavConfig, IFooter, FooterConfig, Card } from 'workshop';
+import { INavigation, NavConfig, IFooter, FooterConfig, Card, IMultiStepper, IMultiStepper2 } from 'workshop';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -21,6 +21,103 @@ export class AppComponent implements OnInit {
   /** Temp Data */
   public blob;
   public searchItem;
+
+
+  public stepData2: IMultiStepper2 = {
+    menuText: 'subway',
+    steps: [
+      {
+        stepTitle: 'test1 welcome',
+        stepUrl: './welcome',
+        stepIndex: 1,
+        isSubStep: false
+      },
+      {
+        stepTitle: 'test2 hello',
+        stepUrl: './about/hello',
+        stepIndex: 2,
+        isSubStep: true
+      },
+      {
+        stepTitle: 'test3 contact',
+        stepUrl: './contact',
+        stepIndex: 3,
+        isSubStep: true
+      },
+      {
+        stepTitle: 'test4 ourstory',
+        stepUrl: './about/ourstory',
+        stepIndex: 4,
+        isSubStep: false
+      },
+      {
+        stepTitle: 'test4 ourstory',
+        stepUrl: './about/ourstory',
+        stepIndex: 5,
+        isSubStep: false
+      }
+    ]
+  };
+
+  public stepData: IMultiStepper = {
+    menuText: 'subway',
+    steps: [
+      {
+        stepTitle: 'test1',
+        stepUrl: './about',
+        stepIndex: 1,
+        subSteps: [
+          {
+            stepTitle: 'test2',
+            stepUrl: './about/ourstory',
+            stepIndex: 2,
+          },
+          {
+            stepTitle: 'test3',
+            stepUrl: './about/hello',
+            stepIndex: 3,
+          },
+          {
+            stepTitle: 'test4',
+            stepUrl: './about/about',
+            stepIndex: 4,
+          }
+        ]
+      },
+      {
+        stepTitle: 'test5',
+        stepUrl: './contact',
+        stepIndex: 5,
+        subSteps: [
+          {
+            stepTitle: 'test6',
+            stepUrl: './another',
+            stepIndex: 6,
+          }
+        ]
+      },
+      {
+        stepTitle: 'test7',
+        stepUrl: './welcome',
+        stepIndex: 7,
+        subSteps: [
+          {
+            stepTitle: 'test8',
+            stepUrl: './another',
+            stepIndex: 8,
+          }
+        ]
+      },
+      {
+        stepTitle: 'test9',
+        stepUrl: '/other',
+        stepIndex: 9
+      }
+    ]
+
+ };
+
+
 
   /**
    * Example Footer Data
@@ -106,7 +203,7 @@ export class AppComponent implements OnInit {
     ],
     quickLinks: [
       {
-        linkUrl: './home',
+        linkUrl: './welcome',
         linkText: 'Quick Link A',
         fontAwesomeIcon: 'fas fa-chess'
       },
@@ -121,7 +218,7 @@ export class AppComponent implements OnInit {
         fontAwesomeIcon: 'fas fa-coffee'
       },
       {
-        linkUrl: './home',
+        linkUrl: './about/hello',
         linkText: 'Quick Link D'
       },
     ],
