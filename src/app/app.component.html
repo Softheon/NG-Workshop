@@ -1,35 +1,103 @@
-<div flex-container-column flex-space-between full-height>
-  <div>
+<div flex-container-column flex-space-between full-height bg-light>
+  <div style="overflow-y: auto">
     <sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
-    <!-- TEMP NG WORKSHOP -->
-    <div sws-parallax everything-center-container sws-default-banner-img style="width: 100%;height: 300px;">
-      <div display-4 text-white>Welcome to NG-Workshop</div>
-    </div>
+    <div flex-container mobile-column>
 
-    <!-- NG WORKSHOP -->
-    <!-- <img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"
-  alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
-<h1 text-center workshop>NG-WORKSHOP</h1> -->
+      <div m-t-15>
+        <sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
+      </div>
+      <div full-width m-a-10>
+        <div m-a-15>
+          <div sws-card p-a-0 style="max-width: 100%;" text-center>
+            <!-- TEMP NG WORKSHOP -->
+            <!-- <div sws-parallax everything-center-container sws-default-banner-img style="width: 100%;height: 300px;">
+                  <div display-4 text-white>Welcome to NG-Workshop</div>
+                </div> -->
 
-    <!-- Multi Stepper Example -->
-    <div *ngIf="data" m-t-30>
-      <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
-    </div>
+            <div everything-center-container style="width: 100%;height: 285px; background-position: center; background-size: cover; background-image: url('https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/Pixel_BG.jpg')">
+              <div display-4>Welcome to NG-Workshop</div>
+            </div>
+            <!-- NG WORKSHOP -->
+            <!-- <img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"
+              alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
+              <h1 text-center workshop>NG-WORKSHOP</h1> -->
 
-    <router-outlet></router-outlet>
+            <!-- Multi Stepper Example -->
+            <!-- <div *ngIf="data" m-t-30>
+                <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
+              </div> -->
 
-    <!-- Card Grid Example -->
-    <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
 
-    <!-- For reference, the returned data from the event emitter -->
-    <div m-h-20>
-      <p h6>{{blob | json}}</p>
-    </div>
-    <div>
-      <!-- CONTENT GOES HERE: 
-  <div class="toggle" [@toggle]="show" (@toggle.start)="animationStarted($event)" (@toggle.done)="animationDone($event)" *ngIf="show">
-    <h1>HELLO WORLD!!!!!!</h1>
-  </div> -->
+            <!-- For reference, the returned data from the event emitter -->
+            <div m-h-20>
+              <p h6>{{blob | json}}</p>
+            </div>
+            <div>
+              <!-- CONTENT GOES HERE: 
+                <div class="toggle" [@toggle]="show" (@toggle.start)="animationStarted($event)" (@toggle.done)="animationDone($event)" *ngIf="show">
+                  <h1>HELLO WORLD!!!!!!</h1>
+                </div> -->
+            </div>
+          </div>
+        </div>
+        <div text-center h4>
+          <router-outlet></router-outlet>
+        </div>
+        <!-- Workshop Fancy! -->
+        <div sws-card p-a-30 style="max-width: 600px; margin: 0 auto">
+          <h4>Welcome to Workshop, please sign in:</h4>
+          <div sws-fancy-form light-form m-t-50>
+            <input sws-fancy-form__input type="text" name="fancyusername" id="fancy" required>
+            <label sws-fancy-form__label for="fancy">User Name</label>
+            <div sws-fancy-form__bar></div>
+          </div>
+          <div sws-fancy-form light-form>
+            <input sws-fancy-form__input type="text" name="fancypassword" id="fancy2" required>
+            <label sws-fancy-form__label for="fancy2">Password</label>
+            <div sws-fancy-form__bar></div>
+          </div>
+          <button sws-button--fancy>Submit</button>
+        </div>
+        <!-- Card Grid Example -->
+        <div flex-container flex-center>
+          <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
+          <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
+          <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
+        </div>
+      </div>
+
+      <div style="position: relative;width: 175px;">
+        <div style="position: fixed;top: 48vh;" p-a-5 flex-container-column flex-center>
+          <button sws-button--primary>BACK</button>
+          <button sws-button--secondary disabled>NEXT</button>
+
+          <!-- <button sws-button-outline--fancy text-upper>
+            Previous
+          </button>
+          <button sws-button-outline--fancy text-upper m-t-10>
+            Next
+          </button> -->
+        </div>
+        <div style="position: fixed;bottom: 10vh;right: 40px;">
+          <div sws-icon-flat--primary-lg>
+            <i class="fas fa-arrow-up"></i>
+          </div>
+          <!-- <div semibold flex-center text-upper>Top</div> -->
+          <!-- <div text-upper style="   
+          height: 100px;
+          display: flex;
+          flex-direction: column;
+          width: 100px;
+          align-items: center;
+          text-align: center;
+          font-weight: 500;
+          justify-content: center;">
+            <i class="fas fa-arrow-up"></i>
+            <br>
+              Top
+          </div> -->
+        </div>
+      </div>
     </div>
   </div>
   <sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
