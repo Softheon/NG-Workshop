@@ -1,10 +1,14 @@
-<button p-a-10 style="letter-spacing: 5px;min-width: 130px;margin-left:13px;" h4 id="menubutton_3" aria-haspopup="true" aria-controls="menu3"
-  button-reset everything-center-container cursor-pointer (click)="showMultiVMenu = !showMultiVMenu;">
+<button p-a-10 multistepper-menu h4 id="menubutton_3" aria-haspopup="true" aria-controls="menu3" button-reset everything-center-container
+  cursor-pointer (click)="showMultiVMenu = !showMultiVMenu;">
   <ng-container>
-    <span p-r-15>
-      <i class="fas fa-bars"></i>
+    <span multistepper-menu-bg>
+      <div multistepper-menu-icon [ngClass]="showMultiVMenu ? 'rotate-90' : ''">
+        <i class="fas fa-bars"></i>
+      </div>
     </span>
-    {{stepData2?.menuText ? stepData2?.menuText : 'MENU'}}
+    <span p-l-15>
+      {{stepData?.menuText ? stepData?.menuText : 'MENU'}}
+    </span>
   </ng-container>
   <!-- <ng-container *ngIf="!isPotatOS">
     M
@@ -20,76 +24,44 @@
 <div sws-multistepper-v *ngIf="!showMultiVMenu">
   <div>
     <ul sws-multistepper-v__step-container m-h-10 m-t-0 p-l-0 id="menu3" aria-labelledby="menubutton_3">
-      <ng-container *ngFor="let step of stepData2?.steps;  let i = index; let first = first; let last = last;">
-        <ng-container *ngIf="!step.isSubStep">
-          <!-- STEP -->
-          <li flex-container-column sws-multistepper-v__step [routerLinkActive]="['active']" #rla="routerLinkActive" [routerLinkActiveOptions]="{exact:true}">
-            <div>
-              <!--  -->
-
-              <ng-container *ngIf="step?.isPassed || step?.isCurrent">
-                <a sws-multistepper-v__step-link [routerLink]="step.stepUrl" [class.disabled-step]="(!step?.isPassed && !rla.isActive) ? true : null"
-                  style="display: inline-flex; height: 45px;" full-width>
-                  <div sws-multistepper-v__step-indicator everything-center-container [ngClass]="{
-                              'text-primary': rla.isActive, 'text-secondary': step?.isPassed}">
+      <ng-container *ngFor="let step of stepData?.steps;  let i = index; let first = first; let last = last;">
+        <li flex-container-column sws-multistepper-v__step [routerLinkActive]="['active']" #rla="routerLinkActive" [routerLinkActiveOptions]="{exact:true}">
+          <div>
+            <!-- Link -->
+            <ng-container *ngIf="(step?.isPassed || step?.isCurrent) || devMode">
+              <a sws-multistepper-v__step-link [routerLink]="step.stepUrl" full-width>
+                <div sws-multistepper-v__step-indicator everything-center-container inactive-step [ngClass]="{'text-primary': rla.isActive, 'step-passed': step?.isPassed}">
+                  <ng-container *ngIf="!step?.isSubStep">
                     <i class="fas fa-circle fa-2x"></i>
-                  </div>
-                  <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
-                    {{step.stepTitle}} 
-                    <!-- : {{rla.isActive}} -->
-                  </div>
-                </a>
-              </ng-container>
-
-              <ng-container *ngIf="!step?.isPassed && !step?.isCurrent">
-                <div sws-multistepper-v__step-link style="display: inline-flex; height: 45px;" full-width>
-                  <div sws-multistepper-v__step-indicator everything-center-container [ngClass]="{
-                            'text-primary': rla.isActive, 'text-secondary': step?.isPassed}">
-                    <i class="fas fa-circle fa-2x"></i>
-                  </div>
-                  <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
-                    {{step.stepTitle}} 
-                    <!-- : {{rla.isActive}} -->
-                  </div>
+                  </ng-container>
+                  <ng-container *ngIf="step?.isSubStep">
+                    <i class="fas fa-circle"></i>
+                  </ng-container>
                 </div>
-              </ng-container>
-
-            </div>
-            <div sws-multistepper-v__step-line *ngIf="!last"></div>
-          </li>
-        </ng-container>
-        <ng-container *ngIf="step?.isSubStep">
-          <!-- Substep -->
-          <li sws-multistepper-v__substep flex-container-column [routerLinkActive]="['active-link']" #subrla="routerLinkActive" [routerLinkActiveOptions]="{exact:true}">
-
-
-            <ng-container *ngIf="step?.isPassed || step?.isCurrent">
-
-              <a sws-multistepper-v__substep-link [routerLink]="[step.stepUrl]" [class.active]="subrla.isActive" style="display: inline-flex; height: 45px;"
-                full-width>
-                <div sws-multistepper-v__substep-indicator everything-center-container [ngClass]="{'text-primary': subrla.isActive, 'text-secondary': step?.isPassed}">
-                  <i class="fas fa-circle"></i>
-                </div>
-                <div sws-multistepper-v__substep-label align-items-v flex-container m-l-10>
-                  {{step.stepTitle}} 
-                  <!-- : {{subrla.isActive}} -->
+                <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
+                  {{step.stepTitle}}
                 </div>
               </a>
             </ng-container>
-            <ng-container *ngIf="!step?.isPassed && !step?.isCurrent">
-              <div sws-multistepper-v__substep-link [class.active]="subrla.isActive" style="display: inline-flex; height: 45px;" full-width>
-                <div sws-multistepper-v__substep-indicator everything-center-container [ngClass]="{'text-primary': subrla.isActive, 'text-secondary': step?.isPassed}">
-                  <i class="fas fa-circle"></i>
+            <!-- Don't Step Ahead -->
+            <ng-container *ngIf="(!step?.isPassed && !step?.isCurrent) && !devMode">
+              <div sws-multistepper-v__step-link full-width>
+                <div sws-multistepper-v__step-indicator everything-center-container inactive-step>
+                  <ng-container *ngIf="!step?.isSubStep">
+                    <i class="fas fa-circle fa-2x"></i>
+                  </ng-container>
+                  <ng-container *ngIf="step?.isSubStep">
+                    <i class="fas fa-circle"></i>
+                  </ng-container>
                 </div>
-                <div sws-multistepper-v__substep-label align-items-v flex-container m-l-10>
-                  {{step.stepTitle}} 
-                  <!-- : {{subrla.isActive}} -->
+                <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
+                  {{step.stepTitle}}
                 </div>
               </div>
             </ng-container>
-            <div sws-multistepper-v__step-line></div>
-          </li>
-        </ng-container>
+          </div>
+          <div sws-multistepper-v__step-line *ngIf="!last"></div>
+        </li>
       </ng-container>
     </ul>
   </div>
