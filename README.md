@@ -720,9 +720,9 @@ Examples:
 
 
 ### **Vertical-Multi-Stepper**
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Vertical-Multi-Stepper-2.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Vertical-Multi-Stepper-3.png "NG Workshop Example")
 
-#### `<sws-multi-stepper-v>` is a component used to render a vertical multistepper.
+#### `<sws-multi-stepper-v>` is a component used to render a progressive vertical multistepper.
 
 
 #### API reference for NG-Workshop Vertical-Multi-Stepper Component
@@ -736,9 +736,9 @@ import { MultiStepperVModule } from '@softheon/ng-workshop';
 Component.ts:
 
 ```TypeScript
-import { IMultiStepper2 } from '@softheon/ng-workshop';
+import { IMultiStepper } from '@softheon/ng-workshop';
 
-public stepData2: IMultiStepper2 = {
+public stepData: IMultiStepper = {
     menuText: 'MENU',
     steps: [
       {
@@ -761,13 +761,13 @@ public stepData2: IMultiStepper2 = {
       },
       {
         stepTitle: 'Review',
-        stepUrl: './about/ourstory',
+        stepUrl: './checkout/review',
         stepIndex: 4,
-        isSubStep: false
+        isSubStep: true
       },
       {
         stepTitle: 'Finish',
-        stepUrl: './about/ourstory',
+        stepUrl: './finished',
         stepIndex: 5,
         isSubStep: false
       }
@@ -778,15 +778,13 @@ public stepData2: IMultiStepper2 = {
 #### **Add component to your html**
 
 ```html
-<sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
+<sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
 ```
-
 
 Example 2-column HTML with flexbox positioning: 
 
 ```html
-
-<div flex-container mobile-column>
+<div flex-container-responsive>
    <div m-t-15>
      <sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
    </div>
@@ -795,19 +793,20 @@ Example 2-column HTML with flexbox positioning:
     </div>
 </div>
 ```
+#### **Vertical Multistepper 'IStep' Properties**
 
-Styles.css (or global CSS file):
+| Key       | Type    | Required | Example   | Description                           |
+| --------- | :-----: | :------: | :-------: | ------------------------------------: |
+| stepUrl   | string  | yes      | './start' | The router link url                   |
+| stepTitle | string  | yes      | 'Start'   | The the title                         |
+| stepIndex | number  | yes      | '1'       | The order index                       |
+| isSubStep | boolean | yes      | true      | If the step is displayed as a substep |
+| isPassed  | boolean | n/a      | n/a       | If the step is passed                 |
+| isCurrent | boolean | n/a      | n/a       | If the step is current                |
 
-```CSS
- @media screen and (max-width: 992px) {
-  [mobile-column],
-  .mobile-column {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-}
-```
-
-**More documentation coming soon!**
+#### **Vertical Multistepper 'IMultiStepper' Properties**
+| Key      | Type    | Required | Example                                  | Description           |
+| -------- | :-----: | :------: | :--------------------------------------: | --------------------: |
+| devMode  | boolean | optional | true, default value is false             | The multistepper text |
+| menuText | string  | optional | 'Epic Subtitle', default value is 'MENU' | The multistepper text |
+| steps    | IStep[] | required | steps: [{...}]                           | The array of ISteps   |

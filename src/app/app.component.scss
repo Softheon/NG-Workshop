@@ -23,27 +23,27 @@
 //     }
 // }
 
-@media screen and (max-width: 992px) {
-    [mobile-column],
-    .mobile-column {
-        flex-direction: column;
-    }
-    [mobile-center],
-    .mobile-center {
-        align-items: center;
-        text-align: center;
-        justify-content: center;
-        [text-right],
-        .text-right {
-            text-align: center !important;
-        }
-    }
-    $i: 10;
-    @while $i>0 {
-        [mobile-order-#{$i}],
-        .mobile-order-#{$i} {
-            order: $i;
-        }
-        $i: $i - 1;
-    }
-}
+// @media screen and (max-width: 992px) {
+//     [mobile-column],
+//     .mobile-column {
+//         flex-direction: column;
+//     }
+//     [mobile-center],
+//     .mobile-center {
+//         align-items: center;
+//         text-align: center;
+//         justify-content: center;
+//         [text-right],
+//         .text-right {
+//             text-align: center !important;
+//         }
+//     }
+//     $i: 10;
+//     @while $i>0 {
+//         [mobile-order-#{$i}],
+//         .mobile-order-#{$i} {
+//             order: $i;
+//         }
+//         $i: $i - 1;
+//     }
+// }

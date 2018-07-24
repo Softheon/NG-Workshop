@@ -69,13 +69,11 @@ $themes: (
   ),
 );
 
-// TODO: ADD TO WORKSHOP
 [m-auto],
 .m-auto {
     margin: 0 auto !important;
 }
 
-// TODO: ADD TO WORKSHOP
 [invisible-absolute],
 .invisible-absolute {
   position: absolute;
@@ -103,7 +101,7 @@ $themes: (
 
   [footer-mobile-padding] > div,
   .footer-mobile-padding > div {
-    margin: 8px 0;
+    margin: 15px 0;
   }
 
   $i: 10;

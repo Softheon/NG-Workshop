@@ -1,10 +1,10 @@
 <div flex-container-column flex-space-between full-height bg-light>
   <div style="overflow-y: auto">
     <sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
-    <div flex-container mobile-column>
+    <div flex-container-responsive>
 
       <div m-t-15>
-        <sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
+        <sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
       </div>
       <div full-width m-a-10>
         <div m-a-15>
@@ -26,7 +26,6 @@
             <!-- <div *ngIf="data" m-t-30>
                 <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
               </div> -->
-
 
             <!-- For reference, the returned data from the event emitter -->
             <div m-h-20>
