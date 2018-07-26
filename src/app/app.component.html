@@ -1,6 +1,24 @@
 <div flex-container-column flex-space-between full-height bg-light>
   <div style="overflow-y: auto">
-    <sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
+    <sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)" header="my header"
+      footer="my footer">
+      <!-- put your dynamic content here -->
+      <ul m-a-0 p-l-0>
+        <li flex-container sws-nav-menu__list-item>
+          <a href="" sws-link p-a-15 full-width>
+            <span>
+              YO!
+            </span>
+          </a>
+        </li>
+      </ul>
+      <!-- <div class="card-block">
+        <h4 class="card-title">You can put any content here</h4>
+        <p class="card-text">For example this line of text and</p>
+        <a href="#" sws-button--primary>This button</a>
+      </div> -->
+      <!-- end dynamic content -->
+    </sws-nav-header>
     <div flex-container-responsive>
 
       <div m-t-15>
