@@ -12,10 +12,13 @@ export interface ILink {
 
     /** The Font Awesome icon class */
     fontAwesomeIcon?: string;
+
+    /** To calls a method instead */
+    emitEvent?: boolean;
 }
 
 /** The Navigation Interface */
-export interface INavigation {
+export interface IHeader {
 
     /** The user name */
     userName?: string;
@@ -58,7 +61,7 @@ export interface INavigation {
 }
 
 /** The Nav Config Interface */
-export interface INavConfig {
+export interface IHeaderConfig {
     displayAppMenu?: boolean;
     displaySearch?: boolean;
     displaySubNavMenu?: boolean;
@@ -68,7 +71,7 @@ export interface INavConfig {
 }
 
 /** The Nav Congif Class */
-export class NavConfig implements INavConfig {
+export class HeaderConfig implements IHeaderConfig {
     /** Whether or not to display the Left Nav Applications Menu */
     public displayAppMenu?: boolean;
 

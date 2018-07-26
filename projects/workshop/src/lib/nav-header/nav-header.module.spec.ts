@@ -1,13 +1,13 @@
-import { NavHeaderModule } from './nav-header.module';
+import { HeaderModule } from './nav-header.module';
 
 describe('NavHeaderModule', () => {
-  let navHeaderModule: NavHeaderModule;
+  let headerModule: HeaderModule;
 
   beforeEach(() => {
-    navHeaderModule = new NavHeaderModule();
+    headerModule = new HeaderModule();
   });
 
   it('should create an instance', () => {
-    expect(navHeaderModule).toBeTruthy();
+    expect(headerModule).toBeTruthy();
   });
 });

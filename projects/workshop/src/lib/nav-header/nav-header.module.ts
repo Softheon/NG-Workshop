@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavHeaderComponent } from './nav-header.component';
+import { HeaderComponent } from './nav-header.component';
 import { RouterModule, Routes } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 
-const routes: Routes = [{ path: 'navheader', component: NavHeaderComponent}];
+const routes: Routes = [{ path: 'navheader', component: HeaderComponent}];
 
 
 @NgModule({
@@ -15,7 +15,7 @@ const routes: Routes = [{ path: 'navheader', component: NavHeaderComponent}];
     BrowserAnimationsModule,
     RouterModule
   ],
-  declarations: [NavHeaderComponent],
-  exports: [NavHeaderComponent]
+  declarations: [HeaderComponent],
+  exports: [HeaderComponent]
 })
-export class NavHeaderModule { }
+export class HeaderModule { }

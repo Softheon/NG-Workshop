@@ -1,24 +1,27 @@
 <div flex-container-column flex-space-between full-height bg-light>
   <div style="overflow-y: auto">
-    <sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)" header="my header"
-      footer="my footer">
+    <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)" (myEvent)="switchLanguage()">
       <!-- put your dynamic content here -->
       <ul m-a-0 p-l-0>
         <li flex-container sws-nav-menu__list-item>
-          <a href="" sws-link p-a-15 full-width>
-            <span>
-              YO!
+          <a href="javascript:void(0);" full-width sws-link p-a-15 (click)="switchLanguage()">
+            <span m-r-10>
+              <i class="fas fa-chess"></i>
             </span>
+            Switch
           </a>
         </li>
       </ul>
+      <div p-a-10>
+        <i>This is custom html!</i>
+      </div>
       <!-- <div class="card-block">
         <h4 class="card-title">You can put any content here</h4>
         <p class="card-text">For example this line of text and</p>
-        <a href="#" sws-button--primary>This button</a>
+        <button sws-button--primary (click)="switchLanguage()">This button</button>
       </div> -->
       <!-- end dynamic content -->
-    </sws-nav-header>
+    </sws-header>
     <div flex-container-responsive>
 
       <div m-t-15>
@@ -32,8 +35,9 @@
                   <div display-4 text-white>Welcome to NG-Workshop</div>
                 </div> -->
 
-            <div everything-center-container style="width: 100%;height: 285px; background-position: center; background-size: cover; background-image: url('https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/Pixel_BG.jpg')">
+            <div everything-center-container flex-container-column style="width: 100%;height: 285px; background-position: center; background-size: cover; background-image: url('https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/Pixel_BG.jpg')">
               <div display-4>Welcome to NG-Workshop</div>
+              <div h3>{{'common.hello' | translate}}</div>
             </div>
             <!-- NG WORKSHOP -->
             <!-- <img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"

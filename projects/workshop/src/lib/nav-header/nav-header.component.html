@@ -4,9 +4,9 @@
       <!-- Logo -->
       <div sws-nav__logo p-l-15 *ngIf="navData?.logoImageUrl" [class.tinyLogo]="config?.smallLogo">
         <ng-container *ngIf="!navData?.externalLogoLink">
-            <a routerLink="{{navData?.logoLink ? navData?.logoLink : '/'}}" flex-center>
-              <img sws-nav__logo-img src="{{navData.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
-            </a>
+          <a routerLink="{{navData?.logoLink ? navData?.logoLink : '/'}}" flex-center>
+            <img sws-nav__logo-img src="{{navData.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
+          </a>
         </ng-container>
         <ng-container *ngIf="navData?.externalLogoLink">
           <a href="{{navData?.externalLogoLink}}" target="_blank" flex-center>
@@ -125,7 +125,7 @@
       <!-- User Icon -->
       <div *ngIf="config.displayUserMenu || (navData?.userName || navData?.userEmail)" tabindex="100">
         <button id="menubutton2" aria-haspopup="true" aria-controls="menu3" flex-container align-items-v flex-center p-h-10 nav-header-box
-        sws-nav-menu__icon (click)="userMenu = !userMenu;">
+          sws-nav-menu__icon (click)="userMenu = !userMenu;">
           <span nav-header-box__icon>
             <i class="fas fa-user-circle" style="font-size: 28px;"></i>
             <i class="fas fa-caret-down" style="font-size: 14px; padding-bottom: 5px;"></i>
@@ -157,6 +157,16 @@
                     {{usermenulink.linkText}}
                   </a>
                 </ng-container>
+
+                <ng-container *ngIf="usermenulink?.emitEvent">
+                  <a href="javascript:void(0);" (click)="emitEvent1()" p-a-15 title="{{usermenulink.linkText}}" sws-link target="_blank">
+                    <span m-r-10 *ngIf="usermenulink.fontAwesomeIcon">
+                      <i class="{{usermenulink.fontAwesomeIcon}}"></i>
+                    </span>
+                    {{usermenulink.linkText}}
+                  </a>
+                </ng-container>
+
               </li>
             </ng-container>
           </ul>
@@ -174,7 +184,7 @@
     everything-center-container flex-wrap p-v-5>
     <ng-container *ngFor="let quicklink of navData?.quickLinks">
       <ng-container *ngIf="quicklink?.linkUrl">
-          <a flex-container align-items-v semibold p-h-15 m-a-5 header-hover-effect routerLink="{{quicklink.linkUrl}}" title="{{quicklink.linkText}}"
+        <a flex-container align-items-v semibold p-h-15 m-a-5 header-hover-effect routerLink="{{quicklink.linkUrl}}" title="{{quicklink.linkText}}"
           routerLinkActive="active-link">
           <span m-r-10 *ngIf="quicklink.fontAwesomeIcon">
             <i class="{{quicklink.fontAwesomeIcon}}"></i>
@@ -184,13 +194,13 @@
       </ng-container>
       <ng-container *ngIf="quicklink?.externalLinkUrl">
         <a flex-container align-items-v semibold p-h-15 m-a-5 header-hover-effect href="{{quicklink.externalLinkUrl}}" title="{{quicklink.linkText}}"
-        target="_blank">
-        <span m-r-10 *ngIf="quicklink.fontAwesomeIcon">
-          <i class="{{quicklink.fontAwesomeIcon}}"></i>
-        </span>
-        {{quicklink.linkText}}
-      </a>
-    </ng-container>
+          target="_blank">
+          <span m-r-10 *ngIf="quicklink.fontAwesomeIcon">
+            <i class="{{quicklink.fontAwesomeIcon}}"></i>
+          </span>
+          {{quicklink.linkText}}
+        </a>
+      </ng-container>
     </ng-container>
   </div>
 
