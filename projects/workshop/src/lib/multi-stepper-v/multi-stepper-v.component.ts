@@ -71,7 +71,7 @@ export class MultiStepperVComponent implements OnInit {
   }
 
   /** Get the Route Data */
-  public getRouteData() {
+  public getRouteData(): void {
     const routerUrl = this.router.url ? this.router.url : '';
     // truncate query parameters
     const url = (routerUrl && (routerUrl.match(/[?]/g) || []).length >= 1) ? routerUrl.substring(0, routerUrl.indexOf('?')) : routerUrl;
@@ -88,7 +88,7 @@ export class MultiStepperVComponent implements OnInit {
   }
 
   /** Update the Progress */
-  public updateProgress() {
+  public updateProgress(): void {
     if (this.stepData) {
       this.stepData.steps.forEach((element: IStep, index) => {
         if (index < this.currentRootPageIndex) {

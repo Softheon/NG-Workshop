@@ -58,7 +58,7 @@ export class NavHeaderComponent implements OnInit, AfterViewInit  {
    * The Constructor - Subscribes to router events and gets the current page
    * @param innerWidthService the inner width service
    */
-  constructor(private innerWidthService: InnerWidthService) {
+  constructor(private innerWidthService: InnerWidthService, private eRef: ElementRef) {
     window.addEventListener('resize', () => {
       this.innerWidthService.setScreenSizes();
       this.tabletScreen = this.innerWidthService.tabletScreen;
@@ -68,6 +68,20 @@ export class NavHeaderComponent implements OnInit, AfterViewInit  {
   /** For Calculating the Header Width for the Search Bar */
   @ViewChild('headerContent')
   headerContent: ElementRef;
+
+  /** For auto-closing the left menu and user menus when clicking off of the component */
+  @HostListener('document:click', ['$event'])
+  clickout(event) {
+    if (this.eRef.nativeElement.contains(event.target)) {
+      return;
+    } else {
+      // close menus
+      if (this.userMenu || this.leftMenu) {
+        this.userMenu = false;
+        this.leftMenu = false;
+      }
+    }
+  }
 
   /**
    * On Init
