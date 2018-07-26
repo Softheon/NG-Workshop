@@ -20,7 +20,7 @@
       <div align-items-v flex-container [attr.m-l-15]="(navData?.logoImageUrl || navData?.logoText) ? '' : null">
         <!-- Menu Icon -->
         <button id="menubutton" aria-haspopup="true" aria-controls="menu2" *ngIf="config.displayAppMenu && (navData?.applicationLinks?.length || navData?.menuLinks?.length)"
-          nav-header-box everything-center-container (click)="leftMenu = !leftMenu;" (blur)="leftMenu = false">
+          nav-header-box everything-center-container (click)="leftMenu = !leftMenu;">
           <span nav-header-box__icon>
             <i class="fas fa-th"></i>
           </span>
@@ -123,9 +123,9 @@
         </ng-container>
       </div>
       <!-- User Icon -->
-      <div *ngIf="config.displayUserMenu || (navData?.userName || navData?.userEmail)">
+      <div *ngIf="config.displayUserMenu || (navData?.userName || navData?.userEmail)" tabindex="100">
         <button id="menubutton2" aria-haspopup="true" aria-controls="menu3" flex-container align-items-v flex-center p-h-10 nav-header-box
-          sws-nav-menu__icon (click)="userMenu = !userMenu;" (blur)="userMenu = false">
+        sws-nav-menu__icon (click)="userMenu = !userMenu;">
           <span nav-header-box__icon>
             <i class="fas fa-user-circle" style="font-size: 28px;"></i>
             <i class="fas fa-caret-down" style="font-size: 14px; padding-bottom: 5px;"></i>
