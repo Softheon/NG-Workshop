@@ -117,12 +117,12 @@ $themes: (
 [sws-footer],
 .sws-footer {
   @include themify($themes) {
-    --footer-bg-color: themed('linkBorderColor');   
-    --footer-text-color: themed('footerTextColor');
-    --footer-hover-color: themed('footerHoverColor');
-    --footer-focus-color: themed('footerFocusColor');
-    --footer-link-hover-color: themed('linkHoverColor');
-    --footer-link-border-color: themed('linkBorderColor');     
+    --footer-bg-color: #{themed('linkBorderColor')};   
+    --footer-text-color: #{themed('footerTextColor')};
+    --footer-hover-color: #{themed('footerHoverColor')};
+    --footer-focus-color: #{themed('footerFocusColor')};
+    --footer-link-hover-color: #{themed('linkHoverColor')};
+    --footer-link-border-color: #{themed('linkBorderColor')};     
   }
 
   width: 100%;

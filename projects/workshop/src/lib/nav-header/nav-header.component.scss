@@ -105,6 +105,9 @@ $themes: (
   ),
 );
 
+:host ::ng-deep [sws-nav-menu__list-item] * {
+    color: var(--header-text-color,#0088ce); 
+}
 
 [sws-navbar] {
     height: 64px;
@@ -115,6 +118,7 @@ $themes: (
     z-index: 35;
     transition: background .3s ease;
     @include themify($themes) {
+        --header-text-color: #{themed('headerTextColor')};   
         background: themed('headerBackgroundColor');  
         color: themed('headerTextColor');          
       }
@@ -132,7 +136,7 @@ $themes: (
         -moz-appearance: none;
         background: transparent;
     }
-    ul {
+    ul, div ul {
         height: auto;
         line-height: unset;
         list-style: none;

@@ -36,6 +36,9 @@ export class NavHeaderComponent implements OnInit, AfterViewInit  {
   /** The Configruation Input */
   @Output() public searchCriteria: EventEmitter<any> = new EventEmitter<any>();
 
+  @Input() header = 'this is header';
+  @Input() footer = 'this is footer';
+
   /** Displays the left menu */
   public leftMenu = false;
 

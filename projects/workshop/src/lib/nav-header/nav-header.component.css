@@ -1,5 +1,9 @@
 /** DEFINE [any] CSS PROPERTIES HERE */
 /** TODO: MOVE TO SEPARATE FILE  @import 'themes.scss'; */
+:host ::ng-deep [sws-nav-menu__list-item] * {
+  color: var(--header-text-color, #0088ce);
+}
+
 [sws-navbar] {
   height: 64px;
   display: -webkit-box;
@@ -16,21 +20,25 @@
 }
 
 .theme-dark [sws-navbar] {
+  --header-text-color: #fff;
   background: #222;
   color: #fff;
 }
 
 .theme-light [sws-navbar] {
+  --header-text-color: #444;
   background: #fff;
   color: #444;
 }
 
 .theme-theme [sws-navbar] {
+  --header-text-color: #fff;
   background: var(--color-primary, #0088ce);
   color: #fff;
 }
 
 .theme-clear [sws-navbar] {
+  --header-text-color: #222;
   background: transparent;
   color: #222;
 }
@@ -68,7 +76,7 @@
   background: transparent;
 }
 
-[sws-navbar] ul {
+[sws-navbar] ul, [sws-navbar] div ul {
   height: auto;
   line-height: unset;
   list-style: none;
@@ -76,7 +84,7 @@
   padding-left: 0;
 }
 
-[sws-navbar] ul li {
+[sws-navbar] ul li, [sws-navbar] div ul li {
   -ms-flex-item-align: auto;
       -ms-grid-row-align: auto;
       align-self: auto;
