@@ -38,7 +38,7 @@ npm install --save @softheon/ng-workshop@latest
 Example:
 
 ```html
-<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
 ```
 
 <!-- #### Include the [GSAP](https://greensock.com/gsap) package in your package.json under 'dependencies'
@@ -227,6 +227,7 @@ Example Configuration (Optional):
 
 #### **Examples**
 Left to Right: 'lg', 'md', 'sm' (default)
+
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Exmaple-Icons.png "NG Workshop Example")
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-Images.png "NG Workshop Example")
 
@@ -263,7 +264,7 @@ Example with Search Event Emmitter :
 <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)"></sws-header>
 ```
 
-Example with ng-content: 
+Example with ng-content (calling a function instead of changing router link): 
 ```html
   <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)">
     <!-- put your dynamic content here -->
