@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
-import { INavigation, NavConfig, IFooter, FooterConfig, Card, IMultiStepper } from 'workshop';
+import { IHeader, HeaderConfig, IFooter, FooterConfig, Card, IMultiStepper } from 'workshop';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -115,12 +115,12 @@ export class AppComponent implements OnInit {
     }],
   };
 
-  public navConfig: NavConfig = new NavConfig();
+  public headerConfig: HeaderConfig = new HeaderConfig();
 
   /**
    * Example Navigation Data
    */
-  public navigation: INavigation = {
+  public navigation: IHeader = {
     logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
     userName: 'Jay Gatsby',
     userEmail: 'jay@thegreatgatsby.com',
@@ -131,8 +131,13 @@ export class AppComponent implements OnInit {
         fontAwesomeIcon: 'fas fa-anchor'
       },
       {
+        emitEvent: true,
+        linkText: 'Change Language',
+        fontAwesomeIcon: 'fas fa-chess'
+      },
+      {
         linkUrl: './contact',
-        linkText: 'Languages',
+        linkText: 'Contact',
         fontAwesomeIcon: 'fas fa-chess'
       },
       {
@@ -192,7 +197,7 @@ export class AppComponent implements OnInit {
       {
         linkUrl: './about/ourstory',
         linkText: 'Left Menu Link C'
-      }
+      },
     ],
     subHeaderLinks: [
       {
@@ -300,27 +305,28 @@ export class AppComponent implements OnInit {
   //  * Set the Data !
   //  * @param translateService The translation service
   //  */
-  // constructor(private translateService: TranslateService) {
-  //   translateService.setDefaultLang('en');
-  //   translateService.use('en');
+  constructor(private translateService: TranslateService) {
+    translateService.setDefaultLang('en');
+    translateService.use('en');
 
-  //   this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-  //     return this.data = [
-  //       { page: this.translateService.instant('nav.start'), url: './hello' },
-  //       {
-  //         page: this.translateService.instant('nav.about'),
-  //         url: './about',
-  //         subPages: [
-  //           { page: this.translateService.instant('nav.about'), url: './about/about' },
-  //           { page: this.translateService.instant('nav.contact'), url: './about/contact' },
-  //           { page: this.translateService.instant('nav.faq'), url: './about/faq' }
-  //         ]
-  //       },
-  //       { page: this.translateService.instant('nav.final'), url: './test' }
-  //     ];
-  //   });
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      console.log('thing');
+      // return this.data = [
+      //   { page: this.translateService.instant('nav.start'), url: './hello' },
+      //   {
+      //     page: this.translateService.instant('nav.about'),
+      //     url: './about',
+      //     subPages: [
+      //       { page: this.translateService.instant('nav.about'), url: './about/about' },
+      //       { page: this.translateService.instant('nav.contact'), url: './about/contact' },
+      //       { page: this.translateService.instant('nav.faq'), url: './about/faq' }
+      //     ]
+      //   },
+      //   { page: this.translateService.instant('nav.final'), url: './test' }
+      // ];
+    });
 
-  // }
+  }
 
   // @Input() show = true;
   // @HostListener('document:click')
@@ -350,17 +356,25 @@ export class AppComponent implements OnInit {
   //   // }
   // }
 
+  public function1(): void {
+    console.log('woohoo!');
+  }
+
+  public switchLanguage() {
+    this.translateService.use('es');
+  }
+
   ngOnInit() {
 
     this.footerConfig.theme = 'dark';
     this.footerConfig.size = 'sm';
 
-    this.navConfig.displayAppMenu = true;
-    this.navConfig.displaySearch = true;
-    this.navConfig.displayUserMenu = true;
-    this.navConfig.smallLogo = true;
-    // this.navConfig.displaySubNavMenu = true;
-    // this.navConfig.theme = 'theme';
+    this.headerConfig.displayAppMenu = true;
+    this.headerConfig.displaySearch = true;
+    this.headerConfig.displayUserMenu = true;
+    this.headerConfig.smallLogo = true;
+    // this.headerConfig.displaySubNavMenu = true;
+    // this.headerConfig.theme = 'theme';
 
     this.cardArray = [
       {

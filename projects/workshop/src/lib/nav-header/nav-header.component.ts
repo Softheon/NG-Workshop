@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, AfterViewInit, Output, EventEmitter, HostListener, ViewChild, ElementRef } from '@angular/core';
-import { INavigation, NavConfig } from './nav';
+import { IHeader, HeaderConfig } from './nav';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 import { InnerWidthService } from '../common/inner-width.service';
@@ -8,7 +8,7 @@ import { InnerWidthService } from '../common/inner-width.service';
  * The Navigation Header Component
  */
 @Component({
-  selector: 'sws-nav-header',
+  selector: 'sws-header',
   templateUrl: './nav-header.component.html',
   styleUrls: ['./nav-header.component.css'],
   animations: [
@@ -26,18 +26,18 @@ import { InnerWidthService } from '../common/inner-width.service';
     ])
   ],
 })
-export class NavHeaderComponent implements OnInit, AfterViewInit  {
+export class HeaderComponent implements OnInit, AfterViewInit  {
   /** The Data Input */
-  @Input() public navData: INavigation;
+  @Input() public navData: IHeader;
 
   /** The Configruation Input */
-  @Input() public config: NavConfig;
+  @Input() public config: HeaderConfig;
 
   /** The Configruation Input */
   @Output() public searchCriteria: EventEmitter<any> = new EventEmitter<any>();
 
-  @Input() header = 'this is header';
-  @Input() footer = 'this is footer';
+  /** Event Emitted TODO: RENAME! */
+  @Output() myEvent = new EventEmitter();
 
   /** Displays the left menu */
   public leftMenu = false;
@@ -95,7 +95,7 @@ export class NavHeaderComponent implements OnInit, AfterViewInit  {
 
     // define config
     if (!this.config) {
-      this.config = new NavConfig();
+      this.config = new HeaderConfig();
     }
     // if (this.config.displayAppMenu !== true) {
     //   this.maxWidth = 'calc(100vw - 280px)';
@@ -130,5 +130,9 @@ export class NavHeaderComponent implements OnInit, AfterViewInit  {
     } else if (event.keyCode === 27) {
       this.showSearchBar = false;
     }
+  }
+
+  public emitEvent1() {
+    this.myEvent.emit(null);
   }
 }

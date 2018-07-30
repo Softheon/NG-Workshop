@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MultiStepperVModule, MultiStepperModule, CardGridModule, NavHeaderModule, FooterModule } from 'workshop';
+import { MultiStepperVModule, MultiStepperModule, CardGridModule, HeaderModule, FooterModule } from 'workshop';
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -67,7 +67,7 @@ const appRoutes: Routes = [
     MultiStepperModule,
     MultiStepperVModule,
     CardGridModule,
-    NavHeaderModule,
+    HeaderModule,
     FooterModule,
     HttpClientModule,
     TranslateModule.forRoot({

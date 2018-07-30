@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NavHeaderComponent } from './nav-header.component';
+import { HeaderComponent } from './nav-header.component';
 
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 
-describe('NavHeaderComponent', () => {
-  let component: NavHeaderComponent;
-  let fixture: ComponentFixture<NavHeaderComponent>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
   /**
    * The mock router
@@ -27,14 +27,14 @@ describe('NavHeaderComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [ RouterTestingModule, FormsModule],
-      declarations: [ NavHeaderComponent ],
+      declarations: [ HeaderComponent ],
       providers: [{ provide: Router, useValue: routerStub }]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NavHeaderComponent);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

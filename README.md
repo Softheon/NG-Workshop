@@ -10,11 +10,11 @@
 ## **Quick Links**
 - [Getting Started](#getting-started)
 - [Components](#components)
-     * [Multi-Stepper](#multi-stepper)
+-    * [Vertical-Multi-Stepper](#vertical-multi-stepper)
      * [Card-Grid](#card-grid)
-     * [Nav-Header](#nav-header)
+     * [Header](#nav-header)
      * [Footer](#footer)
-     * [Vertical-Multi-Stepper](#vertical-multi-stepper)
+     * [Multi-Stepper](#multi-stepper)
 - [NPM Repository](https://www.npmjs.com/package/@softheon/ng-workshop)
 
 ## **Getting Started**
@@ -38,7 +38,7 @@ npm install --save @softheon/ng-workshop@latest
 Example:
 
 ```html
-<script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe" crossorigin="anonymous"></script>
+<script defer src="https://use.fontawesome.com/releases/v5.2.0/js/all.js" integrity="sha384-4oV5EgaV02iISL2ban6c/RmotsABqE4yZxZLcYMAdG7FAPsyHYAPpywE9PJo+Khy" crossorigin="anonymous"></script>
 ```
 
 <!-- #### Include the [GSAP](https://greensock.com/gsap) package in your package.json under 'dependencies'
@@ -68,120 +68,98 @@ export class MyAppModule { }
 
 ## **Components**
 
-### **Multi-Stepper**
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-MultiStepper_Header.png "NG Workshop Example")
+### **Vertical-Multi-Stepper**
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Vertical-Multi-Stepper-3.png "NG Workshop Example")
+
+#### `<sws-multi-stepper-v>` is a component used to render a progressive vertical multistepper.
 
 
-#### `<sws-multi-stepper>` is a component used to render a two-dimentional multi-step navbar, so developers can quickly create progress indicator and navigation wizards based on router outlet urls. The navigation is also accessibility-minded and keyboard tab-able.
+#### API reference for NG-Workshop Vertical-Multi-Stepper Component
 
-#### API reference for NG-Workshop Multi-Stepper Component
+Module.ts:
 
 ```TypeScript
-import { MultiStepperModule } from '@softheon/ng-workshop';
+import { MultiStepperVModule } from '@softheon/ng-workshop';
+```
+
+Component.ts:
+
+```TypeScript
+import { IMultiStepper } from '@softheon/ng-workshop';
+
+public stepData: IMultiStepper = {
+    menuText: 'MENU',
+    steps: [
+      {
+        stepTitle: 'Checkout',
+        stepUrl: './checkout',
+        stepIndex: 1,
+        isSubStep: false
+      },
+      {
+        stepTitle: 'Shipping',
+        stepUrl: './checkout/shipping',
+        stepIndex: 2,
+        isSubStep: true
+      },
+      {
+        stepTitle: 'Billing',
+        stepUrl: './checkout/billing',
+        stepIndex: 3,
+        isSubStep: true
+      },
+      {
+        stepTitle: 'Review',
+        stepUrl: './checkout/review',
+        stepIndex: 4,
+        isSubStep: true
+      },
+      {
+        stepTitle: 'Finish',
+        stepUrl: './finished',
+        stepIndex: 5,
+        isSubStep: false
+      }
+    ]
+  };
 ```
 
 #### **Add component to your html**
 
 ```html
-<sws-multi-stepper [config]=”configVar” [data]=”dataVar” (stepData)="customMethod($event)"></sws-multi-stepper>
+<sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
 ```
 
-The multistepper component receives two @inputs: one required [data] and one optional [config].
-
-On route change, the multistepper component also emits data. Below are the possible event emmiters to watch:
-
-- **currentStep** - the current step (Root Page) object
-- **currentSubStep** - the current sub-step (Page) object
-- **currentIndex** - the current index (ie. for progress completion)
-- **stepData** - includes all the above
-
-#### **Pass the Multi-Step Data**
-
-Example with Plain Text:
-
-**TIP: A minimum of two steps are REQUIRED for the navigation to display. Essentially a start and end node.**
-
-```Typescript
- public data = [
-   { page: 'Welcome', url: './welcome' },
-   {
-     page: 'About Us',
-     url: './about',
-     subPages: [
-      { page: 'Our Story', url: './about/ourstory' },
-      { page: 'Frequently Asked Questions', url: './about/faq' },
-      { page: 'Meet the Team', url: './about/team' }
-    ]
-   },
-    {
-     page: 'Projects',
-     url: './project',
-     subPages: [
-      { page: 'Project A', url: './project/projecta' },
-      { page: 'Project B', url: './project/projectb' },
-      { page: 'Project C', url: './project/projectc' }
-    ]
-   },
-   { page: 'Contact Us', url: './contact' }
- ];
-```
-
-Example with Translation Keys Text (using ngx-translate):
-
-```Typescript
-  this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-    return this.data = [
-      { page: this.translateService.instant('nav.step1'), url: './step1' },
-      {
-        page: this.translateService.instant('nav.step2'),
-        url: './step2',
-        subPages: [
-          { page: this.translateService.instant('nav.part1'), url: './step2/page1' },
-          { page: this.translateService.instant('nav.part2'), url: './step2/page2' },
-          { page: this.translateService.instant('nav.part3'), url: './step2/page3' }
-        ]
-      },
-      { page: this.translateService.instant('nav.step3'), url: './step3' }
-    ];
-  });
-```
-
-**TIP 1: If you are using ngx-translate, wrap the component in an ngIf**
-
-**TIP 2: We recommend putting the multistepper above your `<router-outlet></router-outlet>` html.**
+Example 2-column HTML with flexbox positioning: 
 
 ```html
-<div *ngIf="data">
-    <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
+<div flex-container-responsive>
+   <div m-t-15>
+     <sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
+   </div>
+   <div full-width m-a-10>
+      <!-- Content Goes here -->
+    </div>
 </div>
 ```
+#### **Vertical Multistepper 'IStep' Properties**
 
-#### **Configurations**
+| Key       | Type    | Required | Example   | Description                           |
+| --------- | :-----: | :------: | :-------: | ------------------------------------: |
+| stepUrl   | string  | yes      | './start' | The router link url                   |
+| stepTitle | string  | yes      | 'Start'   | The the title                         |
+| stepIndex | number  | yes      | '1'       | The order index                       |
+| isSubStep | boolean | yes      | true      | If the step is displayed as a substep |
+| isPassed  | boolean | n/a      | n/a       | If the step is passed                 |
+| isCurrent | boolean | n/a      | n/a       | If the step is current                |
 
-Example Configuration (Optional):
+#### **Vertical Multistepper 'IMultiStepper' Properties**
+| Key      | Type    | Required | Example                                  | Description           |
+| -------- | :-----: | :------: | :--------------------------------------: | --------------------: |
+| devMode  | boolean | optional | true, default value is false             | The multistepper text |
+| menuText | string  | optional | 'Epic Subtitle', default value is 'MENU' | The multistepper text |
+| steps    | IStep[] | required | steps: [{...}]                           | The array of ISteps   |
 
-```Typescript
-  public config = {
-    dir: 'v',
-    markStepsCompleted: false,
-    navTxt: 'Check Out This Sweet Nav!'
-  };
-```
-#### **Configuration Properties**
-
-| Configuration Key  | Example          | Required                     | Description                                                 |
-| ------------------ | :--------------: | :--------------------------: | ----------------------------------------------------------: |
-| dir                | 'v' / 'h'        | no (default is 'h')          | Direction of the navigation                                 |
-| navTxt             | 'My Awesome Nav' | no (default is 'Navigation') | Text that's displayed next to the mobile/vertical menu icon |
-| showLastNav        | true / false     | no (default is false)        | On horizontal view the text                                 |
-| markStepsCompleted | true / false     | no (default is true)         | Indicates progress completion at each page index            |
-| skipAhead          | true / false     | no (default is true)         | Allows the user to skip ahead of their current step         |
-
-#### **Examples**
-
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-1.png "NG Workshop Example")
-
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-2.png "NG Workshop Example")
 
 
 ### **Card-Grid**
@@ -249,57 +227,79 @@ Example Configuration (Optional):
 
 #### **Examples**
 Left to Right: 'lg', 'md', 'sm' (default)
+
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Exmaple-Icons.png "NG Workshop Example")
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-Images.png "NG Workshop Example")
 
-### **Nav-Header**
+### **Header**
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example1.png "NG Workshop Example")
 
-#### `<sws-nav-header>` is a component used to render a navigation header. Entirely highly configurable, highly customizable, and keyboard tab-able.
+#### `<sws-header>` is a component used to render a navigation header. Entirely highly configurable, highly customizable, and keyboard tab-able.
 
-#### API reference for NG-Workshop Nav-Header Component
+#### API reference for NG-Workshop Header Component
 
 
 Module.TS:
 
 ```TypeScript
-import { NavHeaderModule } from '@softheon/ng-workshop';
+import { HeaderModule } from '@softheon/ng-workshop';
 ```
 
 Component.ts:
 
 ```TypeScript
-import { INavigation, NavConfig } from '@softheon/ng-workshop';
+import { IHeader, HeaderConfig } from '@softheon/ng-workshop';
 ```
 
 
 #### **Add component to your html**
 
 ```html
-<sws-nav-header [navData]="navigation" [config]="navConfig"></sws-nav-header>
+<sws-header [navData]="navigation" [config]="headerConfig"></sws-header>
 ```
 
 Example with Search Event Emmitter : 
 
 ```html
-<sws-nav-header [navData]="navigation" [config]="navConfig" (searchCriteria)="searchSomething($event)"></sws-nav-header>
+<sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)"></sws-header>
 ```
+
+Example with ng-content (calling a function instead of changing router link): 
+```html
+  <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)">
+    <!-- put your dynamic content here -->
+    <ul m-a-0 p-l-0>
+      <li flex-container sws-nav-menu__list-item>
+        <a href="javascript:void(0);" full-width sws-link p-a-15 (click)="switchLanguage()">
+          <span m-r-10>
+            <i class="fas fa-chess"></i>
+          </span>
+            Switch
+        </a>
+      </li>
+    </ul>
+    <div p-a-10>
+      <i>This is custom html!</i>
+    </div>
+    <!-- end dynamic content -->
+  </sws-header>
+  ```
 
 **TIP: If you don't provide any navData it will display an empty header**
 
-#### **Pass the Nav-Header Data**
+#### **Pass the Header Data**
 
 This will render the header in your workshop theme color with only the logo text "Navigation"
 
 ```Typescript
-  public navigation: INavigation = {
+  public navigation: IHeader = {
     logoText: 'Navigation',
   };
   
-  public navConfig: NavConfig = new NavConfig();
+  public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
-    this.navConfig.theme = 'theme';
+    this.headerConfig.theme = 'theme';
   }
 ```
 
@@ -307,7 +307,7 @@ This will render the light colored header with only a logo image and quick links
 
 ```Typescript
 
-  public navigation: INavigation = {
+  public navigation: IHeader = {
     logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg',
     quickLinks: [
       {
@@ -332,10 +332,10 @@ This will render the light colored header with only a logo image and quick links
     ],
   };
 
-  public navConfig: NavConfig = new NavConfig();
+  public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
-    this.navConfig.theme = 'light';
+    this.headerConfig.theme = 'light';
   }
 ```
 
@@ -345,7 +345,7 @@ This will render the theme colored header with only a text logo, searchbar, left
 
 ```Typescript
 
-  public navigation: INavigation = {
+  public navigation: IHeader = {
     logoText: 'The Great Gatsby',
     userName: 'Jay Gatsby',
     userEmail: 'jay@thegreatgatsby.com',
@@ -383,12 +383,12 @@ This will render the theme colored header with only a text logo, searchbar, left
     ],
   };
   
-  public navConfig: NavConfig = new NavConfig();
+  public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
-    this.navConfig.displayAppMenu = true;
-    this.navConfig.displaySearch = true;
-    this.navConfig.theme = 'theme';
+    this.headerConfig.displayAppMenu = true;
+    this.headerConfig.displaySearch = true;
+    this.headerConfig.theme = 'theme';
   }
 ```
 
@@ -398,7 +398,7 @@ This will render the light theme header with only an svg image logo and left men
 
 ```Typescript
 
-  public navigation: INavigation = {
+  public navigation: IHeader = {
     logoImageUrl: 'http://tiny.cc/4oe4uy',
     logoLink: './customhomepage',
     appHeadingText: 'Additional Apps',
@@ -437,11 +437,11 @@ This will render the light theme header with only an svg image logo and left men
     ],
   };
   
-  public navConfig: NavConfig = new NavConfig();
+  public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
-    this.navConfig.displayAppMenu = true;
-    this.navConfig.theme = 'light';
+    this.headerConfig.displayAppMenu = true;
+    this.headerConfig.theme = 'light';
   }
 ```
 
@@ -452,7 +452,7 @@ This will render the theme colored header with an external logo url, an external
 
 ```Typescript
 
-  public navigation: INavigation = {
+  public navigation: IHeader = {
     logoImageUrl: 'http://tiny.cc/i5e4uy',
     externalLogoLink: 'https://www.softheon.com/Site/home',
     quickLinks: [
@@ -494,11 +494,11 @@ This will render the theme colored header with an external logo url, an external
     ],
   };
   
-  public navConfig: NavConfig = new NavConfig();
+  public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
-    this.navConfig.displaySubNavMenu = true;
-    this.navConfig.theme = 'theme';
+    this.headerConfig.displaySubNavMenu = true;
+    this.headerConfig.theme = 'theme';
   }
 ```
 
@@ -508,7 +508,7 @@ When there are more than 4 quick links, the ui renders them under the header.
 
 ```Typescript
 
-  public navigation: INavigation = {
+  public navigation: IHeader = {
     userName: 'Jay Gatsby',
     userEmail: 'jay@thegreatgatsby.com',
     logoImageUrl: 'http://tiny.cc/i5e4uy',
@@ -549,11 +549,11 @@ When there are more than 4 quick links, the ui renders them under the header.
     ],
   };
   
-  public navConfig: NavConfig = new NavConfig();
+  public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
-    this.navConfig.displaySearch = true;
-    this.navConfig.displayUserMenu = true;
+    this.headerConfig.displaySearch = true;
+    this.headerConfig.displayUserMenu = true;
   }
 ```
 
@@ -571,7 +571,7 @@ When there are more than 4 quick links, the ui renders them under the header.
 | theme             | 'dark' / 'light' / 'theme'  / 'clear' | no (default is 'dark')  | The header theme color         |
 | smallLogo         | 'true / false'                        | no (default is 'false') | Gives logo max-width of 64px   |
 
-#### **Navigation Header Content 'INavigation' Properties**
+#### **Header Content 'IHeader' Properties**
 
 **TIP: All properties are optional**
 **TIP: All external links open in new tab as target="_blank"**
@@ -593,7 +593,7 @@ When there are more than 4 quick links, the ui renders them under the header.
 | subHeaderLinks   | ILink[] | 'subHeaderLinks: [{...}]'         | ILink Object Array of link data in the subheader                             |
 
 
-#### **Navigation Header Link 'ILink' Properties**
+#### **Header Link 'ILink' Properties**
 
 **TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
 
@@ -719,94 +719,119 @@ Examples:
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-3.png "NG Workshop Example")
 
 
-### **Vertical-Multi-Stepper**
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Vertical-Multi-Stepper-3.png "NG Workshop Example")
 
-#### `<sws-multi-stepper-v>` is a component used to render a progressive vertical multistepper.
+### **Multi-Stepper**
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-MultiStepper_Header.png "NG Workshop Example")
 
 
-#### API reference for NG-Workshop Vertical-Multi-Stepper Component
+#### `<sws-multi-stepper>` is a component used to render a two-dimentional multi-step navbar, so developers can quickly create progress indicator and navigation wizards based on router outlet urls. The navigation is also accessibility-minded and keyboard tab-able.
 
-Module.ts:
-
-```TypeScript
-import { MultiStepperVModule } from '@softheon/ng-workshop';
-```
-
-Component.ts:
+#### API reference for NG-Workshop Multi-Stepper Component
 
 ```TypeScript
-import { IMultiStepper } from '@softheon/ng-workshop';
-
-public stepData: IMultiStepper = {
-    menuText: 'MENU',
-    steps: [
-      {
-        stepTitle: 'Checkout',
-        stepUrl: './checkout',
-        stepIndex: 1,
-        isSubStep: false
-      },
-      {
-        stepTitle: 'Shipping',
-        stepUrl: './checkout/shipping',
-        stepIndex: 2,
-        isSubStep: true
-      },
-      {
-        stepTitle: 'Billing',
-        stepUrl: './checkout/billing',
-        stepIndex: 3,
-        isSubStep: true
-      },
-      {
-        stepTitle: 'Review',
-        stepUrl: './checkout/review',
-        stepIndex: 4,
-        isSubStep: true
-      },
-      {
-        stepTitle: 'Finish',
-        stepUrl: './finished',
-        stepIndex: 5,
-        isSubStep: false
-      }
-    ]
-  };
+import { MultiStepperModule } from '@softheon/ng-workshop';
 ```
 
 #### **Add component to your html**
 
 ```html
-<sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
+<sws-multi-stepper [config]=”configVar” [data]=”dataVar” (stepData)="customMethod($event)"></sws-multi-stepper>
 ```
 
-Example 2-column HTML with flexbox positioning: 
+The multistepper component receives two @inputs: one required [data] and one optional [config].
+
+On route change, the multistepper component also emits data. Below are the possible event emmiters to watch:
+
+- **currentStep** - the current step (Root Page) object
+- **currentSubStep** - the current sub-step (Page) object
+- **currentIndex** - the current index (ie. for progress completion)
+- **stepData** - includes all the above
+
+#### **Pass the Multi-Step Data**
+
+Example with Plain Text:
+
+**TIP: A minimum of two steps are REQUIRED for the navigation to display. Essentially a start and end node.**
+
+```Typescript
+ public data = [
+   { page: 'Welcome', url: './welcome' },
+   {
+     page: 'About Us',
+     url: './about',
+     subPages: [
+      { page: 'Our Story', url: './about/ourstory' },
+      { page: 'Frequently Asked Questions', url: './about/faq' },
+      { page: 'Meet the Team', url: './about/team' }
+    ]
+   },
+    {
+     page: 'Projects',
+     url: './project',
+     subPages: [
+      { page: 'Project A', url: './project/projecta' },
+      { page: 'Project B', url: './project/projectb' },
+      { page: 'Project C', url: './project/projectc' }
+    ]
+   },
+   { page: 'Contact Us', url: './contact' }
+ ];
+```
+
+Example with Translation Keys Text (using ngx-translate):
+
+```Typescript
+  this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+    return this.data = [
+      { page: this.translateService.instant('nav.step1'), url: './step1' },
+      {
+        page: this.translateService.instant('nav.step2'),
+        url: './step2',
+        subPages: [
+          { page: this.translateService.instant('nav.part1'), url: './step2/page1' },
+          { page: this.translateService.instant('nav.part2'), url: './step2/page2' },
+          { page: this.translateService.instant('nav.part3'), url: './step2/page3' }
+        ]
+      },
+      { page: this.translateService.instant('nav.step3'), url: './step3' }
+    ];
+  });
+```
+
+**TIP 1: If you are using ngx-translate, wrap the component in an ngIf**
+
+**TIP 2: We recommend putting the multistepper above your `<router-outlet></router-outlet>` html.**
 
 ```html
-<div flex-container-responsive>
-   <div m-t-15>
-     <sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
-   </div>
-   <div full-width m-a-10>
-      <!-- Content Goes here -->
-    </div>
+<div *ngIf="data">
+    <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
 </div>
 ```
-#### **Vertical Multistepper 'IStep' Properties**
 
-| Key       | Type    | Required | Example   | Description                           |
-| --------- | :-----: | :------: | :-------: | ------------------------------------: |
-| stepUrl   | string  | yes      | './start' | The router link url                   |
-| stepTitle | string  | yes      | 'Start'   | The the title                         |
-| stepIndex | number  | yes      | '1'       | The order index                       |
-| isSubStep | boolean | yes      | true      | If the step is displayed as a substep |
-| isPassed  | boolean | n/a      | n/a       | If the step is passed                 |
-| isCurrent | boolean | n/a      | n/a       | If the step is current                |
+#### **Configurations**
 
-#### **Vertical Multistepper 'IMultiStepper' Properties**
-| Key      | Type    | Required | Example                                  | Description           |
-| -------- | :-----: | :------: | :--------------------------------------: | --------------------: |
-| devMode  | boolean | optional | true, default value is false             | The multistepper text |
-| menuText | string  | optional | 'Epic Subtitle', default value is 'MENU' | The multistepper text |
-| steps    | IStep[] | required | steps: [{...}]                           | The array of ISteps   |
+Example Configuration (Optional):
+
+```Typescript
+  public config = {
+    dir: 'v',
+    markStepsCompleted: false,
+    navTxt: 'Check Out This Sweet Nav!'
+  };
+```
+#### **Configuration Properties**
+
+| Configuration Key  | Example          | Required                     | Description                                                 |
+| ------------------ | :--------------: | :--------------------------: | ----------------------------------------------------------: |
+| dir                | 'v' / 'h'        | no (default is 'h')          | Direction of the navigation                                 |
+| navTxt             | 'My Awesome Nav' | no (default is 'Navigation') | Text that's displayed next to the mobile/vertical menu icon |
+| showLastNav        | true / false     | no (default is false)        | On horizontal view the text                                 |
+| markStepsCompleted | true / false     | no (default is true)         | Indicates progress completion at each page index            |
+| skipAhead          | true / false     | no (default is true)         | Allows the user to skip ahead of their current step         |
+
+#### **Examples**
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-1.png "NG Workshop Example")
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-2.png "NG Workshop Example")
+
