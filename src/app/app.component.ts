@@ -173,7 +173,7 @@ export class AppComponent implements OnInit {
         fontAwesomeIcon: 'fas fa-chess'
       },
       {
-        linkUrl: './contact',
+        externalLinkUrl: 'https://github.com/Softheon/NG-Workshop',
         linkText: 'Equity',
         fontAwesomeIcon: 'fas fa-chess'
       },
