@@ -402,6 +402,7 @@
   border-right: 2px solid #252525;
   -webkit-transition: all .3s;
   transition: all .3s;
+  height: 100px;
 }
 
 .theme-dark [sws-nav-menu__app] {
@@ -447,36 +448,29 @@
 
 [sws-nav-menu__app]:focus, [sws-nav-menu__app]:active {
   background: #0088ce;
-  border-bottom: 2px solid #0088ce;
-  border-right: 2px solid #0088ce;
+  background: var(--color-primary, #0088ce);
 }
 
 .theme-dark [sws-nav-menu__app]:focus, .theme-dark [sws-nav-menu__app]:active {
   background: #0088ce;
-  border-bottom: 2px solid #0088ce;
-  border-right: 2px solid #0088ce;
 }
 
 .theme-light [sws-nav-menu__app]:focus, .theme-light [sws-nav-menu__app]:active {
   background: #bac4d0;
-  border-bottom: 2px solid #bac4d0;
-  border-right: 2px solid #bac4d0;
 }
 
 .theme-theme [sws-nav-menu__app]:focus, .theme-theme [sws-nav-menu__app]:active {
   background: var(--color-primary, #0088ce);
-  border-bottom: 2px solid var(--color-primary, #0088ce);
-  border-right: 2px solid var(--color-primary, #0088ce);
 }
 
 .theme-clear [sws-nav-menu__app]:focus, .theme-clear [sws-nav-menu__app]:active {
   background: #bac4d0;
-  border-bottom: 2px solid #bac4d0;
-  border-right: 2px solid #bac4d0;
 }
 
 [sws-nav-menu__app-text] {
   letter-spacing: 2px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 [sws-nav-search] {

@@ -317,6 +317,7 @@ $themes: (
     border-right: 2px solid #252525;
     -webkit-transition: all .3s;
     transition: all .3s;
+    height: 100px;
     @include themify($themes) {
         border-bottom: themed('leftNavBorder');
         border-right: themed('leftNavBorder');
@@ -330,19 +331,17 @@ $themes: (
     }
     &:focus,
     &:active {
-        background: #0088ce; // todo: var theme color
-        border-bottom: 2px solid #0088ce; // todo: var theme color
-        border-right: 2px solid #0088ce; // todo: var theme color
+        background: #0088ce;
+        background: var(--color-primary,#0088ce);
         @include themify($themes) {
             background: themed('leftNavFocusColor');
-            border-bottom: themed('leftNavFocusBorder');
-            border-right: themed('leftNavFocusBorder');
           }
     }
 }
 
 [sws-nav-menu__app-text] {
     letter-spacing: 2px;
+    box-sizing: border-box;
 }
 
 [sws-nav-search] {
