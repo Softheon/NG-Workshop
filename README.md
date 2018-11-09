@@ -12,7 +12,7 @@
 - [Components](#components)
 -    * [Vertical-Multi-Stepper](#vertical-multi-stepper)
      * [Card-Grid](#card-grid)
-     * [Header](#nav-header)
+     * [Header](#header)
      * [Footer](#footer)
      * [Multi-Stepper](#multi-stepper)
 - [NPM Repository](https://www.npmjs.com/package/@softheon/ng-workshop)

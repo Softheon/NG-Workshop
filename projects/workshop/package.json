@@ -1,6 +1,6 @@
 {
   "name": "@softheon/ng-workshop",
-  "version": "1.7.1",
+  "version": "2.0.0",
   "description": "A suite of modern Angular components built on the Softheon Workshop Design System",
   "repository": {
     "type": "git",
@@ -12,7 +12,7 @@
     "url": "https://hack.softheon.io/Workshop/"
   },
   "peerDependencies": {
-    "@angular/common": "^6.0.0-rc.0 || ^6.0.0",
-    "@angular/core": "^6.0.0-rc.0 || ^6.0.0"
+    "@angular/common": "^7.0.3",
+    "@angular/core": "^7.0.3"
   }
 }
