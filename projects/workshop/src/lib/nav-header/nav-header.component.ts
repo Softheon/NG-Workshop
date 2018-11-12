@@ -52,7 +52,7 @@ export class HeaderComponent implements OnInit, AfterViewInit  {
   public showSearchBar = false;
 
   /** The Search Bar Max Width*/
-  public maxWidth = 'calc(100vw - 345px)';
+  public maxWidth = 'calc(100vw - 128px)';
 
   /** Responsiveness - Tablet Screen Boolean */
   public tabletScreen: boolean;
@@ -119,8 +119,23 @@ export class HeaderComponent implements OnInit, AfterViewInit  {
 
   /** Calculates the header width for the dynamic search bar menu */
   public calculateHeaderWidth(): void {
-    const offest = this.headerContent.nativeElement.offsetWidth;
-    this.maxWidth = `calc(100vw - ${offest}px)`;
+    const offset = this.headerContent.nativeElement.offsetWidth * 2.5;
+    this.maxWidth = `calc(100vw - ${offset}px)`;
+  }
+
+  /** Displays the search bar and auto-focuses */
+  public openSearchBar(): void {
+    this.showSearchBar = true;
+    window.setTimeout(() => {
+      document.getElementById('header-search-bar').focus();
+    }, 500);
+
+  }
+
+  /** Hides the search bar and auto-focuses search button */
+  public closeSearchBar(): void {
+    this.showSearchBar = false;
+    document.getElementById('search-button').focus();
   }
 
   /** If user hits enter or escape key in search bar */

@@ -106,7 +106,7 @@
 }
 
 [sws-nav__logo-img] {
-  height: 50px;
+  height: 100px;
   max-height: 50px;
   max-width: 145px;
 }
@@ -484,6 +484,8 @@
   position: absolute;
   top: 24px;
   margin-left: 2px;
+  color: transparent;
+  font-size: xx-small;
 }
 
 [sws-nav-search] input {
@@ -493,6 +495,24 @@
   padding: 0 15px;
   opacity: 0;
   margin-left: 1px;
+  left: 64px;
+  color: #fff;
+}
+
+.theme-dark [sws-nav-search] input {
+  color: #fff;
+}
+
+.theme-light [sws-nav-search] input {
+  color: #444;
+}
+
+.theme-theme [sws-nav-search] input {
+  color: #fff;
+}
+
+.theme-clear [sws-nav-search] input {
+  color: #222;
 }
 
 [sws-nav-search] input:focus ~ label, [sws-nav-search] input:active ~ label {

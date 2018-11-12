@@ -351,6 +351,8 @@ $themes: (
         position: absolute;
         top: 24px;
         margin-left: 2px;
+        color: transparent;
+        font-size: xx-small;
     }
     input {
         height: 64px;
@@ -359,6 +361,11 @@ $themes: (
         padding: 0 15px;
         opacity: 0;
         margin-left: 1px;
+        left: 64px;
+        color: #fff;
+        @include themify($themes) {
+            color: themed('headerTextColor');
+        }
         &:focus,
         &:active {
             &~label {

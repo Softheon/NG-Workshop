@@ -1,208 +1,348 @@
-<div flex-container-column flex-space-between full-height bg-light>
-  <div style="overflow-y: auto">
-    <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)" (myEvent)="switchLanguage()">
-      <!-- put your dynamic content here -->
-      <ul m-a-0 p-l-0>
-        <li flex-container sws-nav-menu__list-item>
-          <a href="javascript:void(0);" full-width sws-link p-a-15 (click)="switchLanguage()">
-            <span m-r-10>
-              <i class="fas fa-chess"></i>
-            </span>
-            Switch
-          </a>
-        </li>
-      </ul>
-      <div p-a-10>
-        <i>This is custom html!</i>
-      </div>
-      <!-- <div class="card-block">
+<div style="overflow-y: auto">
+  <sws-header
+    [navData]="navigation"
+    [config]="headerConfig"
+    (searchCriteria)="searchSomething($event)"
+    (myEvent)="switchLanguage()"
+  >
+    <!-- put your dynamic content here -->
+    <ul m-a-0 p-l-0>
+      <li flex-container sws-nav-menu__list-item>
+        <a
+          href="javascript:void(0);"
+          full-width
+          sws-link
+          p-a-15
+          (click)="switchLanguage()"
+        >
+          <span m-r-10> <i class="fas fa-chess"></i> </span> Switch
+        </a>
+      </li>
+    </ul>
+    <div p-a-10><i>This is custom html!</i></div>
+    <!--
+      <div class="card-block">
         <h4 class="card-title">You can put any content here</h4>
+
         <p class="card-text">For example this line of text and</p>
+
         <button sws-button--primary (click)="switchLanguage()">This button</button>
-      </div> -->
-      <!-- end dynamic content -->
-    </sws-header>
-    <div flex-container-responsive>
 
-      <div m-t-15>
-        <sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
       </div>
-      <div full-width m-a-10>
-        <div m-a-15>
-          <div sws-card p-a-0 style="max-width: 100%;" text-center>
-            <!-- TEMP NG WORKSHOP -->
-            <!-- <div sws-parallax everything-center-container sws-default-banner-img style="width: 100%;height: 300px;">
-                  <div display-4 text-white>Welcome to NG-Workshop</div>
-                </div> -->
+    -->
+    <!-- end dynamic content -->
+  </sws-header>
+  <div flex-container-responsive>
+    <div m-t-15>
+      <sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
+    </div>
+    <div full-width m-a-10>
+      <div m-a-15>
+        <div sws-card p-a-0 style="max-width: 100%;" text-center>
+          <!-- TEMP NG WORKSHOP -->
+          <!--
+            <div sws-parallax everything-center-container sws-default-banner-img style="width: 100%;height: 300px;">
+              <div display-4 text-white>Welcome to NG-Workshop</div>
 
-            <div everything-center-container flex-container-column style="width: 100%;height: 285px; background-position: center; background-size: cover; background-image: url('https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/Pixel_BG.jpg')">
-              <div display-4>Welcome to <span workshop>NG-Workshop</span></div>
-              <div h3 console>{{'common.hello' | translate}}</div>
             </div>
-            <!-- NG WORKSHOP -->
-            <!-- <img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"
-              alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
-              <h1 text-center workshop>NG-WORKSHOP</h1> -->
+          -->
 
-            <!-- Multi Stepper Example -->
-            <div *ngIf="data" m-t-30>
-                <sws-multi-stepper [data]="data" [config]="config" (stepData)="currentStep($event)"></sws-multi-stepper>
+          <div
+            everything-center-container
+            flex-container-column
+            style="width: 100%;height: 285px; background-position: center; background-size: cover; background-image: url('https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/Pixel_BG.jpg')"
+          >
+            <div display-4>Welcome to <span workshop>NG-Workshop</span></div>
+            <div h3 console>{{ "common.hello" | translate }}</div>
+          </div>
+          <!-- NG WORKSHOP -->
+          <!--
+            <img everything-center-container src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg"
+            alt="Softheon Workshop" style="height: 61px;margin: 20px auto;">
+
+            <h1 text-center workshop>NG-WORKSHOP</h1>
+          -->
+
+          <!-- Multi Stepper Example -->
+          <div *ngIf="data" m-t-30>
+            <sws-multi-stepper
+              [data]="data"
+              [config]="config"
+              (stepData)="currentStep($event)"
+            ></sws-multi-stepper>
+          </div>
+
+          <!-- For reference, the returned data from the event emitter -->
+          <div m-h-20>
+            <p h6>{{ blob | json }}</p>
+          </div>
+          <div>
+            <!--
+              CONTENT GOES HERE:
+              <div class="toggle" [@toggle]="show" (@toggle.start)="animationStarted($event)" (@toggle.done)="animationDone($event)" *ngIf="show">
+
+                <h1>HELLO WORLD!!!!!!</h1>
+
               </div>
-
-            <!-- For reference, the returned data from the event emitter -->
-            <div m-h-20>
-              <p h6>{{blob | json}}</p>
-            </div>
-            <div>
-              <!-- CONTENT GOES HERE: 
-                <div class="toggle" [@toggle]="show" (@toggle.start)="animationStarted($event)" (@toggle.done)="animationDone($event)" *ngIf="show">
-                  <h1>HELLO WORLD!!!!!!</h1>
-                </div> -->
-            </div>
+            -->
           </div>
         </div>
-        <div text-center h4>
-          <router-outlet></router-outlet>
-        </div>
-        <!-- Workshop Fancy! -->
-        <div sws-card p-a-30 style="max-width: 600px; margin: 0 auto">
-          <h4>Welcome to Workshop, please sign in:</h4>
-          <div sws-form full-width>
-            <input sws-form__input type="text" name="fancypassword" id="fancy2" required>
-            <label sws-form__label for="fancy2">User</label>
-            <div sws-form__bar></div>
+      </div>
+      <div text-center h4><router-outlet></router-outlet></div>
+      <!-- Workshop Fancy! -->
+      <div sws-card p-a-30 style="max-width: 600px; margin: 0 auto">
+        <h4>Welcome to Workshop, please sign in:</h4>
+        <div sws-form full-width>
+          <input
+            sws-form__input
+            type="text"
+            name="fancypassword"
+            id="fancy2"
+            required
+          />
+          <label sws-form__label for="fancy2">User</label>
+          <div sws-form__bar></div>
         </div>
         <div sws-form full-width>
-            <input sws-form__input type="text" name="fancypassword" id="fancy2" onkeyup="this.setAttribute('value', this.value);">
-            <label sws-form__label for="fancy2">Pass</label>
-            <div sws-form__bar></div>
+          <input
+            sws-form__input
+            type="text"
+            name="fancypassword"
+            id="fancy2"
+            onkeyup="this.setAttribute('value', this.value);"
+          />
+          <label sws-form__label for="fancy2">Pass</label>
+          <div sws-form__bar></div>
         </div>
         <button sws-button--dark m-t-30>Submit</button>
-        </div>
-        <!-- Card Grid Example -->
-        <div flex-container flex-center>
-          <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
-          <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
-          <sws-card-grid [data]="cardContent" [cardSize]="cardSize"></sws-card-grid>
-        </div>
       </div>
+      <!-- Card Grid Example -->
+      <div flex-container flex-center>
+        <sws-card-grid
+          [data]="cardContent"
+          [cardSize]="cardSize"
+        ></sws-card-grid>
+        <sws-card-grid
+          [data]="cardContent"
+          [cardSize]="cardSize"
+        ></sws-card-grid>
+        <sws-card-grid
+          [data]="cardContent"
+          [cardSize]="cardSize"
+        ></sws-card-grid>
+      </div>
+    </div>
 
-      <div style="position: relative;width: 175px;">
-        <div style="position: fixed;top: 48vh; left: 17px" p-a-5 flex-container-column flex-center>
-          <button sws-button--primary>BACK</button>
-          <button sws-button--secondary disabled>NEXT</button>
+    <div style="position: relative;width: 175px;">
+      <div
+        style="position: fixed;top: 48vh; left: 17px"
+        p-a-5
+        flex-container-column
+        flex-center
+      >
+        <button sws-button--primary>BACK</button>
+        <button sws-button--secondary disabled>NEXT</button>
 
-          <!-- <button sws-button-outline--fancy text-upper>
+        <!--
+          <button sws-button-outline--fancy text-upper>
             Previous
+
           </button>
+
           <button sws-button-outline--fancy text-upper m-t-10>
+
             Next
-          </button> -->
-        </div>
-        <div style="position: fixed;bottom: 10vh;right: 40px;">
-          <div sws-icon-flat--primary-lg>
-            <i class="fas fa-arrow-up"></i>
-          </div>
-          <!-- <div semibold flex-center text-upper>Top</div> -->
-          <!-- <div text-upper style="   
+
+          </button>
+        -->
+      </div>
+      <div style="position: fixed;bottom: 10vh;right: 40px;">
+        <div sws-icon-flat--primary-lg><i class="fas fa-arrow-up"></i></div>
+        <!-- <div semibold flex-center text-upper>Top</div> -->
+        <!--
+          <div text-upper style="
           height: 100px;
+
           display: flex;
+
           flex-direction: column;
+
           width: 100px;
+
           align-items: center;
+
           text-align: center;
+
           font-weight: 500;
+
           justify-content: center;">
+
             <i class="fas fa-arrow-up"></i>
+
             <br>
+
               Top
-          </div> -->
-        </div>
+
+          </div>
+        -->
       </div>
     </div>
   </div>
-  <sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
 </div>
+<sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
 
-
-<!-- <div p-a-10 flex-center flex-container-column><img src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg" width="100">
+<!--
+  <div p-a-10 flex-center flex-container-column><img src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg" width="100">
   <div m-t-15>
+
       [social icons go here]
-  </div></div> -->
 
+  </div></div>
+-->
 
-
-<!-- <div m-v-30>
+<!--
+  <div m-v-30>
     <p h6 text-center semibold text-upper>Quick Links:</p>
-    <div flex-container align-items-v flex-space-evenly style="max-width: 1200px;margin: 0 auto;">
-      <p m-t-0 m-b-5>Link A</p>
-      <p m-t-0 m-b-5>Link B</p>
-      <p m-t-0 m-b-5>Link C</p>
-      <p m-t-0 m-b-5>Link D</p>
-      <p m-t-0 m-b-5>Link E</p>
-      <p m-t-0 m-b-5>Link F</p>
-    </div>
-  </div> -->
-<!-- <div p-t-15 align-items-v flex-space-between style="flex-wrap:nowrap;max-width: 1200px;margin: 0 auto;">
-    <div flex-1>
-      <small>
-        <a sws-footer-link sws-link>Terms</a>
-      </small>
-    </div>
-    <div flex-1 text-center>
-      <small> © 2018 - All Rights Reserved </small>
-    </div>
-    <div flex-1 text-right>
-      <small>
-        <a sws-footer-link sws-link>Privacy</a>
-      </small>
-    </div>
-   <div flex-1 text-right>
-        <small> © 2018 - All Rights Reserved </small>
-        <small>  &bull; Terms  &bull; Privacy </small>
-      </div>
-  </div> -->
 
-<!-- 
-<footer sws-footer bg-light p-a-20>
-  <div align-items-v flex-space-between>
-    <div>[quick links go here]</div>
-    <div everything-center-container flex-container-column>
-      <img  p-a-10 src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg" width="100">
-      <p semibold text-center m-b-20 m-t-5>Awesome title goes here!</p>
+    <div flex-container align-items-v flex-space-evenly style="max-width: 1200px;margin: 0 auto;">
+
+      <p m-t-0 m-b-5>Link A</p>
+
+      <p m-t-0 m-b-5>Link B</p>
+
+      <p m-t-0 m-b-5>Link C</p>
+
+      <p m-t-0 m-b-5>Link D</p>
+
+      <p m-t-0 m-b-5>Link E</p>
+
+      <p m-t-0 m-b-5>Link F</p>
+
     </div>
-    <div>
-      <p semibold>Contact Us</p>
-      1(800) 236-7941 
-      <br>  info@softheon.com 
-      <br>  
-      <br>  1500 Stony Brook Rd. 
-      <br>  Stony Brook, NY 11794
-      <br>
-      <br>
+
   </div>
-  </div>
-  <div align-items-v flex-space-between style="flex-wrap:nowrap">
-    <div  flex-1 class="ng-star-inserted">
-      <a  sws-footer-link sws-link href="tel:+5555555555">Contact Us: 5555555555</a>
-    </div>
+-->
+<!--
+  <div p-t-15 align-items-v flex-space-between style="flex-wrap:nowrap;max-width: 1200px;margin: 0 auto;">
     <div flex-1>
-      <div flex-center flex-container-column>
-        <div flex-space-evenly style="width: 500px; font-size: 1.5em">
-          <i class="fab fa-linkedin-in"></i>
-          <i class="fab fa-facebook-f"></i>
-          <i class="fab fa-twitter"></i>
-          <i class="fab fa-youtube"></i>
-          <i class="fab fa-instagram"></i>
-          <i class="fab fa-google-plus-g"></i>
-          <i class="fab fa-pinterest-p"></i>
-          <i class="fab fa-github"></i>
-          <i class="fab fa-npm"></i>
-        </div>
+
+      <small>
+
+        <a sws-footer-link sws-link>Terms</a>
+
+      </small>
+
+    </div>
+
+    <div flex-1 text-center>
+
+      <small> © 2018 - All Rights Reserved </small>
+
+    </div>
+
+    <div flex-1 text-right>
+
+      <small>
+
+        <a sws-footer-link sws-link>Privacy</a>
+
+      </small>
+
+    </div>
+
+   <div flex-1 text-right>
+
+        <small> © 2018 - All Rights Reserved </small>
+
+        <small>  &bull; Terms  &bull; Privacy </small>
+
       </div>
-    </div>
-    <div  flex-1 text-right>
-      <small > © 2018 - All Rights Reserved </small>
-    </div>
+
   </div>
-</footer> -->
+-->
+
+<!--
+  <footer sws-footer bg-light p-a-20>
+
+    <div align-items-v flex-space-between>
+
+      <div>[quick links go here]</div>
+
+      <div everything-center-container flex-container-column>
+
+        <img  p-a-10 src="https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil.svg" width="100">
+
+        <p semibold text-center m-b-20 m-t-5>Awesome title goes here!</p>
+
+      </div>
+
+      <div>
+
+        <p semibold>Contact Us</p>
+
+        1(800) 236-7941 
+
+        <br>  info@softheon.com 
+
+        <br>  
+
+        <br>  1500 Stony Brook Rd. 
+
+        <br>  Stony Brook, NY 11794
+
+        <br>
+
+        <br>
+
+    </div>
+
+    </div>
+
+    <div align-items-v flex-space-between style="flex-wrap:nowrap">
+
+      <div  flex-1 class="ng-star-inserted">
+
+        <a  sws-footer-link sws-link href="tel:+5555555555">Contact Us: 5555555555</a>
+
+      </div>
+
+      <div flex-1>
+
+        <div flex-center flex-container-column>
+
+          <div flex-space-evenly style="width: 500px; font-size: 1.5em">
+
+            <i class="fab fa-linkedin-in"></i>
+
+            <i class="fab fa-facebook-f"></i>
+
+            <i class="fab fa-twitter"></i>
+
+            <i class="fab fa-youtube"></i>
+
+            <i class="fab fa-instagram"></i>
+
+            <i class="fab fa-google-plus-g"></i>
+
+            <i class="fab fa-pinterest-p"></i>
+
+            <i class="fab fa-github"></i>
+
+            <i class="fab fa-npm"></i>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div  flex-1 text-right>
+
+        <small > © 2018 - All Rights Reserved </small>
+
+      </div>
+
+    </div>
+
+  </footer>
+-->

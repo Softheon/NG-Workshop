@@ -121,9 +121,10 @@ export class AppComponent implements OnInit {
    * Example Navigation Data
    */
   public navigation: IHeader = {
-    logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
-    userName: 'Jay Gatsby',
-    userEmail: 'jay@thegreatgatsby.com',
+    logoText: 'NG-Workshop',
+    // logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
+    // userName: 'Jay Gatsby',
+    // userEmail: 'jay@thegreatgatsby.com',
     userMenuLinks: [
       {
         linkUrl: './home',
@@ -371,7 +372,7 @@ export class AppComponent implements OnInit {
 
     this.headerConfig.displayAppMenu = true;
     this.headerConfig.displaySearch = true;
-    this.headerConfig.displayUserMenu = true;
+    this.headerConfig.displayUserMenu = false;
     this.headerConfig.smallLogo = true;
     // this.headerConfig.displaySubNavMenu = true;
     // this.headerConfig.theme = 'theme';

@@ -1,6 +1,73 @@
 <div class="theme-{{config?.theme ? config?.theme : 'dark'}}">
   <nav sws-navbar role="navData" flex-container>
-    <div flex-container-row #headerContent>
+    <div flex-container-row>
+      <div align-items-v flex-container [attr.r-l-15]="(navData?.logoImageUrl || navData?.logoText) ? '' : null">
+          <!-- Menu Icon -->
+          <button #headerContent id="menubutton" aria-haspopup="true" aria-controls="menu2" *ngIf="config.displayAppMenu && (navData?.applicationLinks?.length || navData?.menuLinks?.length)"
+            nav-header-box everything-center-container (click)="leftMenu = !leftMenu;">
+            <span nav-header-box__icon>
+              <i class="fas fa-th"></i>
+            </span>
+            Menu
+          </button>
+          <!-- Left Menu Navigation -->
+          <div sws-nav-menu [@toggleH]="leftMenu" *ngIf="leftMenu">
+            <div>
+              <!-- Apps -->
+              <div *ngIf="navData?.applicationLinks?.length" sws-nav-menu__header m-a-0 p-a-10 semibold text-upper>
+                {{navData?.appHeadingText ? navData?.appHeadingText : 'Applications'}}
+              </div>
+              <ul m-a-0 p-l-0 id="menu2" aria-labelledby="menubutton" tabindex="-1" *ngIf="navData?.applicationLinks?.length" flex-container
+                flex-wrap style="margin-right: -2px;box-sizing: border-box;">
+                <ng-container *ngFor="let applicationlinks of navData?.applicationLinks">
+                  <li sws-nav-menu__app>
+                    <ng-container *ngIf="applicationlinks?.externalLinkUrl">
+                      <a text-upper sws-nav-menu__app-text everything-center-container flex-container-column sws-link full-height full-width href="{{applicationlinks.externalLinkUrl}}"
+                        title="{{applicationlinks.linkText}}" target="_blank">
+                        <i *ngIf="applicationlinks.fontAwesomeIcon" class="{{applicationlinks.fontAwesomeIcon}} fa-lg" p-b-5></i>
+                        {{applicationlinks.linkText}}
+                      </a>
+                    </ng-container>
+                    <ng-container *ngIf="applicationlinks?.linkUrl">
+                      <a text-upper sws-nav-menu__app-text everything-center-container flex-container-column sws-link full-height full-width routerLink="{{applicationlinks.linkUrl}}"
+                        title="{{applicationlinks.linkText}}">
+                        <i *ngIf="applicationlinks.fontAwesomeIcon" class="{{applicationlinks.fontAwesomeIcon}} fa-lg" p-b-5></i>
+                        {{applicationlinks.linkText}}
+                      </a>
+                    </ng-container>
+                  </li>
+                </ng-container>
+              </ul>
+              <!-- Regular List -->
+              <div *ngIf="navData?.menuLinks?.length" p-a-10 semibold text-upper sws-nav-menu__header border-top-fix-style>
+                {{navData?.headingText ? navData?.headingText : 'Regular Links'}}
+              </div>
+              <ul m-a-0 p-l-0 *ngIf="navData?.menuLinks?.length">
+                <ng-container *ngFor="let menulinks of navData?.menuLinks">
+                  <li flex-container sws-nav-menu__list-item>
+                    <ng-container *ngIf="menulinks?.externalLinkUrl">
+                      <a sws-link p-a-15 full-width href="{{menulinks.externalLinkUrl}}" title="{{menulinks.linkText}}" target="_blank">
+                        <span m-r-10 *ngIf="menulinks.fontAwesomeIcon">
+                          <i class="{{menulinks.fontAwesomeIcon}}"></i>
+                        </span>
+                        {{menulinks.linkText}}
+                      </a>
+                    </ng-container>
+                    <ng-container *ngIf="menulinks?.linkUrl">
+                      <a sws-link p-a-15 full-width routerLink="{{menulinks.linkUrl}}" title="{{menulinks.linkText}}">
+                        <span m-r-10 *ngIf="menulinks.fontAwesomeIcon">
+                          <i class="{{menulinks.fontAwesomeIcon}}"></i>
+                        </span>
+                        {{menulinks.linkText}}
+                      </a>
+                    </ng-container>
+                  </li>
+                </ng-container>
+              </ul>
+            </div>
+          </div>
+      </div>
+          
       <!-- Logo -->
       <div sws-nav__logo p-l-15 *ngIf="navData?.logoImageUrl" [class.tinyLogo]="config?.smallLogo">
         <ng-container *ngIf="!navData?.externalLogoLink">
@@ -17,92 +84,7 @@
       <div p-l-15 *ngIf="navData?.logoText">
         <h1 h2>{{navData?.logoText}}</h1>
       </div>
-      <div align-items-v flex-container [attr.m-l-15]="(navData?.logoImageUrl || navData?.logoText) ? '' : null">
-        <!-- Menu Icon -->
-        <button id="menubutton" aria-haspopup="true" aria-controls="menu2" *ngIf="config.displayAppMenu && (navData?.applicationLinks?.length || navData?.menuLinks?.length)"
-          nav-header-box everything-center-container (click)="leftMenu = !leftMenu;">
-          <span nav-header-box__icon>
-            <i class="fas fa-th"></i>
-          </span>
-          Menu
-        </button>
-        <!-- Left Menu Navigation -->
-        <div sws-nav-menu [@toggleH]="leftMenu" *ngIf="leftMenu">
-          <div>
-            <!-- Apps -->
-            <div *ngIf="navData?.applicationLinks?.length" sws-nav-menu__header m-a-0 p-a-10 semibold text-upper>
-              {{navData?.appHeadingText ? navData?.appHeadingText : 'Applications'}}
-            </div>
-            <ul m-a-0 p-l-0 id="menu2" aria-labelledby="menubutton" tabindex="-1" *ngIf="navData?.applicationLinks?.length" flex-container
-              flex-wrap style="margin-right: -2px;box-sizing: border-box;">
-              <ng-container *ngFor="let applicationlinks of navData?.applicationLinks">
-                <li sws-nav-menu__app>
-                  <ng-container *ngIf="applicationlinks?.externalLinkUrl">
-                    <a text-upper sws-nav-menu__app-text everything-center-container flex-container-column sws-link full-height full-width href="{{applicationlinks.externalLinkUrl}}"
-                      title="{{applicationlinks.linkText}}" target="_blank">
-                      <i *ngIf="applicationlinks.fontAwesomeIcon" class="{{applicationlinks.fontAwesomeIcon}} fa-lg" p-b-5></i>
-                      {{applicationlinks.linkText}}
-                    </a>
-                  </ng-container>
-                  <ng-container *ngIf="applicationlinks?.linkUrl">
-                    <a text-upper sws-nav-menu__app-text everything-center-container flex-container-column sws-link full-height full-width routerLink="{{applicationlinks.linkUrl}}"
-                      title="{{applicationlinks.linkText}}">
-                      <i *ngIf="applicationlinks.fontAwesomeIcon" class="{{applicationlinks.fontAwesomeIcon}} fa-lg" p-b-5></i>
-                      {{applicationlinks.linkText}}
-                    </a>
-                  </ng-container>
-                </li>
-              </ng-container>
-            </ul>
-            <!-- Regular List -->
-            <div *ngIf="navData?.menuLinks?.length" p-a-10 semibold text-upper sws-nav-menu__header border-top-fix-style>
-              {{navData?.headingText ? navData?.headingText : 'Regular Links'}}
-            </div>
-            <ul m-a-0 p-l-0 *ngIf="navData?.menuLinks?.length">
-              <ng-container *ngFor="let menulinks of navData?.menuLinks">
-                <li flex-container sws-nav-menu__list-item>
-                  <ng-container *ngIf="menulinks?.externalLinkUrl">
-                    <a sws-link p-a-15 full-width href="{{menulinks.externalLinkUrl}}" title="{{menulinks.linkText}}" target="_blank">
-                      <span m-r-10 *ngIf="menulinks.fontAwesomeIcon">
-                        <i class="{{menulinks.fontAwesomeIcon}}"></i>
-                      </span>
-                      {{menulinks.linkText}}
-                    </a>
-                  </ng-container>
-                  <ng-container *ngIf="menulinks?.linkUrl">
-                    <a sws-link p-a-15 full-width routerLink="{{menulinks.linkUrl}}" title="{{menulinks.linkText}}">
-                      <span m-r-10 *ngIf="menulinks.fontAwesomeIcon">
-                        <i class="{{menulinks.fontAwesomeIcon}}"></i>
-                      </span>
-                      {{menulinks.linkText}}
-                    </a>
-                  </ng-container>
-                </li>
-              </ng-container>
-            </ul>
-          </div>
-        </div>
-        <!-- Search -->
-        <div *ngIf="config.displaySearch" sws-nav-search>
-          <button nav-header-box everything-center-container (click)="showSearchBar = true">
-            <span nav-header-box__icon>
-              <i class="fas fa-search"></i>
-            </span>
-            Search
-          </button>
-          <ng-container *ngIf="showSearchBar">
-            <input autofocus [(ngModel)]="searchInput" (keydown)="keyDownFunction($event)" class="sws-search-bar" type="text" id="header-search-bar"
-              placeholder="Search..." [style.maxWidth]="maxWidth" />
-            <label *ngIf="showSearchBar" class="sws-search-bar" for="header-search-bar">Search</label>
-            <button nav-header-box everything-center-container nav-close-search (click)="showSearchBar = false" title="Close Search">
-              <span nav-header-box__icon>
-                <i class="fas fa-times"></i>
-              </span>
-              Close
-            </button>
-          </ng-container>
-        </div>
-      </div>
+
     </div>
     <div flex-container align-items-v m-l-auto>
       <!-- Links -->
@@ -127,6 +109,26 @@
           </ng-container>
         </ng-container>
       </div>
+      <!-- Search -->
+      <div *ngIf="config.displaySearch" sws-nav-search>
+          <button id="search-button" nav-header-box everything-center-container (click)="openSearchBar()">
+            <span nav-header-box__icon>
+              <i class="fas fa-search"></i>
+            </span>
+            Search
+          </button>
+          <ng-container *ngIf="showSearchBar">
+            <input autofocus [(ngModel)]="searchInput" (keydown)="keyDownFunction($event)" class="sws-search-bar" type="text" id="header-search-bar"
+              placeholder="Search..." [style.maxWidth]="maxWidth" />
+            <label *ngIf="showSearchBar" class="sws-search-bar" for="header-search-bar">Search</label>
+            <button nav-header-box everything-center-container nav-close-search (click)="closeSearchBar()" title="Close Search">
+              <span nav-header-box__icon>
+                <i class="fas fa-times"></i>
+              </span>
+              Close
+            </button>
+          </ng-container>
+        </div>
       <!-- User Icon -->
       <div *ngIf="config.displayUserMenu || (navData?.userName || navData?.userEmail)" tabindex="100">
         <button id="menubutton2" aria-haspopup="true" aria-controls="menu3" flex-container align-items-v flex-center p-h-10 nav-header-box
