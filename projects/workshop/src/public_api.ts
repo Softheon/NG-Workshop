@@ -13,6 +13,10 @@ export * from './lib/nav-header/nav';
 export * from './lib/nav-header/nav-header.component';
 export * from './lib/nav-header/nav-header.module';
 
+export * from './lib/breadcrumb/breadcrumb';
+export * from './lib/breadcrumb/breadcrumb.component';
+export * from './lib/breadcrumb/breadcrumb.module';
+
 export * from './lib/footer/footer';
 export * from './lib/footer/footer.component';
 export * from './lib/footer/footer.module';

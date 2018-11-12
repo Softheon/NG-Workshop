@@ -1,0 +1,42 @@
+<div p-v-5>
+  <ng-container
+    *ngFor="
+      let crumb of breadcrumbData.breadcrumb;
+      let i = index;
+      let first = first;
+      let last = last
+    ">
+    <ng-container *ngIf="crumb.externalLinkUrl && !last">
+      <a
+        [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'"
+        href="crumb.externalLinkUrl"
+      >
+        {{ crumb.linkText }}
+      </a>
+    </ng-container>
+
+    <ng-container *ngIf="crumb.linkUrl && !last">
+      <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" href="">
+        {{ crumb.linkText }}
+      </a>
+    </ng-container>
+    <!--
+      <ng-container *ngIf="!last && i != breadcrumbData.breadcrumb.length - 2">
+        <i class="fas fa-square fa-xs"></i>
+      </ng-container>
+      <ng-container *ngIf="i == breadcrumbData.breadcrumb.length - 2">
+        <i class="far fa-square fa-xs"></i>
+      </ng-container>
+    -->
+    <ng-container *ngIf="last">
+      <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-jet'">{{
+        crumb.linkText
+      }}</span>
+    </ng-container>
+    <ng-container *ngIf="!last && i != breadcrumbData.breadcrumb.length - 1">
+      <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-regular'" p-h-5
+        >/</span
+      >
+    </ng-container>
+  </ng-container>
+</div>

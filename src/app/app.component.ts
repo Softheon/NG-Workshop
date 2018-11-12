@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
-import { IHeader, HeaderConfig, IFooter, FooterConfig, Card, IMultiStepper } from 'workshop';
+import { IHeader, HeaderConfig, IFooter, FooterConfig, Card, IMultiStepper, IBreadcrumb } from 'workshop';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -21,6 +21,27 @@ export class AppComponent implements OnInit {
   /** Temp Data */
   public blob;
   public searchItem;
+
+  public breadcrumbData: IBreadcrumb = {
+    breadcrumb: [
+      {
+        linkText: 'Page',
+        linkUrl: './contact'
+      },
+      {
+        linkText: 'Page A',
+        linkUrl: './contact'
+      },
+      {
+        linkText: 'Page A.1',
+        linkUrl: './contact'
+      },
+      {
+        linkText: 'Page A.1A',
+        linkUrl: './contact'
+      }
+    ]
+  };
 
   public stepData: IMultiStepper = {
     // menuText: 'subway',
@@ -69,6 +90,7 @@ export class AppComponent implements OnInit {
     // copyrightText: '2018 Workshop, All Rights Reserved',
     // aboutTitle: 'About Our Company',
     footerLogoUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo.png',
+    // tslint:disable-next-line:max-line-length
     aboutText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contactEmail: 'info@someonesemail.com',
     contactAddress: '1 Street, Awesome City, State, Zip',

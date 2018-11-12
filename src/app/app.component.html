@@ -13,8 +13,7 @@
           full-width
           sws-link
           p-a-15
-          (click)="switchLanguage()"
-        >
+          (click)="switchLanguage()">
           <span m-r-10> <i class="fas fa-chess"></i> </span> Switch
         </a>
       </li>
@@ -32,12 +31,14 @@
     -->
     <!-- end dynamic content -->
   </sws-header>
+
   <div flex-container-responsive>
     <div m-t-15>
       <sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
     </div>
     <div full-width m-a-10>
       <div m-a-15>
+        <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true"></sws-breadcrumb>
         <div sws-card p-a-0 style="max-width: 100%;" text-center>
           <!-- TEMP NG WORKSHOP -->
           <!--
@@ -46,7 +47,6 @@
 
             </div>
           -->
-
           <div
             everything-center-container
             flex-container-column
