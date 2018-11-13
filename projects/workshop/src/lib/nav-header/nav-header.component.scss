@@ -377,7 +377,7 @@ $themes: (
         &:valid {
             opacity: 1;
             background: #111;
-            z-index: 1;
+            z-index: 3;
             position: absolute;
             top: 0;
             width: 100%;
@@ -389,7 +389,7 @@ $themes: (
     }
     [nav-close-search] {
         background: #2e2e2e;
-        z-index: 2;
+        z-index: 4;
         right: 0;
         position: absolute;
         @include themify($themes) {

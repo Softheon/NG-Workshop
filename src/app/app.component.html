@@ -6,19 +6,25 @@
     (myEvent)="switchLanguage()"
   >
     <!-- put your dynamic content here -->
-    <ul m-a-0 p-l-0>
-      <li flex-container sws-nav-menu__list-item>
-        <a
-          href="javascript:void(0);"
-          full-width
-          sws-link
-          p-a-15
-          (click)="switchLanguage()">
-          <span m-r-10> <i class="fas fa-chess"></i> </span> Switch
-        </a>
-      </li>
-    </ul>
-    <div p-a-10><i>This is custom html!</i></div>
+    <div header full-height flex-container align-items-v m-l-15>
+        <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true" [headerBreadcrumbs]="true"></sws-breadcrumb>
+    </div>
+
+    <div usermenu>
+      <ul m-a-0 p-l-0>
+        <li flex-container sws-nav-menu__list-item>
+          <a
+            href="javascript:void(0);"
+            full-width
+            sws-link
+            p-a-15
+            (click)="switchLanguage()">
+            <span m-r-10> <i class="fas fa-chess"></i> </span> Switch
+          </a>
+        </li>
+      </ul>
+      <div p-a-10><i>This is custom html!</i></div>
+    </div>
     <!--
       <div class="card-block">
         <h4 class="card-title">You can put any content here</h4>
@@ -38,7 +44,10 @@
     </div>
     <div full-width m-a-10>
       <div m-a-15>
-        <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true"></sws-breadcrumb>
+        <div style="position: relative;">
+            <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="false"></sws-breadcrumb>
+        </div>
+
         <div sws-card p-a-0 style="max-width: 100%;" text-center>
           <!-- TEMP NG WORKSHOP -->
           <!--

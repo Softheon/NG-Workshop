@@ -13,6 +13,9 @@ export class InnerWidthService {
   /** Mobile Screen Responsiveness Breakpoint */
   public tabletScreen = false;
 
+  /** Mobile Screen Responsiveness Breakpoint */
+  public largeTabletScreen = false;
+
   /** Large Screen Responsiveness Breakpoint */
   public largeScreen = false;
 
@@ -39,6 +42,10 @@ export class InnerWidthService {
     this.innerWidth < 992
       ? (this.tabletScreen = true)
       : (this.tabletScreen = false);
+
+    this.innerWidth < 1200
+      ? (this.largeTabletScreen = true)
+      : (this.largeTabletScreen = false);
 
     this.innerWidth > 1100
       ? (this.largeScreen = true)

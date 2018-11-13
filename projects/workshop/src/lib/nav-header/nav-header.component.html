@@ -84,7 +84,13 @@
       <div p-l-15 *ngIf="navData?.logoText">
         <h1 h2>{{navData?.logoText}}</h1>
       </div>
-
+      <div #ref>
+         <!-- single slot transclusion here -->
+          <ng-content select="[header]"></ng-content>
+      </div>
+      <span *ngIf="!ref.innerHTML.trim()">
+          Content is empty
+      </span>
     </div>
     <div flex-container align-items-v m-l-auto>
       <!-- Links -->
@@ -179,7 +185,7 @@
           </ul>
           <div>
             <!-- single slot transclusion here -->
-            <ng-content></ng-content>
+            <ng-content select="[usermenu]"></ng-content>
           </div>
         </div>
       </div>
@@ -187,7 +193,17 @@
   </nav>
 
   <!-- Mobile Header for Quicklinks -->
-  <div sws-nav-mobile-links *ngIf="((navData?.quickLinks?.length && navData?.quickLinks?.length >= 5)) || (navData?.quickLinks?.length && navData?.quickLinks?.length < 5 && tabletScreen)"
+<!--   
+  <div #ref> 
+      single slot transclusion here 
+      <ng-content select="[header]"></ng-content>
+  </div>
+  <span *ngIf="!ref.innerHTML.trim()">
+    Content is empty
+  </span> -->
+  
+  <div sws-nav-mobile-links 
+  *ngIf="((navData?.quickLinks?.length && navData?.quickLinks?.length >= 5)) || (navData?.quickLinks?.length && navData?.quickLinks?.length < 5 && tabletScreen)"
     everything-center-container flex-wrap p-v-5>
     <ng-container *ngFor="let quicklink of navData?.quickLinks">
       <ng-container *ngIf="quicklink?.linkUrl">

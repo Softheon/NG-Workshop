@@ -26,7 +26,7 @@ export class AppComponent implements OnInit {
     breadcrumb: [
       {
         linkText: 'Page',
-        linkUrl: './contact'
+        linkUrl: './welcome'
       },
       {
         linkText: 'Page A',
@@ -34,11 +34,11 @@ export class AppComponent implements OnInit {
       },
       {
         linkText: 'Page A.1',
-        linkUrl: './contact'
+        linkUrl: './about/hello'
       },
       {
         linkText: 'Page A.1A',
-        linkUrl: './contact'
+        linkUrl: './about/ourstory'
       }
     ]
   };
@@ -143,10 +143,10 @@ export class AppComponent implements OnInit {
    * Example Navigation Data
    */
   public navigation: IHeader = {
-    logoText: 'NG-Workshop',
+    logoText: 'Softheon Wiki',
     // logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
-    // userName: 'Jay Gatsby',
-    // userEmail: 'jay@thegreatgatsby.com',
+    userName: 'Jay Gatsby',
+    userEmail: 'jay@thegreatgatsby.com',
     userMenuLinks: [
       {
         linkUrl: './home',
@@ -392,9 +392,10 @@ export class AppComponent implements OnInit {
     this.footerConfig.theme = 'dark';
     this.footerConfig.size = 'sm';
 
+    // this.headerConfig.theme = 'light';
     this.headerConfig.displayAppMenu = true;
     this.headerConfig.displaySearch = true;
-    this.headerConfig.displayUserMenu = false;
+    this.headerConfig.displayUserMenu = true;
     this.headerConfig.smallLogo = true;
     // this.headerConfig.displaySubNavMenu = true;
     // this.headerConfig.theme = 'theme';

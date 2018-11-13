@@ -1,42 +1,84 @@
-<div p-v-5>
-  <ng-container
-    *ngFor="
-      let crumb of breadcrumbData.breadcrumb;
+<div [ngClass]="{'dark-theme' : darkTheme, 'header-breadcrumbs' : headerBreadcrumbs, 'p-r' : !headerBreadcrumbs }">
+  <ng-container *ngIf="(breadcrumbData?.breadcrumb.length > 3) || tabletScreen">
+    <button  flat-focus-button id="menubutton2" aria-haspopup="true" aria-controls="menu3" align-items-v
+      flex-center p-h-10 (click)="breadcrumbMenu = !breadcrumbMenu;">
+      <div style="margin-bottom: -4px;" p-r-5>
+        <i class="fas fa-angle-down"></i>
+      </div>
+      <div>...</div>
+    </button>
+    <!-- Header Menu -->
+    <div *ngIf="breadcrumbMenu" breadcrumb-menu [@toggleV]="breadcrumbMenu">
+      <ul id="menu3" aria-labelledby="menubutton2" tabindex="-1" m-v-0 flex-container-column style="padding-bottom: 2px">
+        <ng-container *ngFor="let crumb of breadcrumbData?.breadcrumb; let i = index;let first = first; let last = last">
+          <ng-container>
+            <li full-width flex-container breadcrumb-menu-li>
+              <ng-container *ngIf="crumb?.externalLinkUrl && !last">
+                <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" p-a-10 full-width href="crumb?.externalLinkUrl" title="{{crumb?.linkText}}">
+                  {{ crumb?.linkText }}
+                </a>
+              </ng-container>
+              <ng-container *ngIf="crumb?.linkUrl && !last">
+                <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" p-a-10 full-width  routerLink="{{crumb?.linkUrl}}" title="{{crumb?.linkText}}">
+                  {{ crumb?.linkText }}
+                </a>
+              </ng-container>
+              <!-- Display the last one if Mobile -->
+              <ng-container *ngIf="tabletScreen && last">
+                <span semibold p-h-10 p-v-15 [ngClass]="darkTheme ? 'text-light' : 'text-jet'">{{crumb?.linkText}}</span>
+              </ng-container>
+            </li>
+          </ng-container>
+        </ng-container>
+      </ul>
+    </div>
+    <!-- TODO: IF MOBILE HIDE LAST  -->
+    <ng-container *ngIf="!tabletScreen">
+      <ng-container *ngFor="let crumb of breadcrumbData?.breadcrumb;let last = last">
+        <!-- Last Item -->
+        <ng-container *ngIf="last">
+          <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-regular'" p-h-5>/</span>
+          <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-jet'">{{crumb?.linkText}}</span>
+        </ng-container>
+      </ng-container>
+    </ng-container>
+  </ng-container>
+
+
+
+
+  <!-- Over 3 Breadcrumbs -->
+  <ng-container *ngIf="breadcrumbData?.breadcrumb.length <= 3 && !tabletScreen">
+    <ng-container *ngFor="
+      let crumb of breadcrumbData?.breadcrumb;
       let i = index;
       let first = first;
-      let last = last
-    ">
-    <ng-container *ngIf="crumb.externalLinkUrl && !last">
-      <a
-        [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'"
-        href="crumb.externalLinkUrl"
-      >
-        {{ crumb.linkText }}
-      </a>
-    </ng-container>
+      let last = last">
+      <!-- Breadcrumb Links -->
+      <ng-container *ngIf="crumb?.externalLinkUrl && !last">
+        <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" href="crumb?.externalLinkUrl" title="{{crumb?.linkText}}">
+          {{ crumb?.linkText }}
+        </a>
+      </ng-container>
+      <ng-container *ngIf="crumb?.linkUrl && !last">
+        <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" routerLink="{{crumb?.linkUrl}}" title="{{crumb?.linkText}}">
+          {{ crumb?.linkText }}
+        </a>
+      </ng-container>
 
-    <ng-container *ngIf="crumb.linkUrl && !last">
-      <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" href="">
-        {{ crumb.linkText }}
-      </a>
-    </ng-container>
-    <!--
-      <ng-container *ngIf="!last && i != breadcrumbData.breadcrumb.length - 2">
-        <i class="fas fa-square fa-xs"></i>
+      <!-- Indicator -->
+      <ng-container *ngIf="!last && i != breadcrumbData?.breadcrumb.length - 1">
+        <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-regular'" p-h-5>
+          /</span>
       </ng-container>
-      <ng-container *ngIf="i == breadcrumbData.breadcrumb.length - 2">
-        <i class="far fa-square fa-xs"></i>
+
+      <!-- Last Item -->
+      <ng-container *ngIf="last">
+        <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-jet'">
+          {{crumb?.linkText}}
+        </span>
       </ng-container>
-    -->
-    <ng-container *ngIf="last">
-      <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-jet'">{{
-        crumb.linkText
-      }}</span>
-    </ng-container>
-    <ng-container *ngIf="!last && i != breadcrumbData.breadcrumb.length - 1">
-      <span semibold [ngClass]="darkTheme ? 'text-light' : 'text-regular'" p-h-5
-        >/</span
-      >
+
     </ng-container>
   </ng-container>
 </div>
