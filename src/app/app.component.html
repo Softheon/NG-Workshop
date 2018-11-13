@@ -44,8 +44,13 @@
     </div>
     <div full-width m-a-10>
       <div m-a-15>
-        <div style="position: relative;">
+        <div p-a-30>
+          <div bg-dark p-a-60>
+            <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true"></sws-breadcrumb>
+          </div>
+          <div p-a-60>
             <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="false"></sws-breadcrumb>
+          </div>
         </div>
 
         <div sws-card p-a-0 style="max-width: 100%;" text-center>

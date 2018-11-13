@@ -25,20 +25,20 @@ export class AppComponent implements OnInit {
   public breadcrumbData: IBreadcrumb = {
     breadcrumb: [
       {
-        linkText: 'Page',
-        linkUrl: './welcome'
+        linkText: 'Softheon',
+        linkUrl: './home'
       },
       {
-        linkText: 'Page A',
-        linkUrl: './contact'
+        linkText: 'Careers',
+        linkUrl: './home/careers'
       },
       {
-        linkText: 'Page A.1',
-        linkUrl: './about/hello'
+        linkText: 'Internships',
+        linkUrl: './home/careers/internship'
       },
       {
-        linkText: 'Page A.1A',
-        linkUrl: './about/ourstory'
+        linkText: 'Software Engineering',
+        linkUrl: './home/careers/internship/engineers'
       }
     ]
   };
@@ -143,7 +143,7 @@ export class AppComponent implements OnInit {
    * Example Navigation Data
    */
   public navigation: IHeader = {
-    logoText: 'Softheon Wiki',
+    logoText: 'NG-Workshop',
     // logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
     userName: 'Jay Gatsby',
     userEmail: 'jay@thegreatgatsby.com',

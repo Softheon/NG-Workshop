@@ -13,6 +13,7 @@
 -    * [Vertical-Multi-Stepper](#vertical-multi-stepper)
      * [Card-Grid](#card-grid)
      * [Header](#header)
+     * [Breadcrumbs](#breadcrumbs)
      * [Footer](#footer)
      * [Multi-Stepper](#multi-stepper)
 - [NPM Repository](https://www.npmjs.com/package/@softheon/ng-workshop)
@@ -69,7 +70,7 @@ export class MyAppModule { }
 ## **Components**
 
 ### **Vertical-Multi-Stepper**
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Vertical-Multi-Stepper-3.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Multistepper.jpg "NG Workshop Example")
 
 #### `<sws-multi-stepper-v>` is a component used to render a progressive vertical multistepper.
 
@@ -142,6 +143,7 @@ Example 2-column HTML with flexbox positioning:
     </div>
 </div>
 ```
+
 #### **Vertical Multistepper 'IStep' Properties**
 
 | Key       | Type    | Required | Example   | Description                           |
@@ -213,7 +215,7 @@ Example Configuration (Optional):
 | ----------------- | :----------------: | :------------------: | --------------: |
 | cardSize          | 'lg' / 'md' / 'sm' | no (default is 'sm') | Card size style |
 
-#### **Card Conent  Properties**
+#### **Card Content  Properties**
 
 | Key       | Type   | Example                           | Description                                 |
 | --------- | :----: | :-------------------------------: | ------------------------------------------: |
@@ -264,26 +266,35 @@ Example with Search Event Emmitter :
 <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)"></sws-header>
 ```
 
-Example with ng-content (calling a function instead of changing router link): 
+Example with ng-content (calling a function instead of changing router link):
+
 ```html
   <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)">
     <!-- put your dynamic content here -->
-    <ul m-a-0 p-l-0>
-      <li flex-container sws-nav-menu__list-item>
-        <a href="javascript:void(0);" full-width sws-link p-a-15 (click)="switchLanguage()">
-          <span m-r-10>
-            <i class="fas fa-chess"></i>
-          </span>
-            Switch
-        </a>
-      </li>
-    </ul>
-    <div p-a-10>
-      <i>This is custom html!</i>
+    <div header full-height flex-container align-items-v m-l-15>
+        <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true" [headerBreadcrumbs]="true"></sws-breadcrumb>
+    </div>
+
+    <div usermenu>
+      <ul m-a-0 p-l-0>
+        <li flex-container sws-nav-menu__list-item>
+          <a
+            href="javascript:void(0);"
+            full-width
+            sws-link
+            p-a-15
+            (click)="switchLanguage()">
+            <span m-r-10> <i class="fas fa-chess"></i> </span> Switch
+          </a>
+        </li>
+      </ul>
+      <div p-a-10><i>This is custom html!</i></div>
     </div>
     <!-- end dynamic content -->
   </sws-header>
   ```
+
+  The header can include two different custom content. Add the attribute `header` to the div for it to go in the header bar (to the right of the logo, and left of quicklinks). Add the attribute `usermenu` to the div for it to go in the user menu dropdown.
 
 **TIP: If you don't provide any navData it will display an empty header**
 
@@ -341,7 +352,7 @@ This will render the light colored header with only a logo image and quick links
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example1.png "NG Workshop Example")
 
-This will render the theme colored header with only a text logo, searchbar, left menu navigation, and user menu
+This will render the dark colored header with only a text logo, searchbar, left menu navigation, and user menu
 
 ```Typescript
 
@@ -392,7 +403,7 @@ This will render the theme colored header with only a text logo, searchbar, left
   }
 ```
 
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example2.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Header1.jpg "NG Workshop Example")
 
 This will render the light theme header with only an svg image logo and left menu navigation (with custom section heading text)
 
@@ -445,8 +456,7 @@ This will render the light theme header with only an svg image logo and left men
   }
 ```
 
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example3.png "NG Workshop Example")
-
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Header2.jpg "NG Workshop Example")
 
 This will render the theme colored header with an external logo url, an external link in the header quick links, and subheader menu
 
@@ -557,7 +567,7 @@ When there are more than 4 quick links, the ui renders them under the header.
   }
 ```
 
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop_HeaderNav_Example5.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Header3.jpg "NG Workshop Example")
 
 
 #### **Configuration Properties**
@@ -592,7 +602,6 @@ When there are more than 4 quick links, the ui renders them under the header.
 | quickLinks       | ILink[] | 'quickLinks: [{...}]'             | ILink Object Array of link data in the header                                |
 | subHeaderLinks   | ILink[] | 'subHeaderLinks: [{...}]'         | ILink Object Array of link data in the subheader                             |
 
-
 #### **Header Link 'ILink' Properties**
 
 **TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
@@ -603,6 +612,101 @@ When there are more than 4 quick links, the ui renders them under the header.
 | linkUrl         | string | optional* | './contact'               | The link url                                 |
 | externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
 | fontAwesomeIcon | string | optional  | 'fas fa-anchor'           | Font Awesome icon class                      |
+
+### **Breadcrumbs**
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop_Breadcrumbs4.png "NG Workshop Example")
+
+#### `<sws-breadcrumbs>` is a component used to render breadcrumbs from an object array
+
+#### API reference for NG-Workshop Breadcrumb Component
+
+Module.ts:
+
+```TypeScript
+import { BreadcrumbModule } from '@softheon/ng-workshop';
+```
+
+Component.ts:
+
+```TypeScript
+import { IBreadcrumb } from '@softheon/ng-workshop';
+
+  public breadcrumbData: IBreadcrumb = {
+    breadcrumb: [
+      {
+        linkText: 'Softheon',
+        linkUrl: './home'
+      },
+      {
+        linkText: 'Careers',
+        linkUrl: './home/careers'
+      },
+      {
+        linkText: 'Internships',
+        linkUrl: './home/careers/internship'
+      },
+      {
+        linkText: 'Software Engineering',
+        linkUrl: './home/careers/internship/engineers'
+      }
+    ]
+  };
+```
+
+#### **Add component to your html**
+
+```html
+<sws-breadcrumb [breadcrumbData]="breadcrumbData"></sws-breadcrumb>
+```
+
+Example of breadcrumbs using dark theme
+
+```html
+<sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true"></sws-breadcrumb>
+```
+
+Example of breadcrumbs in Header component
+
+```html
+<sws-header [navData]="navigation" [config]="headerConfig">
+  <!-- put your dynamic content here -->
+  <div header full-height flex-container align-items-v m-l-15>
+      <sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true" [headerBreadcrumbs]="true"></sws-breadcrumb>
+  </div>
+</sws-header>
+```
+
+#### **Breadcrumbs 'IBreadcrumb' Properties**
+
+| Key        | Type    | Required | Example                                  | Description            |
+| ---------- | :-----: | :------: | :--------------------------------------: | ---------------------: |
+| breadcrumb | ILink[] | yes      | {linkText: 'Softheon',linkUrl: './home'} | the breadcrumbs object |
+
+**Additional Breadcrumb Properties (Added to html as inputs)**
+
+| Key               | Type    | Required | Example    | Description                                           |
+| ----------------- | :-----: | :------: | :--------: | ----------------------------------------------------: |
+| darkTheme         | boolean | optional | true/false | Toggle dark theme for the breadcrumbs                 |
+| headerBreadcrumbs | boolean | optional | true/false | Set to true when displaying breadcrumbs in the header |
+
+#### **Breadcrumbs Link 'ILink' Properties**
+
+**TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
+
+| Key             | Type   | Required  | Example                   | Description                                  |
+| --------------- | :----: | :-------: | :-----------------------: | -------------------------------------------: |
+| linkText        | string | required  | 'Epic Subtitle'           | The link text                                |
+| linkUrl         | string | optional* | './contact'               | The link url                                 |
+| externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
+| fontAwesomeIcon | string | optional  | 'fas fa-anchor'           | Font Awesome icon class                      |
+
+Examples:
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop_Breadcrumbs0.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop_Breadcrumbs1.png "NG Workshop Example")
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop_Breadcrumbs2.png "NG Workshop Example")
+
+
 
 ### **Footer**
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Footer-1.png "NG Workshop Example")

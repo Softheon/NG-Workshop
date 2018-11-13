@@ -12,24 +12,28 @@ ul>li {
 
 [flat-focus-button] {
     all: unset;
+    background: transparent;
+    border: none;
+    color: inherit;
     transition: background .5s ease;
     display: inline-flex;
     max-width: 42px;
     padding-bottom: 4px;
     min-width: 25px;
     height: 25px;
+    line-height: 25px;
     &:hover {
         cursor: pointer;
+        background: rgba(206,205,205,.75);
     }
     &:focus {
+        background: rgba(206,205,205,.95);
         outline: #5E9ED6 dotted 1px;
         outline: 5px auto -webkit-focus-ring-color;
     }
 }
 
-// if dark theme:
-
-[p-r] {
+.p-r {
     z-index: 2;
     position: relative;
 }
@@ -37,7 +41,7 @@ ul>li {
 [breadcrumb-menu] {
     position: absolute;
     top: 30px; 
-    z-index: 1; 
+    z-index: 2; 
     background: #fff;
     box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
 }
@@ -49,13 +53,16 @@ ul>li {
 .header-breadcrumbs {
     [breadcrumb-menu] {
         top: 64px; 
-        z-index: 2; 
+        z-index: 3; 
     }
 }
 
 .dark-theme {
     color: #fff;
     [flat-focus-button] {
+        &:hover {
+            background: rgba(61,61,61, .5);
+        }
         &:focus {
             background: #3d3d3d;
             background: var(--color-jet, #3d3d3d);
