@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
-import { IHeader, HeaderConfig, IFooter, FooterConfig, Card, IMultiStepper } from 'workshop';
+import { IHeader, HeaderConfig, IFooter, FooterConfig, Card, IMultiStepper, IBreadcrumb } from 'workshop';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
@@ -21,6 +21,27 @@ export class AppComponent implements OnInit {
   /** Temp Data */
   public blob;
   public searchItem;
+
+  public breadcrumbData: IBreadcrumb = {
+    breadcrumb: [
+      {
+        linkText: 'Softheon',
+        linkUrl: './home'
+      },
+      {
+        linkText: 'Careers',
+        linkUrl: './home/careers'
+      },
+      {
+        linkText: 'Internships',
+        linkUrl: './home/careers/internship'
+      },
+      {
+        linkText: 'Software Engineering',
+        linkUrl: './home/careers/internship/engineers'
+      }
+    ]
+  };
 
   public stepData: IMultiStepper = {
     // menuText: 'subway',
@@ -69,6 +90,7 @@ export class AppComponent implements OnInit {
     // copyrightText: '2018 Workshop, All Rights Reserved',
     // aboutTitle: 'About Our Company',
     footerLogoUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo.png',
+    // tslint:disable-next-line:max-line-length
     aboutText: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     contactEmail: 'info@someonesemail.com',
     contactAddress: '1 Street, Awesome City, State, Zip',
@@ -121,7 +143,8 @@ export class AppComponent implements OnInit {
    * Example Navigation Data
    */
   public navigation: IHeader = {
-    logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
+    logoText: 'NG-Workshop',
+    // logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
     userName: 'Jay Gatsby',
     userEmail: 'jay@thegreatgatsby.com',
     userMenuLinks: [
@@ -369,6 +392,7 @@ export class AppComponent implements OnInit {
     this.footerConfig.theme = 'dark';
     this.footerConfig.size = 'sm';
 
+    // this.headerConfig.theme = 'light';
     this.headerConfig.displayAppMenu = true;
     this.headerConfig.displaySearch = true;
     this.headerConfig.displayUserMenu = true;
