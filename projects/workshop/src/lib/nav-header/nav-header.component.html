@@ -3,13 +3,15 @@
     <div flex-container-row>
       <div align-items-v flex-container [attr.r-l-15]="(navData?.logoImageUrl || navData?.logoText) ? '' : null">
           <!-- Menu Icon -->
-          <button #headerContent id="menubutton" aria-haspopup="true" aria-controls="menu2" *ngIf="config.displayAppMenu && (navData?.applicationLinks?.length || navData?.menuLinks?.length)"
+          <ng-container *ngIf="config.displayAppMenu && (navData?.applicationLinks?.length || navData?.menuLinks?.length)">
+            <button #headerContent id="menubutton" aria-haspopup="true" aria-controls="menu2" 
             nav-header-box everything-center-container (click)="leftMenu = !leftMenu;">
             <span nav-header-box__icon>
               <i class="fas fa-th"></i>
             </span>
             Menu
           </button>
+        </ng-container>
           <!-- Left Menu Navigation -->
           <div sws-nav-menu [@toggleH]="leftMenu" *ngIf="leftMenu">
             <div>
@@ -84,13 +86,10 @@
       <div p-l-15 *ngIf="navData?.logoText">
         <h1 h2>{{navData?.logoText}}</h1>
       </div>
-      <div #ref>
+      <div>
          <!-- single slot transclusion here -->
           <ng-content select="[header]"></ng-content>
       </div>
-      <span *ngIf="!ref.innerHTML.trim()">
-          Content is empty
-      </span>
     </div>
     <div flex-container align-items-v m-l-auto>
       <!-- Links -->

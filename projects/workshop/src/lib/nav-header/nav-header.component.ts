@@ -119,8 +119,10 @@ export class HeaderComponent implements OnInit, AfterViewInit  {
 
   /** Calculates the header width for the dynamic search bar menu */
   public calculateHeaderWidth(): void {
-    const offset = this.headerContent.nativeElement.offsetWidth * 2.5;
-    this.maxWidth = `calc(100vw - ${offset}px)`;
+    if (this.headerContent) {
+      const offset = this.headerContent.nativeElement.offsetWidth * 2.5;
+      this.maxWidth = `calc(100vw - ${offset}px)`;
+    }
   }
 
   /** Displays the search bar and auto-focuses */
