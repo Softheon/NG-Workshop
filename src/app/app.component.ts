@@ -144,7 +144,9 @@ export class AppComponent implements OnInit {
    */
   public navigation: IHeader = {
     logoText: 'NG-Workshop',
+    logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/anvil-white.png',
     // logoImageUrl: 'https://softheonworkshopstorage.blob.core.windows.net/workshopcontainer/workshop-logo-anvil-white.svg',
+    // logoImageUrl: 'https://developer.softheon.io/workshop/img/logo.png',
     userName: 'Jay Gatsby',
     userEmail: 'jay@thegreatgatsby.com',
     userMenuLinks: [
