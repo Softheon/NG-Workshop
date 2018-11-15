@@ -106,8 +106,9 @@
 }
 
 [sws-nav__logo-img] {
-  height: 100px;
+  height: auto;
   max-height: 50px;
+  width: 145px;
   max-width: 145px;
 }
 
