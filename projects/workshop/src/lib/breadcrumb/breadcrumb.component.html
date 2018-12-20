@@ -19,7 +19,7 @@
                 </a>
               </ng-container>
               <ng-container *ngIf="crumb?.linkUrl && !last">
-                <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" p-a-10 full-width  routerLink="{{crumb?.linkUrl}}" title="{{crumb?.linkText}}">
+                <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" p-a-10 full-width [routerLink]="crumb?.linkUrl" title="{{crumb?.linkText}}">
                   {{ crumb?.linkText }}
                 </a>
               </ng-container>
@@ -61,7 +61,7 @@
         </a>
       </ng-container>
       <ng-container *ngIf="crumb?.linkUrl && !last">
-        <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" routerLink="{{crumb?.linkUrl}}" title="{{crumb?.linkText}}">
+        <a [ngClass]="darkTheme ? 'sws-link--light' : 'sws-link--jet'" [routerLink]="crumb?.linkUrl" title="{{crumb?.linkText}}">
           {{ crumb?.linkText }}
         </a>
       </ng-container>
