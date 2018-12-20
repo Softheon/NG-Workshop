@@ -1,6 +1,6 @@
 {
   "name": "@softheon/ng-workshop",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A suite of modern Angular components built on the Softheon Workshop Design System",
   "repository": {
     "type": "git",
