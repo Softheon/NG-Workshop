@@ -48,7 +48,7 @@
                 <ng-container *ngFor="let menulinks of navData?.menuLinks">
                   <li flex-container sws-nav-menu__list-item>
                     <ng-container *ngIf="menulinks?.externalLinkUrl">
-                      <a sws-link p-a-15 full-width href="{{menulinks.externalLinkUrl}}" title="{{menulinks.linkText}}" target="_blank">
+                      <a sws-link p-a-15 full-width href="{{menulinks?.externalLinkUrl}}" title="{{menulinks.linkText}}" target="_blank">
                         <span m-r-10 *ngIf="menulinks.fontAwesomeIcon">
                           <i class="{{menulinks.fontAwesomeIcon}}"></i>
                         </span>

@@ -28,10 +28,10 @@
 npm install --save @softheon/ng-workshop@latest
 ```
 
-#### Include a link to Softheon Workshop in your index.html
+#### Include a link to Softheon Workshop UI in your index.html
 
 ```html
-<link rel="stylesheet" href="https://softheonworkshop.azureedge.net/beta-1/workshop.blue.min.css">
+<link rel="stylesheet" href="https://softheonworkshop.azureedge.net/beta-2/workshop.blue.min.css">
 ```
 
 #### Include a link to [Font Awesome 5 SVG with JS Library](https://fontawesome.com/get-started/svg-with-js) in your index.html
@@ -131,7 +131,7 @@ public stepData: IMultiStepper = {
 <sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
 ```
 
-Example 2-column HTML with flexbox positioning: 
+Example 2-column HTML with flexbox positioning:
 
 ```html
 <div flex-container-responsive>
@@ -260,7 +260,7 @@ import { IHeader, HeaderConfig } from '@softheon/ng-workshop';
 <sws-header [navData]="navigation" [config]="headerConfig"></sws-header>
 ```
 
-Example with Search Event Emmitter : 
+Example with Search Event Emmitter :
 
 ```html
 <sws-header [navData]="navigation" [config]="headerConfig" (searchCriteria)="searchSomething($event)"></sws-header>
@@ -306,7 +306,7 @@ This will render the header in your workshop theme color with only the logo text
   public navigation: IHeader = {
     logoText: 'Navigation',
   };
-  
+
   public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
@@ -393,7 +393,7 @@ This will render the dark colored header with only a text logo, searchbar, left 
       }
     ],
   };
-  
+
   public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
@@ -447,7 +447,7 @@ This will render the light theme header with only an svg image logo and left men
       }
     ],
   };
-  
+
   public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
@@ -503,7 +503,7 @@ This will render the theme colored header with an external logo url, an external
       },
     ],
   };
-  
+
   public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
@@ -558,7 +558,7 @@ When there are more than 4 quick links, the ui renders them under the header.
       },
     ],
   };
-  
+
   public headerConfig: HeaderConfig = new HeaderConfig();
 
   ngOnInit() {
@@ -754,7 +754,7 @@ Styles.css (or global CSS file):
 <sws-footer [footerData]="footer" [config]="footerConfig"></sws-footer>
 ```
 
-Example HTML with flexbox positioning: 
+Example HTML with flexbox positioning:
 
 ```html
 <div flex-container-column flex-space-between full-height>
