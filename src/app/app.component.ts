@@ -44,38 +44,41 @@ export class AppComponent implements OnInit {
   };
 
   public stepData: IMultiStepper = {
-    // menuText: 'subway',
+    // menuText: 'NG-Workshop',
     steps: [
       {
         stepTitle: 'test1 welcome',
         stepUrl: './welcome',
-        stepIndex: 1,
-        isSubStep: false
+        stepGroupIndex: 1,
+        isSubStep: false,
+        isCollapsible: true
       },
       {
         stepTitle: 'test2 hello',
         stepUrl: './about/hello',
-        stepIndex: 2,
+        stepGroupIndex: 1,
         isSubStep: true
       },
       {
         stepTitle: 'test3 contact',
         stepUrl: './contact',
-        stepIndex: 3,
-        isSubStep: true
+        stepGroupIndex: 2,
+        isSubStep: false,
+        isCollapsible: true
       },
       {
         stepTitle: 'test4 ourstory',
         stepUrl: './about/ourstory',
-        stepIndex: 4,
-        isSubStep: false
+        stepGroupIndex: 3,
+        isSubStep: false,
+        isCollapsible: true
       },
-      // {
-      //   stepTitle: 'test4 ourstory',
-      //   stepUrl: './about/ourstory',
-      //   stepIndex: 5,
-      //   isSubStep: false
-      // }
+      {
+        stepTitle: 'test4 ourstory',
+        stepUrl: './about/ourstory',
+        stepGroupIndex: 3,
+        isSubStep: true
+      }
     ]
   };
 
@@ -336,7 +339,7 @@ export class AppComponent implements OnInit {
     translateService.use('en');
 
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      console.log('thing');
+      console.log('translate is working');
       // return this.data = [
       //   { page: this.translateService.instant('nav.start'), url: './hello' },
       //   {

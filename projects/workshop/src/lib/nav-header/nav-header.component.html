@@ -1,6 +1,6 @@
 <div class="theme-{{config?.theme ? config?.theme : 'dark'}}">
-  <nav sws-navbar role="navData" flex-container>
-    <div flex-container-row>
+  <nav ng-sws-navbar role="navData" flex-container>
+    <div flex-container-row align-items-v>
       <div align-items-v flex-container [attr.r-l-15]="(navData?.logoImageUrl || navData?.logoText) ? '' : null">
           <!-- Menu Icon -->
           <ng-container *ngIf="config.displayAppMenu && (navData?.applicationLinks?.length || navData?.menuLinks?.length)">
@@ -85,12 +85,12 @@
       </div>
       <div p-l-15 *ngIf="navData?.logoText && !navData?.externalLogoLink">
           <a routerLink="{{navData?.logoLink ? navData?.logoLink : '/'}}" flex-center>
-            <h1 h2>{{navData?.logoText}}</h1>
+            <p h3 m-a-0>{{navData?.logoText}}</p>
           </a>
       </div>
       <div p-l-15 *ngIf="navData?.logoText && navData?.externalLogoLink">
         <a href="{{navData?.externalLogoLink}}" target="_blank" flex-center>
-          <h1 h2>{{navData?.logoText}}</h1>
+          <p h3 m-a-0>{{navData?.logoText}}</p>
         </a>
       </div>
       <div>
@@ -146,7 +146,7 @@
         <button id="menubutton2" aria-haspopup="true" aria-controls="menu3" flex-container align-items-v flex-center p-h-10 nav-header-box
           sws-nav-menu__icon (click)="userMenu = !userMenu;">
           <span nav-header-box__icon>
-            <i class="fas fa-user-circle" style="font-size: 28px;"></i>
+            <i class="fas fa-user-circle" style="font-size: 24px;"></i>
             <i class="fas fa-caret-down" style="font-size: 14px; padding-bottom: 5px;"></i>
           </span>
           Menu

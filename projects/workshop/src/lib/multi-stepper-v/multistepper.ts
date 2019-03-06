@@ -3,7 +3,7 @@ export interface IStep {
   /** If the page has been passed */
   isPassed?: boolean;
 
-  /** If the stepp is Current */
+  /** If the step is Current */
   isCurrent?: boolean;
 
   /** If the step is a substep */
@@ -13,18 +13,23 @@ export interface IStep {
   stepTitle: string;
 
   /** The page URL */
-  stepUrl: string;
+  stepUrl?: string;
 
-  /** The page URL */
-  stepIndex: number;
+  /** The external page URL */
+  stepExternalUrl?: string;
 
+  /** The group of steps + sub-steps */
+  stepGroupIndex?: number;
+
+  /** Whether or not to display the Collapsible */
+  isCollapsible?: boolean;
+
+  /** Whether or not the step is collapsed */
+  isCollapsed?: boolean;
 }
 
 /** The Multistepper Interface */
 export interface IMultiStepper {
-
-  /** Whether to run the Multistepper in developer mode (can click through steps) */
-  devMode?: boolean;
 
   /** The menu text */
   menuText?: string;
