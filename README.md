@@ -28,7 +28,7 @@
 npm install --save @softheon/ng-workshop@latest
 ```
 
-#### Include a link to Softheon Workshop in your index.html
+#### Include a link to Softheon Workshop UI in your index.html
 
 ```html
 <link rel="stylesheet" href="https://softheonworkshop.azureedge.net/beta-2/workshop.blue.min.css">
