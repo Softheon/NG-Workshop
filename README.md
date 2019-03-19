@@ -339,6 +339,10 @@ Example with ng-content (calling a function instead of changing router link):
       </ul>
       <div p-a-10><i>This is custom html!</i></div>
     </div>
+
+    <div leftmenu>
+      <div p-a-10>This is also custom html!</div>
+    </div>
     <!-- end dynamic content -->
   </sws-header>
   ```
