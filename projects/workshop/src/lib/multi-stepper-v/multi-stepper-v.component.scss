@@ -5,18 +5,18 @@
 
 @mixin themify($themes: $themes) {
     @each $theme, $map in $themes {
-  
+
       .theme-#{$theme} & {
         $theme-map: () !global;
         @each $key, $submap in $map {
           $value: map-get(map-get($themes, $theme), '#{$key}');
           $theme-map: map-merge($theme-map, ($key: $value)) !global;
         }
-  
+
         @content;
         $theme-map: null !global;
       }
-  
+
     }
   }
 
@@ -37,9 +37,6 @@ $themes: (
     stepPassedColor: #333 !important,
     stepEditColor: #333 !important,
     stepHoverColor: #333 !important,
-
-    
-
     linkHoverColor: var(--color-primary,#0088ce),
     linkBorderColor: rgba(255, 255, 255, 0.7)!important,
   ),
@@ -77,6 +74,46 @@ $themes: (
   ),
 );
 
+.text-secondary--moreprimary {
+  color: #138b9f !important;
+  &.fa-lg {
+    margin-left: -2px;
+    margin-right: -2px;
+  }
+}
+
+.step-collapsed {
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.text-dark-primary {
+  color: #004a7b !important;
+  color: var(--primary-darken-15,#004a7b) !important;
+}
+
+.active-link {
+  color: #004a7b !important;
+  color: var(--primary-darken-15,#004a7b) !important;
+  background: #ecf0f1;
+  background: var(--color-light,#ecf0f1);
+  &:before {
+    content: '';
+    background: #ecf0f1;
+    background: var(--color-light,#ecf0f1);
+    width: 20px;
+    height: 100%;
+    margin-left: -30px;
+    z-index: -1;
+    padding: 5px;
+  }
+}
+
+[sws-progress-steps__step-indicator] {
+  padding-top: 4px;
+}
+
 button[button-reset] {
     border: none !important;
     -webkit-appearance: none;
@@ -87,8 +124,9 @@ button[button-reset] {
 [sws-multistepper-v],
 .sws-multistepper-v {
     width: 250px;
+    padding-left: 10px;
     color: #444;
-    overflow-y: scroll;
+    position: relative;
     &::-webkit-scrollbar {
         width: 3px;
     }
@@ -140,9 +178,9 @@ button[button-reset] {
     }
 
     [sws-multistepper-v__step-indicator], .sws-multistepper-v__step-indicator {
-        width: 44px; 
+        width: 44px;
         min-width: 44px;
-        height: 44px; 
+        height: 44px;
         box-sizing: border-box;
 
         > svg {
@@ -156,7 +194,7 @@ button[button-reset] {
         width: 2px;
         background: #757e84 !important;
         position: absolute;
-        left: 21px;    
+        left: 21px;
         top: 20px;
     }
 
@@ -166,7 +204,7 @@ button[button-reset] {
 }
 
 [sws-multistepper-v__step-link], .sws-multistepper-v__step-link {
-    display: inline-flex; 
+    display: inline-flex;
     height: 45px;
     transition: background .5s ease;
 
@@ -184,7 +222,7 @@ button[button-reset] {
 
 .step-passed {
     color:#005582;
-    color: var(--primary-darken-15,#005582); 
+    color: var(--primary-darken-15,#005582);
 }
 
 [multistepper-menu] {
@@ -230,13 +268,13 @@ button[button-reset] {
     .mobile-column {
       flex-direction: column;
     }
-  
+
     [mobile-center],
     .mobile-center {
       align-items: center;
       text-align: center;
       justify-content: center;
-  
+
       [text-right], .text-right {
         text-align: center !important;
       }
@@ -245,9 +283,37 @@ button[button-reset] {
     $i: 10;
     @while $i > 0 {
       [mobile-order-#{$i}],
-      .mobile-order-#{$i} { 
-        order: $i; 
+      .mobile-order-#{$i} {
+        order: $i;
       }
       $i: $i - 1;
     }
+}
+
+[substep-indicator] {
+  z-index: 3;
+  float: right;
+  position: absolute;
+  right: 0;
+  padding: 5px;
+  padding-top: 6px;
+  padding-right: 10px;
+  height: 100%;
+  box-sizing: border-box;
+
+  button {
+    background: transparent !important;
+    opacity: .75;
+    border: none !important;
+    transition: opacity .5s ease;
+    color: #74787F;
+    color: var(--color-regular, #74787F);
+    cursor: pointer;
+
+    &:focus, &:hover {
+      opacity: 1;
+      color: #0079C7;
+      color: var(--color-primary, #0079C7);
+    }
+  }
 }

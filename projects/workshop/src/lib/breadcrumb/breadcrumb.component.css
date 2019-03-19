@@ -56,6 +56,11 @@ ul > li {
 }
 
 .header-breadcrumbs [breadcrumb-menu] {
+  top: 48px;
+  z-index: 3;
+}
+
+.header-breadcrumbs-lg [breadcrumb-menu] {
   top: 64px;
   z-index: 3;
 }

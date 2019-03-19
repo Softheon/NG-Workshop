@@ -1,5 +1,5 @@
 <div [ngClass]="{'dark-theme' : darkTheme, 'header-breadcrumbs' : headerBreadcrumbs, 'p-r' : !headerBreadcrumbs }" flex-container align-items-v>
-  <ng-container *ngIf="(breadcrumbData?.breadcrumb?.length > 3) || tabletScreen">
+  <ng-container *ngIf="(breadcrumbData?.breadcrumb?.length > maxBreadcrumbs) || tabletScreen">
     <button  flat-focus-button id="menubutton2" aria-haspopup="true" aria-controls="menu3" align-items-v
       flex-center p-h-10 (click)="breadcrumbMenu = !breadcrumbMenu;">
       <div style="margin-bottom: -4px;" p-r-5>
@@ -45,10 +45,8 @@
   </ng-container>
 
 
-
-
-  <!-- Over 3 Breadcrumbs -->
-  <ng-container *ngIf="breadcrumbData?.breadcrumb?.length <= 3 && !tabletScreen">
+  <!-- Breadcrumbs Overflow -->
+  <ng-container *ngIf="breadcrumbData?.breadcrumb?.length <= maxBreadcrumbs && !tabletScreen">
     <ng-container *ngFor="
       let crumb of breadcrumbData?.breadcrumb;
       let i = index;

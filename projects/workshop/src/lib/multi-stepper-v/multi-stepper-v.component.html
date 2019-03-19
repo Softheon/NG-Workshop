@@ -1,5 +1,5 @@
-<button p-a-10 multistepper-menu h4 id="menubutton_3" aria-haspopup="true" aria-controls="menu3" button-reset everything-center-container
-  cursor-pointer (click)="showMultiVMenu = !showMultiVMenu;">
+<button *ngIf="enableToggleIcon" p-a-10 multistepper-menu h4 id="menubutton_3" aria-haspopup="true" aria-controls="menu3"
+  button-reset everything-center-container cursor-pointer (click)="showMultiVMenu = !showMultiVMenu;">
   <ng-container>
     <span multistepper-menu-bg>
       <div multistepper-menu-icon [ngClass]="showMultiVMenu ? 'rotate-90' : ''">
@@ -21,48 +21,145 @@
   </ng-container> -->
 </button>
 <!-- Left Menu Navigation -->
-<div sws-multistepper-v *ngIf="!showMultiVMenu">
-  <div>
-    <ul sws-multistepper-v__step-container m-h-10 m-t-0 p-l-0 id="menu3" aria-labelledby="menubutton_3">
-      <ng-container *ngFor="let step of stepData?.steps;  let i = index; let first = first; let last = last;">
-        <li flex-container-column sws-multistepper-v__step [routerLinkActive]="['active']" #rla="routerLinkActive" [routerLinkActiveOptions]="{exact:true}">
-          <div>
-            <!-- Link -->
-            <ng-container *ngIf="(step?.isPassed || step?.isCurrent) || devMode">
-              <a sws-multistepper-v__step-link [routerLink]="step.stepUrl" full-width>
-                <div sws-multistepper-v__step-indicator everything-center-container inactive-step [ngClass]="{'text-primary': rla.isActive, 'step-passed': step?.isPassed}">
-                  <ng-container *ngIf="!step?.isSubStep">
-                    <i class="fas fa-circle fa-2x"></i>
-                  </ng-container>
-                  <ng-container *ngIf="step?.isSubStep">
-                    <i class="fas fa-circle"></i>
-                  </ng-container>
+<ng-container *ngIf="!defaultStyle">
+  <div sws-multistepper-v *ngIf="(!showMultiVMenu && enableToggleIcon) || !enableToggleIcon">
+    <div>
+      <ul sws-multistepper-v__step-container m-h-10 m-t-0 p-l-0 id="menu3" aria-labelledby="menubutton_3">
+        <ng-container *ngFor="let step of stepData?.steps;  let i = index; let first = first; let last = last;">
+          <li flex-container-column sws-multistepper-v__step [routerLinkActive]="['active']" #rla="routerLinkActive"
+            [routerLinkActiveOptions]="{exact:true}">
+            <div>
+              <!-- Link -->
+              <ng-container *ngIf="(step?.isPassed || step?.isCurrent) || skipAhead">
+                <a sws-multistepper-v__step-link [routerLink]="step.stepUrl" full-width>
+                  <div sws-multistepper-v__step-indicator everything-center-container inactive-step [ngClass]="{'text-primary': rla.isActive, 'step-passed': step?.isPassed}">
+                    <ng-container *ngIf="!step?.isSubStep">
+                      <i class="fas fa-circle fa-2x"></i>
+                    </ng-container>
+                    <ng-container *ngIf="step?.isSubStep">
+                      <i class="fas fa-circle"></i>
+                    </ng-container>
+                  </div>
+                  <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
+                    {{step.stepTitle}}
+                  </div>
+                </a>
+              </ng-container>
+              <!-- Don't Step Ahead -->
+              <ng-container *ngIf="(!step?.isPassed && !step?.isCurrent) && !skipAhead">
+                <div sws-multistepper-v__step-link full-width>
+                  <div sws-multistepper-v__step-indicator everything-center-container inactive-step>
+                    <ng-container *ngIf="!step?.isSubStep">
+                      <i class="fas fa-circle fa-2x"></i>
+                    </ng-container>
+                    <ng-container *ngIf="step?.isSubStep">
+                      <i class="fas fa-circle"></i>
+                    </ng-container>
+                  </div>
+                  <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
+                    {{step.stepTitle}}
+                  </div>
                 </div>
-                <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
-                  {{step.stepTitle}}
-                </div>
-              </a>
-            </ng-container>
-            <!-- Don't Step Ahead -->
-            <ng-container *ngIf="(!step?.isPassed && !step?.isCurrent) && !devMode">
-              <div sws-multistepper-v__step-link full-width>
-                <div sws-multistepper-v__step-indicator everything-center-container inactive-step>
-                  <ng-container *ngIf="!step?.isSubStep">
-                    <i class="fas fa-circle fa-2x"></i>
-                  </ng-container>
-                  <ng-container *ngIf="step?.isSubStep">
-                    <i class="fas fa-circle"></i>
-                  </ng-container>
-                </div>
-                <div sws-multistepper-v__step-label align-items-v flex-container m-l-10>
-                  {{step.stepTitle}}
-                </div>
-              </div>
-            </ng-container>
-          </div>
-          <div sws-multistepper-v__step-line *ngIf="!last"></div>
-        </li>
-      </ng-container>
-    </ul>
+              </ng-container>
+            </div>
+            <div sws-multistepper-v__step-line *ngIf="!last"></div>
+          </li>
+        </ng-container>
+      </ul>
+    </div>
   </div>
-</div>
+</ng-container>
+<ng-container *ngIf="defaultStyle">
+  <div *ngIf="(!showMultiVMenu && enableToggleIcon) || !enableToggleIcon">
+    <div sws-multistepper-v>
+      <div>
+        <ul m-h-10 m-t-0 p-l-0 id="menu3" aria-labelledby="menubutton_3">
+          <ng-container *ngFor="let step of stepData?.steps; let i = index; let first = first; let last = last;">
+            <li flex-container [class.step-collapsed]="step.isSubStep && step.isCollapsed">
+              <ng-container *ngIf="step.stepUrl && ((step?.isPassed || step?.isCurrent) || skipAhead)">
+
+                <!-- Link -->
+
+                <div *ngIf="!step.isSubStep" dot-container sws-progress-steps__step-indicator
+                  [class.text-hover-primary]="!(step.isPassed && rla.isActive)">
+                  <div *ngIf="!step.isPassed && !rla.isActive">
+                    <div class="fas fa-circle text-regular fa-lg"></div>
+                  </div>
+                  <div *ngIf="!step.isPassed && rla.isActive">
+                    <div class="fas fa-arrow-circle-right text-dark-primary fa-lg"></div>
+                  </div>
+                  <div *ngIf="step.isPassed && !rla.isActive">
+                    <div class="far fa-check-circle text-success fa-lg"></div>
+                  </div>
+                  <div *ngIf="step.isPassed && rla.isActive" class="fa-lg text-secondary--moreprimary">
+                    <span class="fa-layers fa-fw m-l-0 m-r-0">
+                      <i class="fas fa-circle text-secondary"></i>
+                      <i class="fa-inverse fas fa-pencil-alt text-white" data-fa-transform="shrink-8"></i>
+                    </span>
+                  </div>
+                </div>
+
+                <a p-v-5 align-items-v flex-container routerLink="{{step.stepUrl}}" routerLinkActive="active-link" #rla="routerLinkActive"
+                  full-width font-600>
+                  <div sws-multistepper-v__step-label m-l-10 [ngClass]="{
+                  'text-regular': step.isSubStep && !step.isPassed && !rla.isActive,
+                  'text-primary': !step.isPassed && rla.isActive,
+                  'text-success': step.isSubStep && step.isPassed && !rla.isActive,
+                  'text-secondary--moreprimary': step.isSubStep && step.isPassed && rla.isActive,
+                  'text-upper': !step.isSubStep,
+                  'p-l-20': step.isSubStep
+                  }">
+                    {{step.stepTitle}}
+                  </div>
+                </a>
+              </ng-container>
+              <!-- External Url -->
+              <ng-container *ngIf="step.stepExternalUrl">
+                <div *ngIf="!step.isSubStep" dot-container sws-progress-steps__step-indicator>
+                  <div>
+                    <div class="fas fa-circle text-regular fa-lg"></div>
+                  </div>
+                </div>
+                <a href="{{step.stepExternalUrl}}" target="_blank" p-v-5 flex-container full-width font-600>
+                  <div sws-multistepper-v__step-label m-l-10 text-regular [ngClass]="{
+                                  'text-upper': !step.isSubStep,
+                                  'p-l-20': step.isSubStep
+                                  }">
+                    {{step.stepTitle}}
+                  </div>
+                </a>
+              </ng-container>
+              <!-- Don't Step Ahead -->
+              <ng-container *ngIf="step.stepUrl && ((!step?.isPassed && !step?.isCurrent) && !skipAhead)">
+                <div *ngIf="!step.isSubStep" dot-container sws-progress-steps__step-indicator>
+                  <div>
+                    <div class="fas fa-circle text-regular fa-lg"></div>
+                  </div>
+                </div>
+                <div p-v-5 flex-container full-width font-600>
+                  <div sws-multistepper-v__step-label m-l-10 text-regular [ngClass]="{
+                    'text-upper': !step.isSubStep,
+                    'p-l-20': step.isSubStep
+                    }">
+                    {{step.stepTitle}}
+                  </div>
+                </div>
+              </ng-container>
+
+              <!-- Sub Link -->
+              <div *ngIf="!step.isSubStep && step.isCollapsible" id="subStepIndicator{{i}}" m-l-auto substep-indicator
+                (click)="toggleCollapsible(step)">
+                <button type="button" *ngIf="!step.isCollapsed">
+                  <i class="fas fa-angle-up"></i>
+                </button>
+                <button type="button" *ngIf="step.isCollapsed">
+                  <i class="fas fa-angle-down"></i>
+                </button>
+              </div>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</ng-container>
