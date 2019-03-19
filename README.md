@@ -70,9 +70,14 @@ export class MyAppModule { }
 ## **Components**
 
 ### **Vertical-Multi-Stepper**
-![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Multistepper.jpg "NG Workshop Example")
+
+Version 1 :
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Multistepper2.png "NG Workshop Example")
+
+Version 2 :
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Multistepper.jpg "NG Workshop Example")
 
 #### `<sws-multi-stepper-v>` is a component used to render a progressive vertical multistepper.
 
