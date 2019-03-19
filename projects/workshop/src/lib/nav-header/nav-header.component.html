@@ -75,15 +75,15 @@
       </div>
 
       <!-- Logo -->
-      <div sws-nav__logo p-l-15 *ngIf="navData?.logoImageUrl" [class.tinyLogo]="config?.smallLogo">
+      <div ng-sws-nav__logo p-l-15 *ngIf="navData?.logoImageUrl" [class.tinyLogo]="config?.smallLogo">
         <ng-container *ngIf="!navData?.externalLogoLink">
           <a routerLink="{{navData?.logoLink ? navData?.logoLink : '/'}}" flex-center>
-            <img sws-nav__logo-img src="{{navData?.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
+            <img ng-sws-nav__logo-img src="{{navData?.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
           </a>
         </ng-container>
         <ng-container *ngIf="navData?.externalLogoLink">
           <a href="{{navData?.externalLogoLink}}" target="_blank" flex-center>
-            <img sws-nav__logo-img src="{{navData?.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
+            <img ng-sws-nav__logo-img src="{{navData?.logoImageUrl}}" alt="logo" [class.tinyLogo]="config?.smallLogo">
           </a>
         </ng-container>
       </div>
