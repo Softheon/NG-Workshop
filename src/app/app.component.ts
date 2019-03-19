@@ -44,38 +44,80 @@ export class AppComponent implements OnInit {
   };
 
   public stepData: IMultiStepper = {
-    // menuText: 'NG-Workshop',
+    menuText: 'MENU',
     steps: [
       {
-        stepTitle: 'test1 welcome',
-        stepExternalUrl: 'https://github.com/Softheon/NG-Workshop/issues/30',
-        isSubStep: false
-      },
-      {
-        stepTitle: 'test2 hello',
-        stepUrl: './about/hello',
-        isSubStep: false
-      },
-      {
-        stepTitle: 'test3 contact',
+        stepTitle: 'Checkout',
         stepUrl: './contact',
         isSubStep: false,
+        isCollapsible: true,
+        stepGroupIndex: 0,
       },
       {
-        stepTitle: 'test4 ourstory',
-        stepUrl: './about/ourstory',
-        stepGroupIndex: 3,
-        isSubStep: false,
-        isCollapsible: true
+        stepTitle: 'Shipping',
+        stepUrl: './checkout/shipping',
+        isSubStep: true,
+        stepGroupIndex: 0,
       },
       {
-        stepTitle: 'test4 ourstory',
-        stepUrl: './about/ourstory',
-        stepGroupIndex: 3,
-        isSubStep: true
+        stepTitle: 'Billing',
+        stepUrl: './checkout/billing',
+        isSubStep: true,
+        stepGroupIndex: 0,
+      },
+      {
+        stepTitle: 'Review',
+        stepUrl: './checkout/review',
+        isSubStep: true,
+        stepGroupIndex: 0,
+      },
+      {
+        stepTitle: 'Finish',
+        stepUrl: './finished',
+        isSubStep: false
+      },
+      {
+        stepTitle: 'Thank you',
+        stepExternalUrl: 'https://github.com/Softheon/NG-Workshop',
+        isSubStep: false
       }
     ]
   };
+
+
+  // public stepData: IMultiStepper = {
+  //   // menuText: 'NG-Workshop',
+  //   steps: [
+  //     {
+  //       stepTitle: 'test1 welcome',
+  //       stepExternalUrl: 'https://github.com/Softheon/NG-Workshop/issues/30',
+  //       isSubStep: false
+  //     },
+  //     {
+  //       stepTitle: 'test2 hello',
+  //       stepUrl: './about/hello',
+  //       isSubStep: false
+  //     },
+  //     {
+  //       stepTitle: 'test3 contact',
+  //       stepUrl: './contact',
+  //       isSubStep: false,
+  //     },
+  //     {
+  //       stepTitle: 'test4 ourstory',
+  //       stepUrl: './about/ourstory',
+  //       stepGroupIndex: 3,
+  //       isSubStep: false,
+  //       isCollapsible: true
+  //     },
+  //     {
+  //       stepTitle: 'test4 ourstory',
+  //       stepUrl: './about/ourstory',
+  //       stepGroupIndex: 3,
+  //       isSubStep: true
+  //     }
+  //   ]
+  // };
 
   /**
    * Example Footer Data

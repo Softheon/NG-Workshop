@@ -72,6 +72,8 @@ export class MyAppModule { }
 ### **Vertical-Multi-Stepper**
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Multistepper.jpg "NG Workshop Example")
 
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_Multistepper2.png "NG Workshop Example")
+
 #### `<sws-multi-stepper-v>` is a component used to render a progressive vertical multistepper.
 
 
@@ -89,65 +91,31 @@ Component.ts:
 import { IMultiStepper } from '@softheon/ng-workshop';
 
   public stepData: IMultiStepper = {
-    // menuText: 'NG-Workshop',
-    steps: [
-      {
-        stepTitle: 'test1 welcome',
-        stepExternalUrl: 'https://github.com/Softheon/NG-Workshop/issues/30',
-        isSubStep: false
-      },
-      {
-        stepTitle: 'test2 hello',
-        stepUrl: './about/hello',
-        isSubStep: false
-      },
-      {
-        stepTitle: 'test3 contact',
-        stepUrl: './contact',
-        isSubStep: false,
-      },
-      {
-        stepTitle: 'test4 ourstory',
-        stepUrl: './about/ourstory',
-        stepGroupIndex: 3,
-        isSubStep: false,
-        isCollapsible: true
-      },
-      {
-        stepTitle: 'test4 ourstory',
-        stepUrl: './about/ourstory',
-        stepGroupIndex: 3,
-        isSubStep: true
-      }
-    ]
-  };
-
-public stepData: IMultiStepper = {
     menuText: 'MENU',
     steps: [
       {
         stepTitle: 'Checkout',
         stepUrl: './checkout',
         isSubStep: false,
-        isCollapsible: true
+        isCollapsible: true,
         stepGroupIndex: 0,
       },
       {
         stepTitle: 'Shipping',
         stepUrl: './checkout/shipping',
-        isSubStep: true
+        isSubStep: true,
         stepGroupIndex: 0,
       },
       {
         stepTitle: 'Billing',
         stepUrl: './checkout/billing',
-        isSubStep: true
+        isSubStep: true,
         stepGroupIndex: 0,
       },
       {
         stepTitle: 'Review',
         stepUrl: './checkout/review',
-        isSubStep: true
+        isSubStep: true,
         stepGroupIndex: 0,
       },
       {
@@ -991,4 +959,3 @@ Example Configuration (Optional):
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-1.png "NG Workshop Example")
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-2.png "NG Workshop Example")
-
