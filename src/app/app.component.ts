@@ -48,23 +48,18 @@ export class AppComponent implements OnInit {
     steps: [
       {
         stepTitle: 'test1 welcome',
-        stepUrl: './welcome',
-        stepGroupIndex: 1,
-        isSubStep: false,
-        isCollapsible: true
+        stepExternalUrl: 'https://github.com/Softheon/NG-Workshop/issues/30',
+        isSubStep: false
       },
       {
         stepTitle: 'test2 hello',
         stepUrl: './about/hello',
-        stepGroupIndex: 1,
-        isSubStep: true
+        isSubStep: false
       },
       {
         stepTitle: 'test3 contact',
         stepUrl: './contact',
-        stepGroupIndex: 2,
         isSubStep: false,
-        isCollapsible: true
       },
       {
         stepTitle: 'test4 ourstory',

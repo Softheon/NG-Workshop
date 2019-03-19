@@ -76,7 +76,7 @@
         <ul m-h-10 m-t-0 p-l-0 id="menu3" aria-labelledby="menubutton_3">
           <ng-container *ngFor="let step of stepData?.steps; let i = index; let first = first; let last = last;">
             <li flex-container [class.step-collapsed]="step.isSubStep && step.isCollapsed">
-              <ng-container *ngIf="(step?.isPassed || step?.isCurrent) || skipAhead">
+              <ng-container *ngIf="step.stepUrl && ((step?.isPassed || step?.isCurrent) || skipAhead)">
 
                 <!-- Link -->
 
@@ -113,9 +113,24 @@
                   </div>
                 </a>
               </ng-container>
+              <!-- External Url -->
+              <ng-container *ngIf="step.stepExternalUrl">
+                <div *ngIf="!step.isSubStep" dot-container sws-progress-steps__step-indicator>
+                  <div>
+                    <div class="fas fa-circle text-regular fa-lg"></div>
+                  </div>
+                </div>
+                <a href="{{step.stepExternalUrl}}" target="_blank" p-v-5 flex-container full-width font-600>
+                  <div sws-multistepper-v__step-label m-l-10 text-regular [ngClass]="{
+                                  'text-upper': !step.isSubStep,
+                                  'p-l-20': step.isSubStep
+                                  }">
+                    {{step.stepTitle}}
+                  </div>
+                </a>
+              </ng-container>
               <!-- Don't Step Ahead -->
-              <ng-container *ngIf="(!step?.isPassed && !step?.isCurrent) && !skipAhead">
-
+              <ng-container *ngIf="step.stepUrl && ((!step?.isPassed && !step?.isCurrent) && !skipAhead)">
                 <div *ngIf="!step.isSubStep" dot-container sws-progress-steps__step-indicator>
                   <div>
                     <div class="fas fa-circle text-regular fa-lg"></div>

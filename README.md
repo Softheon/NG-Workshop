@@ -88,37 +88,76 @@ Component.ts:
 ```TypeScript
 import { IMultiStepper } from '@softheon/ng-workshop';
 
+  public stepData: IMultiStepper = {
+    // menuText: 'NG-Workshop',
+    steps: [
+      {
+        stepTitle: 'test1 welcome',
+        stepExternalUrl: 'https://github.com/Softheon/NG-Workshop/issues/30',
+        isSubStep: false
+      },
+      {
+        stepTitle: 'test2 hello',
+        stepUrl: './about/hello',
+        isSubStep: false
+      },
+      {
+        stepTitle: 'test3 contact',
+        stepUrl: './contact',
+        isSubStep: false,
+      },
+      {
+        stepTitle: 'test4 ourstory',
+        stepUrl: './about/ourstory',
+        stepGroupIndex: 3,
+        isSubStep: false,
+        isCollapsible: true
+      },
+      {
+        stepTitle: 'test4 ourstory',
+        stepUrl: './about/ourstory',
+        stepGroupIndex: 3,
+        isSubStep: true
+      }
+    ]
+  };
+
 public stepData: IMultiStepper = {
     menuText: 'MENU',
     steps: [
       {
         stepTitle: 'Checkout',
         stepUrl: './checkout',
-        stepIndex: 1,
-        isSubStep: false
+        isSubStep: false,
+        isCollapsible: true
+        stepGroupIndex: 0,
       },
       {
         stepTitle: 'Shipping',
         stepUrl: './checkout/shipping',
-        stepIndex: 2,
         isSubStep: true
+        stepGroupIndex: 0,
       },
       {
         stepTitle: 'Billing',
         stepUrl: './checkout/billing',
-        stepIndex: 3,
         isSubStep: true
+        stepGroupIndex: 0,
       },
       {
         stepTitle: 'Review',
         stepUrl: './checkout/review',
-        stepIndex: 4,
         isSubStep: true
+        stepGroupIndex: 0,
       },
       {
         stepTitle: 'Finish',
         stepUrl: './finished',
-        stepIndex: 5,
+        isSubStep: false
+      },
+      {
+        stepTitle: 'Thank you',
+        stepExternalUrl: 'https://github.com/Softheon/NG-Workshop',
         isSubStep: false
       }
     ]
@@ -136,7 +175,7 @@ Example 2-column HTML with flexbox positioning:
 ```html
 <div flex-container-responsive>
    <div m-t-15>
-     <sws-multi-stepper-v [stepData2]="stepData2"></sws-multi-stepper-v>
+     <sws-multi-stepper-v [stepData]="stepData"></sws-multi-stepper-v>
    </div>
    <div full-width m-a-10>
       <!-- Content Goes here -->
@@ -144,25 +183,35 @@ Example 2-column HTML with flexbox positioning:
 </div>
 ```
 
+#### **Vertical Multistepper Input Configurations**
+
+| Key              | Type          | Required | Default Value | Description                                         |
+|------------------|---------------|----------|---------------|-----------------------------------------------------|
+| stepData         | IMultiStepper | yes      | n/a           | The order index                                     |
+| defaultStyle     | boolean       | no       | true          | The default UI style of the multistepper            |
+| skipAhead        | boolean       | no       | false         | Enable or disables skip-ahead                       |
+| enableToggleIcon | boolean       | no       | true          | Whether or not to display the title and toggle icon |
+
 #### **Vertical Multistepper 'IStep' Properties**
 
-| Key       | Type    | Required | Example   | Description                           |
-| --------- | :-----: | :------: | :-------: | ------------------------------------: |
-| stepUrl   | string  | yes      | './start' | The router link url                   |
-| stepTitle | string  | yes      | 'Start'   | The the title                         |
-| stepIndex | number  | yes      | '1'       | The order index                       |
-| isSubStep | boolean | yes      | true      | If the step is displayed as a substep |
-| isPassed  | boolean | n/a      | n/a       | If the step is passed                 |
-| isCurrent | boolean | n/a      | n/a       | If the step is current                |
+| Key             | Type    | Required                   | Example                                   | Description                                      |
+|-----------------|---------|----------------------------|-------------------------------------------|--------------------------------------------------|
+| stepUrl         | string  | yes, if no stepExternalUrl | './start'                                 | The router link url                              |
+| stepExternalUrl | string  | yes, if no stepUrl         | 'https://github.com/Softheon/NG-Workshop' | The router link url                              |
+| stepTitle       | string  | yes                        | 'Start'                                   | The title                                        |
+| isSubStep       | boolean | yes                        | true                                      | If the step is displayed as a substep            |
+| stepGroupIndex  | number  | no                         | '1'                                       | The order index                                  |
+| isCollapsible   | boolean | no, default false          | true                                      | If the step should display the collapsible arrow |
+| isPassed        | boolean | n/a                        | n/a                                       | If the step is passed                            |
+| isCurrent       | boolean | n/a                        | n/a                                       | If the step is current                           |
+| isCollapsed     | boolean | n/a                        | n/a                                       | If the steps group is collapsed                  |
 
 #### **Vertical Multistepper 'IMultiStepper' Properties**
+
 | Key      | Type    | Required | Example                                  | Description           |
-| -------- | :-----: | :------: | :--------------------------------------: | --------------------: |
-| devMode  | boolean | optional | true, default value is false             | The multistepper text |
+|----------|---------|----------|------------------------------------------|-----------------------|
 | menuText | string  | optional | 'Epic Subtitle', default value is 'MENU' | The multistepper text |
 | steps    | IStep[] | required | steps: [{...}]                           | The array of ISteps   |
-
-
 
 ### **Card-Grid**
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop-Example-Card-Grid-Header.png "NG Workshop Example")
@@ -212,13 +261,13 @@ Example Configuration (Optional):
 #### **Configuration Properties**
 
 | Configuration Key | Example            | Required             | Description     |
-| ----------------- | :----------------: | :------------------: | --------------: |
+|-------------------|--------------------|----------------------|-----------------|
 | cardSize          | 'lg' / 'md' / 'sm' | no (default is 'sm') | Card size style |
 
 #### **Card Content  Properties**
 
 | Key       | Type   | Example                           | Description                                 |
-| --------- | :----: | :-------------------------------: | ------------------------------------------: |
+|-----------|--------|-----------------------------------|---------------------------------------------|
 | title     | string | 'Epic Card Title'                 | Card Title, hidden if no value              |
 | subtitle  | string | 'Epic Subtitle'                   | Card Subtitle, hidden if no value           |
 | desc      | string | 'Lorem ipsum dolor dit amet'      | Card Description, hidden if no value        |
@@ -294,7 +343,7 @@ Example with ng-content (calling a function instead of changing router link):
   </sws-header>
   ```
 
-  The header can include two different custom content. Add the attribute `header` to the div for it to go in the header bar (to the right of the logo, and left of quicklinks). Add the attribute `usermenu` to the div for it to go in the user menu dropdown.
+  The header can include 3 areas for custom content. Add the attribute `header` to the div for it to go in the header bar (to the right of the logo, and left of quicklinks). Add the attribute `usermenu` to the div for it to go in the user menu dropdown. Add the attribute `leftmenu` to the div for it to go in the left menu.
 
 **TIP: If you don't provide any navData it will display an empty header**
 
@@ -573,7 +622,7 @@ When there are more than 4 quick links, the ui renders them under the header.
 #### **Configuration Properties**
 
 | Configuration Key | Example                               | Required                | Description                    |
-| ----------------- | :-----------------------------------: | :---------------------: | -----------------------------: |
+|-------------------|---------------------------------------|-------------------------|--------------------------------|
 | displayAppMenu    | 'true / false'                        | no (default is 'false') | Display left menu              |
 | displaySearch     | 'true / false'                        | no (default is 'false') | Display search bar             |
 | displaySubNavMenu | 'true / false'                        | no (default is 'false') | Display sub nav menu           |
@@ -587,7 +636,7 @@ When there are more than 4 quick links, the ui renders them under the header.
 **TIP: All external links open in new tab as target="_blank"**
 
 | Key              | Type    | Example                           | Description                                                                  |
-| ---------------- | :-----: | :-------------------------------: | ---------------------------------------------------------------------------: |
+|------------------|---------|-----------------------------------|------------------------------------------------------------------------------|
 | userName         | string  | 'Jay Gatsby'                      | User's name in the user menu                                                 |
 | userEmail        | string  | 'jay@thegreatgatsby.com'          | User's email  user menu                                                      |
 | logoText         | string  | 'The Great Gatsby'                | Header Text as Logo                                                          |
@@ -607,7 +656,7 @@ When there are more than 4 quick links, the ui renders them under the header.
 **TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
 
 | Key             | Type   | Required  | Example                   | Description                                  |
-| --------------- | :----: | :-------: | :-----------------------: | -------------------------------------------: |
+|-----------------|--------|-----------|---------------------------|----------------------------------------------|
 | linkText        | string | required  | 'Epic Subtitle'           | The link text                                |
 | linkUrl         | string | optional* | './contact'               | The link url                                 |
 | externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
@@ -662,7 +711,7 @@ import { IBreadcrumb } from '@softheon/ng-workshop';
 Example of breadcrumbs using dark theme
 
 ```html
-<sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true"></sws-breadcrumb>
+<sws-breadcrumb [breadcrumbData]="breadcrumbData" [darkTheme]="true" [maxBreadcrumbs]="4"></sws-breadcrumb>
 ```
 
 Example of breadcrumbs in Header component
@@ -679,22 +728,23 @@ Example of breadcrumbs in Header component
 #### **Breadcrumbs 'IBreadcrumb' Properties**
 
 | Key        | Type    | Required | Example                                  | Description            |
-| ---------- | :-----: | :------: | :--------------------------------------: | ---------------------: |
+|------------|---------|----------|------------------------------------------|------------------------|
 | breadcrumb | ILink[] | yes      | {linkText: 'Softheon',linkUrl: './home'} | the breadcrumbs object |
 
 **Additional Breadcrumb Properties (Added to html as inputs)**
 
-| Key               | Type    | Required | Example    | Description                                           |
-| ----------------- | :-----: | :------: | :--------: | ----------------------------------------------------: |
-| darkTheme         | boolean | optional | true/false | Toggle dark theme for the breadcrumbs                 |
-| headerBreadcrumbs | boolean | optional | true/false | Set to true when displaying breadcrumbs in the header |
+| Key               | Type    | Required                      | Example    | Description                                                    |
+|-------------------|---------|-------------------------------|------------|----------------------------------------------------------------|
+| darkTheme         | boolean | optional                      | true/false | Toggle dark theme for the breadcrumbs                          |
+| headerBreadcrumbs | boolean | optional                      | true/false | Set to true when displaying breadcrumbs in the header          |
+| maxBreadcrumbs    | number  | optional (default value is 3) | 4          | The maximum number of breadcrumbs to display before collapsing |
 
 #### **Breadcrumbs Link 'ILink' Properties**
 
 **TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
 
 | Key             | Type   | Required  | Example                   | Description                                  |
-| --------------- | :----: | :-------: | :-----------------------: | -------------------------------------------: |
+|-----------------|--------|-----------|---------------------------|----------------------------------------------|
 | linkText        | string | required  | 'Epic Subtitle'           | The link text                                |
 | linkUrl         | string | optional* | './contact'               | The link url                                 |
 | externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
@@ -705,7 +755,6 @@ Examples:
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop_Breadcrumbs0.png "NG Workshop Example")
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop_Breadcrumbs1.png "NG Workshop Example")
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/NG-Workshop_Breadcrumbs2.png "NG Workshop Example")
-
 
 
 ### **Footer**
@@ -770,7 +819,7 @@ Example HTML with flexbox positioning:
 **TIP: All external links open in new tab as target="_blank"**
 
 | Key                 | Type    | Example                                               | Description                         |
-| ------------------- | :-----: | :---------------------------------------------------: | ----------------------------------: |
+|---------------------|---------|-------------------------------------------------------|-------------------------------------|
 | footerLogoUrl       | string  | 'https://i.imgur.com/PBaOIbC.gif'                     | The Footer Logo Url                 |
 | copyrightText       | string  | '2018 Workshop, All Rights Reserved'                  | The Copyright Text                  |
 | releaseVersionNo    | string  | '1.0.0.beta'                                          | The Release Version Number          |
@@ -803,7 +852,7 @@ Example HTML with flexbox positioning:
 **TIP: *Either linkUrl or externalLinkUrl must be provided in an ILink object**
 
 | Key             | Type   | Required  | Example                   | Description                                  |
-| --------------- | :----: | :-------: | :-----------------------: | -------------------------------------------: |
+|-----------------|--------|-----------|---------------------------|----------------------------------------------|
 | linkText        | string | required  | 'Epic Subtitle'           | The link text                                |
 | linkUrl         | string | optional* | './contact'               | The link url                                 |
 | externalLinkUrl | string | optional* | 'https://www.google.com/' | The external link url, opens target="_blank" |
@@ -812,7 +861,7 @@ Example HTML with flexbox positioning:
 #### **Configuration Properties**
 
 | Configuration Key | Example                                       | Required | Description            |
-| ----------------- | :-------------------------------------------: | :------: | ---------------------: |
+|-------------------|-----------------------------------------------|----------|------------------------|
 | theme             | 'dark' / 'light' / 'grey' / 'clear' / 'theme' | yes      | The footer theme color |
 | size              | 'sm' / 'md' / 'lg'                            | yes      | The footer size style  |
 
@@ -926,7 +975,7 @@ Example Configuration (Optional):
 #### **Configuration Properties**
 
 | Configuration Key  | Example          | Required                     | Description                                                 |
-| ------------------ | :--------------: | :--------------------------: | ----------------------------------------------------------: |
+|--------------------|------------------|------------------------------|-------------------------------------------------------------|
 | dir                | 'v' / 'h'        | no (default is 'h')          | Direction of the navigation                                 |
 | navTxt             | 'My Awesome Nav' | no (default is 'Navigation') | Text that's displayed next to the mobile/vertical menu icon |
 | showLastNav        | true / false     | no (default is false)        | On horizontal view the text                                 |
