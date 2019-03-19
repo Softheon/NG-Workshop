@@ -90,7 +90,7 @@
       align-self: auto;
 }
 
-[sws-nav__logo] {
+[ng-sws-nav__logo] {
   width: 155px;
   text-align: center;
   display: -webkit-box;
@@ -101,18 +101,18 @@
           justify-content: center;
 }
 
-[sws-nav__logo].tinyLogo {
+[ng-sws-nav__logo].tinyLogo {
   max-width: 48px;
 }
 
-[sws-nav__logo-img] {
+[ng-sws-nav__logo-img] {
   height: auto;
   max-height: 50px;
   width: 145px;
   max-width: 145px;
 }
 
-[sws-nav__logo-img].tinyLogo {
+[ng-sws-nav__logo-img].tinyLogo {
   max-width: 48px;
 }
 
