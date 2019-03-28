@@ -90,7 +90,7 @@ import { ScrollProgressModule } from '@softheon/ng-workshop';
 
 ```html
   <div style="position: fixed; bottom: 0; padding: 20px;">
-      <sws-scroll-progress (scroll)="log($event)" (top)="log($event)" (bottom)="log($event)" (click)="log($event)"></sws-scroll-progress>
+      <sws-scroll-progress (scroll)="log($event)" (top)="log($event)" (bottom)="log($event)" (btnClick)="log($event)"></sws-scroll-progress>
   </div>
 ```
 
@@ -105,12 +105,12 @@ import { ScrollProgressModule } from '@softheon/ng-workshop';
 
 #### **Scroll Progress Event Emitters (emits on Scroll)**
 
-| Key    | Type       | Description                                                                               |
-|--------|------------|-------------------------------------------------------------------------------------------|
-| scroll | number     | the percentage of the scroll progress (ie. top of the page = 0, bottom of the page = 100) |
-| top    | boolean    | Emits true when the scroll is at the top of the page                                      |
-| bottom | boolean    | Emits true when the scroll is at the bottom of the page                                   |
-| click  | MouseEvent | Emitter when the button is clicked                                                        |
+| Key      | Type       | Description                                                                               |
+|----------|------------|-------------------------------------------------------------------------------------------|
+| scroll   | number     | the percentage of the scroll progress (ie. top of the page = 0, bottom of the page = 100) |
+| top      | boolean    | Emits true when the scroll is at the top of the page                                      |
+| bottom   | boolean    | Emits true when the scroll is at the bottom of the page                                   |
+| btnClick | MouseEvent | Emitter when the button is clicked                                                        |
 
 #### **The Scroll Progress Indicator can be themed in the styles.css file as such:**
 
