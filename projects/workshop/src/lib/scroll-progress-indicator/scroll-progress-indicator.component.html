@@ -1,0 +1,9 @@
+<button sws-progress-donut (click)="clickEventEmitter()">
+  <span invisible-absolute>Scroll</span>
+  <div sws-progress-arrow [class.bottom]="bottomOfPage"></div>
+  <div sws-svg-indicator>
+    <svg width="50" height="50">
+      <circle cx="25" cy="25" r="24" stroke-width="2" [attr.stroke-dashoffset]="scrollProgress" fill="transparent" />
+    </svg>
+  </div>
+</button>

@@ -151,9 +151,11 @@
                 (click)="toggleCollapsible(step)">
                 <button type="button" *ngIf="!step.isCollapsed">
                   <i class="fas fa-angle-up"></i>
+                  <span invisible-absolute>Collapse</span>
                 </button>
                 <button type="button" *ngIf="step.isCollapsed">
                   <i class="fas fa-angle-down"></i>
+                  <span invisible-absolute>Open</span>
                 </button>
               </div>
             </li>

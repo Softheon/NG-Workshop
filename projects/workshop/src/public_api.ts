@@ -24,3 +24,6 @@ export * from './lib/footer/footer.module';
 export * from './lib/multi-stepper-v/multistepper';
 export * from './lib/multi-stepper-v/multi-stepper-v.component';
 export * from './lib/multi-stepper-v/multi-stepper-v.module';
+
+export * from './lib/scroll-progress-indicator/scroll-progress-indicator.component';
+export * from './lib/scroll-progress-indicator/scroll-progress-indicator.module';
