@@ -26,7 +26,7 @@ export class ScrollProgressIndicatorComponent implements OnInit {
   @Output() bottom: EventEmitter<boolean> = new EventEmitter();
 
   /** Event Emitter: when the user clicks the button */
-  @Output() click: EventEmitter<boolean> = new EventEmitter();
+  @Output() btnClick: EventEmitter<boolean> = new EventEmitter();
 
   constructor() {}
 
@@ -42,7 +42,7 @@ export class ScrollProgressIndicatorComponent implements OnInit {
 
   /** Sends an event emitter when the button is clicked */
   public clickEventEmitter(): void {
-    this.click.emit(true);
+    this.btnClick.emit(true);
   }
 
   ngOnInit() {}
