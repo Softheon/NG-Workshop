@@ -482,4 +482,12 @@ export class AppComponent implements OnInit {
   public searchSomething(event) {
     this.searchItem = event;
   }
+
+  /**
+   * Event Handler Example
+   * @param event
+   */
+  public log(event) {
+    console.log('e: ', event);
+  }
 }

@@ -11,6 +11,16 @@ body {
     margin-bottom: 40px;
 } */
 
+:root {
+  --sws-progress-arrow-color: #4b4e56;
+  --sws-progress-indicator-color: #4b4e56;
+  --sws-progress-glow-color-start: 0 0 0 0 rgba(175, 175, 175, 0.9);
+  --sws-progress-glow-color-end: 0 0 0 0 rgba(175, 175, 175, 0);
+  --sws-progress-init-color: rgba(75, 78, 86, .18);
+  --sws-progress-hover-color: rgba(75, 78, 86, .5);
+  --sws-progress-focus-color: rgba(75, 78, 86, 1);
+}
+
 html, body {
     height: 100%;
 }

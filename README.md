@@ -10,7 +10,8 @@
 ## **Quick Links**
 - [Getting Started](#getting-started)
 - [Components](#components)
--    * [Vertical-Multi-Stepper](#vertical-multi-stepper)
+-    * [Scroll-Progress](#scroll-progress)
+     * [Vertical-Multi-Stepper](#vertical-multi-stepper)
      * [Card-Grid](#card-grid)
      * [Header](#header)
      * [Breadcrumbs](#breadcrumbs)
@@ -68,6 +69,64 @@ export class MyAppModule { }
 
 
 ## **Components**
+
+### **Scroll Progress**
+
+![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_ScrollProgress.png "NG Workshop Example")
+
+
+#### `<sws-scroll-progress>` is a component used to render a scroll progress indicator donut visualization
+
+
+#### API reference for NG-Workshop Scroll Progress Component
+
+Module.ts:
+
+```TypeScript
+import { ScrollProgressModule } from '@softheon/ng-workshop';
+```
+
+#### **Add component to your html**
+
+```html
+  <div style="position: fixed; bottom: 0; padding: 20px;">
+      <sws-scroll-progress (scroll)="log($event)" (top)="log($event)" (bottom)="log($event)" (click)="log($event)"></sws-scroll-progress>
+  </div>
+```
+
+#### **Example Event Emitter Method**
+
+```TypeScript
+  public log(event) {
+    console.log('e: ', event);
+  }
+```
+
+
+#### **Scroll Progress Event Emitters (emits on Scroll)**
+
+| Key    | Type       | Description                                                                               |
+|--------|------------|-------------------------------------------------------------------------------------------|
+| scroll | number     | the percentage of the scroll progress (ie. top of the page = 0, bottom of the page = 100) |
+| top    | boolean    | Emits true when the scroll is at the top of the page                                      |
+| bottom | boolean    | Emits true when the scroll is at the bottom of the page                                   |
+| click  | MouseEvent | Emitter when the button is clicked                                                        |
+
+#### **The Scroll Progress Indicator can be themed in the styles.css file as such:**
+
+```css
+:root {
+  --sws-progress-arrow-color: #4b4e56;
+  --sws-progress-indicator-color: #4b4e56; /* the progress ring color */
+  --sws-progress-glow-color-start: 0 0 0 0 rgba(175, 175, 175, 0.9);
+  --sws-progress-glow-color-end: 0 0 0 0 rgba(175, 175, 175, 0);
+  --sws-progress-init-color: rgba(75, 78, 86, .18);  /* the progress ring's init color */
+  --sws-progress-hover-color: rgba(75, 78, 86, .5);
+  --sws-progress-focus-color: rgba(75, 78, 86, 1);
+}
+```
+
+Note which variables are using rgba vs hex colors, and their alpha value.
 
 ### **Vertical-Multi-Stepper**
 

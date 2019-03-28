@@ -26,7 +26,9 @@
       <div p-a-10>This is also custom html!</div>
     </div>
   </sws-header>
-
+  <div style="position: fixed; bottom: 0" p-a-20>
+      <sws-scroll-progress (scroll)="log($event)" (top)="log($event)" (bottom)="log($event)" (click)="log($event)"></sws-scroll-progress>
+  </div>
   <div flex-container-responsive>
     <div m-t-15>
       <sws-multi-stepper-v [stepData]="stepData" [skipAhead]="true" [enableToggleIcon]="true" [defaultStyle]="true"></sws-multi-stepper-v>
@@ -67,8 +69,8 @@
       <div sws-card p-a-30 style="max-width: 600px; margin: 0 auto">
         <h4>Welcome to Workshop, please sign in:</h4>
         <div sws-form full-width>
-          <input sws-form__input type="text" name="fancypassword" id="fancy2" required />
-          <label sws-form__label for="fancy2">User</label>
+          <input sws-form__input type="text" name="fancyusername" id="fancy1" required />
+          <label sws-form__label for="fancy1">User</label>
           <div sws-form__bar></div>
         </div>
         <div sws-form full-width>
