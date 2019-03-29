@@ -33,13 +33,14 @@
 }
 
 [sws-progress-donut]:focus {
+  cursor: pointer;
   outline: none;
   border: 2px solid;
   border-color: #4b4e56;
   border-color: var(--sws-progress-focus-color, #4b4e56);
 }
 
-[sws-progress-donut]:focus, [sws-progress-donut]:active {
+[sws-progress-donut]:not(:active) {
   cursor: pointer;
   animation: sof-pulse2 .75s ease-in-out;
   -webkit-animation: sof-pulse2 .75s ease-in-out;
