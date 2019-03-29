@@ -25,18 +25,18 @@
   }
 
   &:focus {
+    cursor: pointer;
     outline: none;
     border: 2px solid;
     border-color: rgba(75, 78, 86, 1);
-    border-color: var(--sws-progress-focus-color,rgba(75, 78, 86, 1))
+    border-color: var(--sws-progress-focus-color,rgba(75, 78, 86, 1));
   }
 
-  &:focus,
-  &:active {
-    cursor: pointer;
-    animation: sof-pulse2 .75s ease-in-out;
-    -webkit-animation: sof-pulse2 .75s ease-in-out;
-    transition: all 0.2s ease-out;
+  &:not(:active) {
+      cursor: pointer;
+      animation: sof-pulse2 .75s ease-in-out;
+      -webkit-animation: sof-pulse2 .75s ease-in-out;
+      transition: all 0.2s ease-out;
   }
 
   [sws-progress-arrow] {
