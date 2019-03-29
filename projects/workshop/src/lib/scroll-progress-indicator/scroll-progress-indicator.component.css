@@ -21,9 +21,12 @@
   border-radius: 50%;
   margin-left: -1px;
   margin-top: -1px;
+  -webkit-transition: border-color .5s ease;
+  transition: border-color .5s ease;
 }
 
 [sws-progress-donut]:hover {
+  cursor: pointer;
   border: 2px solid;
   border-color: rgba(75, 78, 86, 0.5);
   border-color: var(--sws-progress-hover-color, rgba(75, 78, 86, 0.5));
@@ -36,10 +39,10 @@
   border-color: var(--sws-progress-focus-color, #4b4e56);
 }
 
-[sws-progress-donut]:hover, [sws-progress-donut]:focus, [sws-progress-donut]:active {
+[sws-progress-donut]:focus, [sws-progress-donut]:active {
   cursor: pointer;
-  animation: sof-pulse2 2.6s ease-in-out infinite;
-  -webkit-animation: sof-pulse2 2.6s ease-in-out infinite;
+  animation: sof-pulse2 .75s ease-in-out;
+  -webkit-animation: sof-pulse2 .75s ease-in-out;
   -webkit-transition: all 0.2s ease-out;
   transition: all 0.2s ease-out;
 }
@@ -90,13 +93,13 @@
 }
 
 @-webkit-keyframes sof-pulse2 {
-  0% {
+  from {
     -webkit-box-shadow: 0 0 0 0 rgba(175, 175, 175, 0.9);
             box-shadow: 0 0 0 0 rgba(175, 175, 175, 0.9);
     -webkit-box-shadow: 0 0 0 0 var(--sws-progress-glow-color, rgba(175, 175, 175, 0.9));
             box-shadow: 0 0 0 0 var(--sws-progress-glow-color, rgba(175, 175, 175, 0.9));
   }
-  40% {
+  to {
     -webkit-box-shadow: 0 0 0 15px rgba(175, 175, 175, 0);
             box-shadow: 0 0 0 15px rgba(175, 175, 175, 0);
     -webkit-box-shadow: 0 0 0 15px var(--sws-progress-glow-color, rgba(175, 175, 175, 0));
@@ -105,13 +108,13 @@
 }
 
 @keyframes sof-pulse2 {
-  0% {
+  from {
     -webkit-box-shadow: 0 0 0 0 rgba(175, 175, 175, 0.9);
             box-shadow: 0 0 0 0 rgba(175, 175, 175, 0.9);
     -webkit-box-shadow: 0 0 0 0 var(--sws-progress-glow-color, rgba(175, 175, 175, 0.9));
             box-shadow: 0 0 0 0 var(--sws-progress-glow-color, rgba(175, 175, 175, 0.9));
   }
-  40% {
+  to {
     -webkit-box-shadow: 0 0 0 15px rgba(175, 175, 175, 0);
             box-shadow: 0 0 0 15px rgba(175, 175, 175, 0);
     -webkit-box-shadow: 0 0 0 15px var(--sws-progress-glow-color, rgba(175, 175, 175, 0));
