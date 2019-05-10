@@ -74,9 +74,7 @@ export class MyAppModule { }
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/Workshop2_ScrollProgress.png "NG Workshop Example")
 
-
 #### `<sws-scroll-progress>` is a component used to render a scroll progress indicator donut visualization
-
 
 #### API reference for NG-Workshop Scroll Progress Component
 
@@ -102,6 +100,22 @@ import { ScrollProgressModule } from '@softheon/ng-workshop';
   }
 ```
 
+#### **Example HTML with custom scroll event emitter:**
+
+```html
+<div id="test-container" (scroll)="watchScroll($event)" style="width: 400px; height: 800px; overflow: auto;">
+  ...
+</div>
+<div style="position: fixed; bottom: 0" p-a-20>
+  <sws-scroll-progress [useCustomElement]="true" [customScrollEvent]="customScrollEvent"></sws-scroll-progress>
+</div>
+```
+
+```TypeScript
+  public watchScroll(event) {
+    this.customScrollEvent = event;
+  }
+```
 
 #### **Scroll Progress Event Emitters (emits on Scroll)**
 
@@ -111,6 +125,14 @@ import { ScrollProgressModule } from '@softheon/ng-workshop';
 | top      | boolean    | Emits true when the scroll is at the top of the page                                      |
 | bottom   | boolean    | Emits true when the scroll is at the bottom of the page                                   |
 | btnClick | MouseEvent | Emitter when the button is clicked                                                        |
+
+#### **Scroll Progress Event Emitters (emits on Scroll)**
+
+| Key               | Type    | Required             | Description                                                                               |
+|-------------------|---------|----------------------|-------------------------------------------------------------------------------------------|
+| useCustomElement   | boolean | No, default is false | Whether or not the scroll progress indicator should watch a custom element instead of the |
+| customScrollEvent | Event   | No                   | The custom element's event to update the scroll progress indicator with                   |
+
 
 #### **The Scroll Progress Indicator can be themed in the styles.css file as such:**
 
