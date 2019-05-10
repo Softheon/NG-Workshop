@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostListener, Output, EventEmitter, Input, SimpleChanges, SimpleChange, OnChanges } from '@angular/core';
 
 /** The Scroll Progress Indicator Component */
 @Component({
@@ -6,7 +6,7 @@ import { Component, OnInit, HostListener, Output, EventEmitter } from '@angular/
   templateUrl: './scroll-progress-indicator.component.html',
   styleUrls: ['./scroll-progress-indicator.component.css']
 })
-export class ScrollProgressIndicatorComponent implements OnInit {
+export class ScrollProgressIndicatorComponent implements OnInit, OnChanges {
   /** The bottom of the page */
   public bottomOfPage: boolean;
 
@@ -15,6 +15,12 @@ export class ScrollProgressIndicatorComponent implements OnInit {
 
   /** Scrolled completion */
   public scrolled: number;
+
+  /** The custom element's event to update the scroll progress indicator with */
+  @Input() customScrollEvent: Event;
+
+  /** Whether or not the scroll progress indicator should watch a custom element */
+  @Input() useCustomElement: boolean;
 
   /** Event Emitter: the scroll progress */
   @Output() scroll: EventEmitter<any> = new EventEmitter();
@@ -30,14 +36,14 @@ export class ScrollProgressIndicatorComponent implements OnInit {
 
   constructor() {}
 
-  /** Scroll to bottom listener */
-  // https://stackoverflow.com/questions/51540187/detect-bottom-scroll/51550034
+  /** Scroll event listener */
   @HostListener('window:scroll')
   public onWindowScroll(): void {
-    // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
-    this.watchScroll();
-    this.isTopOfPage();
-    this.isBottomOfPage();
+    if (!this.useCustomElement) {
+      this.watchScroll();
+      this.isTopOfPage();
+      this.isBottomOfPage();
+    }
   }
 
   /** Sends an event emitter when the button is clicked */
@@ -47,10 +53,30 @@ export class ScrollProgressIndicatorComponent implements OnInit {
 
   ngOnInit() {}
 
+  /** On Changes event listener if custom scroll event */
+  ngOnChanges(changes: SimpleChanges) {
+    if (this.useCustomElement && this.customScrollEvent !== undefined) {
+      const customScrollEvent: SimpleChange = changes.customScrollEvent;
+      this.watchScroll(this.customScrollEvent);
+      this.isTopOfPage();
+      this.isBottomOfPage(this.customScrollEvent);
+    }
+  }
+
   /** The scroll progress logic */
-  private watchScroll(): void {
-    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  private watchScroll(customScrollEvent?: Event): void {
+    let targetElement: HTMLTextAreaElement;
+    let winScroll: number;
+    let height: number;
+    if (customScrollEvent) {
+      targetElement = customScrollEvent.target as HTMLTextAreaElement;
+      winScroll = targetElement.scrollTop;
+      height = targetElement.scrollHeight - targetElement.clientHeight;
+    } else {
+      winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    }
+
     const donutBorder = 359;
     const donutBorderDifference = 151;
     this.scrolled = +((winScroll / height) * 100).toFixed(0);
@@ -60,9 +86,20 @@ export class ScrollProgressIndicatorComponent implements OnInit {
   }
 
   /** Determines whether or not the user is at the bottom of the page */
-  private isBottomOfPage(): void {
-    const pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
-    const max = document.documentElement.scrollHeight;
+  private isBottomOfPage(customScrollEvent?: Event): void {
+    let targetElement: HTMLTextAreaElement;
+    let pos: number;
+    let max: number;
+    if (customScrollEvent) {
+      targetElement = customScrollEvent.target as HTMLTextAreaElement;
+      pos = targetElement.scrollTop + targetElement.scrollTop;
+      max = targetElement.scrollHeight;
+    } else {
+      // pos/max will give you the distance between scroll bottom and and bottom of screen in percentage.
+      // https://stackoverflow.com/questions/51540187/detect-bottom-scroll/51550034
+      pos = (document.documentElement.scrollTop || document.body.scrollTop) + document.documentElement.offsetHeight;
+      max = document.documentElement.scrollHeight;
+    }
     if (pos >= max - 50) {
       this.bottomOfPage = true;
       this.bottom.emit(true);

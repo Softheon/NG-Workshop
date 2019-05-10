@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HelloComponent implements OnInit {
 
+  public customScrollEvent: Event;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  public watchScroll(event: any) {
+    this.customScrollEvent = event;
+  }
 }
