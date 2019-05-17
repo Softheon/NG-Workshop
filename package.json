@@ -1,6 +1,6 @@
 {
   "name": "ng-workshop",
-  "version": "4.0.0",
+  "version": "5.0.0-rc1",
   "private": true,
   "scripts": {
     "start": "\"ng build workshop --prod --watch\""

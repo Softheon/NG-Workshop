@@ -27,6 +27,19 @@
     </div>
   </sws-header>
   <div flex-container-responsive>
+    <div>
+      <!--[isNavCollapsed]="false" [overlayCustomClass]="'visible-mobile'" [enableOverlay]="true"  -->
+      <sws-sidenav [sidenavCustomClass]="'custom-header'" [menuIcon]="'fas fa-stream'" [enableOverlay]="true" [overlayCustomClass]="'visible-mobile'">
+          <ng-container sidenav>
+            <!-- Content Goes Here -->
+            <ul>
+              <li><a routerLinkActive="active-link" routerLink="/welcome"><span sws-navigation_icon><i class="fas fa-home"></i></span>Home</a></li>
+              <li><a routerLinkActive="active-link" routerLink="/contact"><span sws-navigation_icon><i class="fas fa-book"></i></span>Contact</a></li>
+              <li><a routerLinkActive="active-link" routerLink="/about"><span sws-navigation_icon><i class="fas fa-address-card"></i></span>About Us </a></li>
+            </ul>
+          </ng-container>
+        </sws-sidenav>
+    </div>
     <div m-t-15>
       <sws-multi-stepper-v [stepData]="stepData" [skipAhead]="true" [enableToggleIcon]="true" [defaultStyle]="true"></sws-multi-stepper-v>
     </div>
