@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 /**
  * The Side Nav Component
@@ -10,7 +10,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SideNavComponent implements OnInit {
   /** Whether or not the nav is collapsed (As input, initial state of the nav on desktop) */
-  @Input() public isNavCollapsed: boolean;
+  @Input() public isNavCollapsed: boolean = false;
 
   /** Whether or not to display the hover tabs when the sidenav is collapsed */
   @Input() public enableHoverTab: boolean;
@@ -19,7 +19,7 @@ export class SideNavComponent implements OnInit {
   @Input() public enableOverlay: boolean;
 
   /** Custom class to add to the sidenav */
-  @Input() public sidenavCustomClass: string;
+  @Input() public sideNavCustomClass: string;
 
   /** Custom class to add to the sidenav overlay */
   @Input() public overlayCustomClass: string;
@@ -29,6 +29,9 @@ export class SideNavComponent implements OnInit {
 
   /** Custom text to replace the 'MENU' icon */
   @Input() public menuIcon: string;
+
+  /** Event Emitter whether or not the navigation is open */
+  @Output() isSideNavCollapsed: EventEmitter<boolean> = new EventEmitter();
 
   /** The text that displays in the tooltip when the nav is hovered in the collapsed state */
   public navHoverText: string;
@@ -49,11 +52,13 @@ export class SideNavComponent implements OnInit {
     if (this.isNavCollapsed === undefined || window.innerWidth < 1200) {
       this.isNavCollapsed = true;
     }
+    this.emitSideNavState();
   }
 
   /** Toggles the sidenav state */
   public swsToggleSideNav(): void {
     this.isNavCollapsed = !this.isNavCollapsed;
+    this.emitSideNavState();
   }
 
   /**
@@ -77,5 +82,10 @@ export class SideNavComponent implements OnInit {
     if (this.tooltipOpacity === 1) {
       this.tooltipOpacity = 0;
     }
+  }
+
+  /** Sends an event emitter when the button is clicked */
+  public emitSideNavState(): void {
+    this.isSideNavCollapsed.emit(this.isNavCollapsed);
   }
 }

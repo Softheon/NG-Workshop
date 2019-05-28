@@ -115,12 +115,12 @@ EXAMPLE 2: SideNav with Content
 </sws-sidenav>
 ```
 
-EXAMPLE 3: SideNav with Content & Customizations
+EXAMPLE 3: SideNav with Content, Customizations, & Event Emitter
 
-These settings will render the sidenav in the 'open' state by default (on desktop)
+These settings will render the sidenav in the 'open' state by default (on desktop). And when the Menu button is clicked on the sidenav button, it will emit its boolean state.
 
 ```html
-<sws-sidenav [isNavCollapsed]="false">
+<sws-sidenav [isNavCollapsed]="false" (isSideNavCollapsed)="log($event)">
   <ng-container sidenav>
     <!-- Content Goes Here -->
     <ul>
@@ -132,6 +132,14 @@ These settings will render the sidenav in the 'open' state by default (on deskto
 </sws-sidenav>
 ```
 
+#### **Example Event Emitter Method**
+
+```TypeScript
+  public log(event) {
+    console.log('e: ', event);
+  }
+```
+
 EXAMPLE 4: SideNav with Content & Customizations
 
 ![alt text](https://softheonworkshop.azureedge.net/ng-workshop/ng-workshop_leftnav4.png "NG Workshop Example")
@@ -141,7 +149,7 @@ These settings will render the sidenav with a custom css class, a custom menu ic
 **TIP**: See the Workshop CSS Documentation on customizing the left nav style.
 
 ```html
-<sws-sidenav [sidenavCustomClass]="'custom-header'" [menuIcon]="'fas fa-stream'" [enableOverlay]="true" [overlayCustomClass]="'visible-tablet'">
+<sws-sidenav [sideNavCustomClass]="'custom-header'" [menuIcon]="'fas fa-stream'" [enableOverlay]="true" [overlayCustomClass]="'visible-tablet'">
   <ng-container sidenav>
     <!-- Content Goes Here -->
     <ul>
@@ -166,10 +174,16 @@ These settings will render the sidenav with a custom css class, a custom menu ic
 | isNavCollapsed     | boolean | yes      | true          | false         | The initial state of the nav on desktop (false = nav is open)          |
 | enableHoverTab     | boolean | no       | true          | true          | Whether or not to display the hover tabs when the sidenav is collapsed |
 | enableOverlay      | boolean | no       | false         | false         | Whether or not to display the overlay when the navigation is open      |
-| sidenavCustomClass | string  | no       | true          | true          | Custom class to add to the sidenav                                     |
+| sideNavCustomClass | string  | no       | true          | true          | Custom class to add to the sidenav                                     |
 | overlayCustomClass | string  | no       | true          | true          | Custom class to add to the sidenav overlay                             |
 | menuText           | string  | no       | true          | true          | Custom text to replace the 'MENU'                                      |
 | menuIcon           | string  | no       | true          | true          | Custom text to replace the 'MENU' icon                                 |
+
+#### **SideNav Output Configurations**
+
+| Key                | Type    | Example Output Value | Description                                                                                            |
+|--------------------|---------|----------------------|--------------------------------------------------------------------------------------------------------|
+| isSideNavCollapsed | boolean | false                | Emits the state of the sidenav whether it is open or collapsed on init and on clicking the menu button |
 
 ### **Scroll Progress**
 
