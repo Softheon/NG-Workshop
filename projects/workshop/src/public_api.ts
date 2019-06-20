@@ -27,3 +27,6 @@ export * from './lib/multi-stepper-v/multi-stepper-v.module';
 
 export * from './lib/scroll-progress-indicator/scroll-progress-indicator.component';
 export * from './lib/scroll-progress-indicator/scroll-progress-indicator.module';
+
+export * from './lib/side-nav/side-nav.component';
+export * from './lib/side-nav/side-nav.module';

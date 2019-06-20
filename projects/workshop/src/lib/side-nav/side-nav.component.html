@@ -1,0 +1,16 @@
+<nav sws-nav--l [class]="sideNavCustomClass" [class.nav-open]="!isNavCollapsed">
+  <button id="btn-toggleSideNav" (click)="swsToggleSideNav()" button-reset menu-btn aria-haspopup="true" aria-controls="appSideNav">
+    <ng-container>
+      <span sws-navigation_icon><i class="{{menuIcon ? menuIcon : 'fas fa-bars'}} fa-lg"></i> </span>
+    </ng-container>
+    {{menuText ? menuText : 'MENU'}}
+  </button>
+  <div nav-tooltip-container *ngIf="enableHoverTab && isNavCollapsed">
+    <p nav-tooltip id="nav-text" [style.opacity]="tooltipOpacity" [style.top]="tooltipTop">{{navHoverText}}</p>
+  </div>
+  <div sws-nav--l_content id="appSideNav" aria-labelledby="btn-toggleSideNav" (keyup)="(enableHoverTab && isNavCollapsed) ? focusOnEvent($event) : null;" (focusout)="focusOffEvent()" (mouseout)="(enableHoverTab && isNavCollapsed) ? focusOffEvent() : null;" (mouseover)="(enableHoverTab && isNavCollapsed) ? focusOnEvent($event) : null;">
+    <!-- single slot transclusion here -->
+    <ng-content select="[sidenav]"></ng-content>
+  </div>
+</nav>
+<div *ngIf="enableOverlay && !isNavCollapsed" [class]="overlayCustomClass" sws-nav-overlay (click)="swsToggleSideNav()"></div>

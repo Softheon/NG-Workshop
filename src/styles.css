@@ -24,3 +24,9 @@ body {
 html, body {
     height: 100%;
 }
+
+.custom-header {
+  --nav-height: calc(100vh - 50px);
+  --nav-content-height: calc(100vh - 111px);
+  --nav-pos: fixed;
+}

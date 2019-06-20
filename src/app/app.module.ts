@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { Routes, RouterModule } from '@angular/router';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { MultiStepperVModule, MultiStepperModule, CardGridModule, HeaderModule, FooterModule, BreadcrumbModule, ScrollProgressModule } from 'workshop';
+import { MultiStepperVModule, MultiStepperModule, CardGridModule, HeaderModule,
+  FooterModule, BreadcrumbModule, ScrollProgressModule, SideNavModule } from 'workshop';
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -69,6 +70,7 @@ const appRoutes: Routes = [
     ScrollProgressModule,
     CardGridModule,
     HeaderModule,
+    SideNavModule,
     BreadcrumbModule,
     FooterModule,
     HttpClientModule,

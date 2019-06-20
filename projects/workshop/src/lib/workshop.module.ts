@@ -8,6 +8,7 @@ import { LinkComponent } from './common/link/link.component';
 import { MultiStepperVModule } from './multi-stepper-v/multi-stepper-v.module';
 import { BreadcrumbModule } from './breadcrumb/breadcrumb.module';
 import { ScrollProgressModule } from './scroll-progress-indicator/scroll-progress-indicator.module';
+import { SideNavModule } from './side-nav/side-nav.module';
 
 @NgModule({
   imports: [CommonModule],
@@ -19,7 +20,8 @@ import { ScrollProgressModule } from './scroll-progress-indicator/scroll-progres
     LinkComponent,
     MultiStepperVModule,
     BreadcrumbModule,
-    ScrollProgressModule
+    ScrollProgressModule,
+    SideNavModule
   ],
   exports: [
     MultiStepperModule,
@@ -28,7 +30,8 @@ import { ScrollProgressModule } from './scroll-progress-indicator/scroll-progres
     FooterComponent,
     MultiStepperVModule,
     BreadcrumbModule,
-    ScrollProgressModule
+    ScrollProgressModule,
+    SideNavModule
   ]
 })
 export class WorkshopModule {}
