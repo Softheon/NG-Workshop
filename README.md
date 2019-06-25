@@ -146,7 +146,7 @@ EXAMPLE 4: SideNav with Content & Customizations
 
 These settings will render the sidenav with a custom css class, a custom menu icon, and enable the overlay to appear when the sidenav is in the 'open' state, and to give the overlay a custom class (to only display on tablet and under screen sizes)
 
-**TIP**: See the Workshop CSS Documentation on customizing the left nav style.
+**TIP**: See the **[Workshop UI Documentation](https://developer.softheon.io/workshop/)** on customizing the side nav style.
 
 ```html
 <sws-sidenav [sideNavCustomClass]="'custom-header'" [menuIcon]="'fas fa-stream'" [enableOverlay]="true" [overlayCustomClass]="'visible-tablet'">
