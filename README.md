@@ -148,7 +148,6 @@ These settings will render the sidenav with a custom css class, a custom menu ic
 
 **TIP**: See the **[Workshop UI Documentation](https://developer.softheon.io/workshop/)** on customizing the side nav style.
 
-
 ```html
 <sws-sidenav [sideNavCustomClass]="'custom-header'" [menuIcon]="'fas fa-stream'" [enableOverlay]="true" [overlayCustomClass]="'visible-tablet'">
   <ng-container sidenav>

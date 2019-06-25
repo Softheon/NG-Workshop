@@ -69,7 +69,7 @@ export class HeaderComponent implements OnInit, AfterViewInit  {
   }
 
   /** For Calculating the Header Width for the Search Bar */
-  @ViewChild('headerContent')
+  @ViewChild('headerContent', {static: true})
   headerContent: ElementRef;
 
   /** For auto-closing the left menu and user menus when clicking off of the component */
